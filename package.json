@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/nowzoo/nog/issues"
   },
-  "homepage": "https://github.com/nowzoo/nog"
+  "homepage": "https://github.com/nowzoo/nog",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  }
 }
