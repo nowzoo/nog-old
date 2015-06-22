@@ -69,7 +69,7 @@ module.exports = function (grunt, done) {
             function(callback){
                 var files;
                 fs.readdir(process.cwd(), function(err, result){
-                    console.log('files', files);
+                    console.log('files', result);
                     callback();
                 });
 
