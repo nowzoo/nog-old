@@ -3,9 +3,16 @@ module.exports = function (grunt, done) {
     'use strict';
     var path = require('path');
     var Git = require('nodegit');
+    var moment = require('moment');
 
     var repo;
-    var status;
+    var index;
+    var oid;
+
+    /**
+     * require that we're on master
+     * require
+     */
 
     Git.Repository
         .open(path.resolve(process.cwd(), './.git'))
@@ -14,7 +21,37 @@ module.exports = function (grunt, done) {
             return repo.getStatus();
         })
         .then(function(result){
-            console.log(result.length);
+            return repo.openIndex()
+        })
+        .then(function(result) {
+            index = result;
+            return index.read(1);
+        })
+        .then(function() {
+            return index.addAll();
+        })
+        .then(function() {
+            return index.write();
+        })
+        .then(function() {
+            return index.writeTree();
+        })
+        .then(function(result) {
+            oid = result;
+            return Git.Reference.nameToId(repo, "HEAD");
+        })
+        .then(function(result) {
+            return repo.getCommit(result);
+        })
+        .then(function(result) {
+            var signature = Git.Signature.default(repo);
+            var msg = 'Commit before publishing on ' + moment().format('LLLL');
+            return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
+        })
+        .then(function(result) {
+            console.log('New Commit', result);
+        })
+        .then(function(){
             done();
         });
 
