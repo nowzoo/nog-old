@@ -7,32 +7,22 @@ module.exports = function (grunt, done) {
     var repo;
     var status;
 
-    Git.Repository.open(path.resolve(process.cwd(), './.git'))
-        .then(function(repo) {
-            repo.getStatus().then(function(statuses) {
-                function statusToText(status) {
-                    var words = [];
-                    if (status.isNew()) { words.push("NEW"); }
-                    if (status.isModified()) { words.push("MODIFIED"); }
-                    if (status.isTypechange()) { words.push("TYPECHANGE"); }
-                    if (status.isRenamed()) { words.push("RENAMED"); }
-                    if (status.isIgnored()) { words.push("IGNORED"); }
-
-                    return words.join(" ");
-                }
-
-                statuses.forEach(function(file) {
-                    console.log(file.path() + " " + statusToText(file));
-                });
-                done();
-            });
+    Git.Repository
+        .open(path.resolve(process.cwd(), './.git'))
+        .then(function(result) {
+            repo = result;
+            return repo.getStatus();
+        })
+        .then(function(result){
+            console.log(result.length);
+            done();
         });
 
 
 
 
 
-
 };
+
 
 
