@@ -72,11 +72,6 @@ module.exports = function (grunt, done) {
                 var files;
                 fs.readdir(process.cwd(), function(err, result){
                     files = result;
-                    //_.each(files, function(filename){
-                    //    if (_.indexOf(['_site', '.gitignore'], filename) !== -1) return;
-                    //    if (filename.indexOf('.') === 0) return;
-                    //    grunt.file.delete(path.join(process.cwd(), filename));
-                    //});
                     callback();
                 });
 
