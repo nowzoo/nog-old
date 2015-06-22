@@ -51,9 +51,6 @@ module.exports = function (grunt, done) {
         .then(function(result) {
             console.log('New Commit', result);
         })
-        .then(function(result) {
-            console.log('New Commit', result);
-        })
         .then(function(){
             repo.checkoutBranch('gh-pages');
         })
