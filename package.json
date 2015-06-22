@@ -36,5 +36,8 @@
     "swig": "^1.4.2",
     "time-grunt": "^1.2.1",
     "yaml-front-matter": "^3.2.3"
+  },
+  "dependencies": {
+    "ncp": "^2.0.0"
   }
 }
