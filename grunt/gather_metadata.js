@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     var files = grunt.file.expand('content/*.twig');
     var nog_config = grunt.config.get('nog');
     var atomic_metadata = {};
-    var atomic_assets = {};
+    var assets = grunt.file.expand('assets/**/*');
     var atomic_errors = {};
     var archives = {};
     var tag_archives = {};
@@ -59,6 +59,7 @@ module.exports = function (grunt) {
         if (!_.has(tag_archives, slug)){
             tag_archives[slug] = {
                 title: 'Posts tagged ' + tag,
+                name: tag,
                 slug: slug,
                 type: 'tag',
                 posts: []
@@ -70,22 +71,22 @@ module.exports = function (grunt) {
     var add_post_to_archives = function(meta, post_id){
         var date_types = {
             year: {
-                title: 'Archives: ' + meta.published_at.format('YYYY'),
+                title: 'Yearly Archive: ' + meta.published_at.format('YYYY'),
                 slug: meta.published_at.format('YYYY')
             },
             month: {
-                title: 'Monthly Archives: ' + meta.published_at.format('MMMM YYYY'),
+                title: 'Monthly Archive: ' + meta.published_at.format('MMMM YYYY'),
                 slug: meta.published_at.format('YYYY/MM')
             },
             day: {
-                title: 'Daily Archives: ' + meta.published_at.format('LL'),
+                title: 'Daily Archive: ' + meta.published_at.format('LL'),
                 slug: meta.published_at.format('YYYY/MM/DD')
             }
         };
 
         if (!_.has(archives, 'main')){
             archives.main = {
-                title: 'Archives',
+                title: 'Main Archive',
                 posts:[],
                 slug: '',
                 type: 'main'
@@ -160,7 +161,7 @@ module.exports = function (grunt) {
 
     // normalize meta.published_at for each...
     _.each(atomic_metadata, function(meta, id){
-        var published_at = _.has(meta, 'published_at') ? moment(meta.published_at) : moment.invalid();
+        var published_at = _.has(meta, 'published_at') ? moment(meta.published_at, [moment.ISO_8601, 'YYYY/MM/DD', 'YYYY/MM/DD HH:mm']) : moment.invalid();
         if (! published_at.isValid()){
             published_at = moment(meta.content_file_stats.mtime);
             if ('post' === meta.post_type){
@@ -170,11 +171,6 @@ module.exports = function (grunt) {
         meta.published_at = published_at;
     });
 
-    // set meta.created_at and meta.updated_at for each based on the fstat...
-    _.each(atomic_metadata, function(meta, id){
-        meta.created_at = moment(meta.content_file_stats.ctime);
-        meta.updated_at = moment(meta.content_file_stats.mtime);
-    });
 
 
 
@@ -196,7 +192,6 @@ module.exports = function (grunt) {
             meta.parents = [];
         } else {
             parent = meta.parent;
-            console.log(parent);
             while(parent){
                 if (_.has(atomic_metadata, parent)){
                     parents.unshift(parent);
@@ -209,11 +204,7 @@ module.exports = function (grunt) {
         }
     });
 
-    console.log('after adding parents');
-    _.each(atomic_metadata, function(meta){
-        console.log(meta.parents);
 
-    });
 
 
 
@@ -309,25 +300,30 @@ module.exports = function (grunt) {
         populate_archive_paging(archive)
     });
 
-    atomic_metadata = _.values(atomic_metadata);
-    atomic_metadata.sort(function(a, b){
-        if (a.relative_url < b.relative_url) return -1;
-        if (a.relative_url > b.relative_url) return 1;
+
+
+    archives = _.values(archives);
+    archives.sort(function(a, b){
+        if (a.slug < b.slug) return -1;
+        if (a.slug > b.slug) return 1;
         return 0;
     });
 
-    _.each(atomic_metadata, function(meta){
-
-            console.log(meta.parents);
-
+    tag_archives = _.values(tag_archives);
+    tag_archives.sort(function(a, b){
+        if (a.slug < b.slug) return -1;
+        if (a.slug > b.slug) return 1;
+        return 0;
     });
+
 
 
     return {
         archives: archives,
         tag_archives: tag_archives,
         atomic_metadata: atomic_metadata,
-        errors: atomic_errors
+        atomic_errors: atomic_errors,
+        assets: assets
     };
 
 

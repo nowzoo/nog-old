@@ -7,49 +7,46 @@ module.exports = function (grunt, callback) {
     var swig = require('swig');
     var _ = require('lodash');
 
+    var gather_metadata = require('./gather_metadata');
 
 
-    var files = grunt.file.expand('content/**/index.twig');
+
     var site = grunt.config.get('nog');
-    var metadata = {};
+    var metadata = gather_metadata(grunt);
 
 
-    _.each(files, function(file_path){
-        var meta;
-        var slugs = file_path.split(path.sep);
-        var template_filename = path.join(process.cwd(), file_path);
-        var template_path = path.dirname(template_filename);
-        var relative_path = path.dirname('/' + _.rest(slugs).join('/'));
-        var json_path = path.join(template_path, 'meta.json');
+    var site_path = path.join(process.cwd(), '_site');
 
-        var defined_meta = grunt.file.exists(json_path) ? grunt.file.readJSON(json_path) : {};
 
-        meta = {
-            template_filename: template_filename,
-            template_path: template_path,
-            relative_path: relative_path
-        };
-
-        _.extend(meta, defined_meta, meta);
-        metadata[relative_path] = meta;
-    });
 
 
 
     async.series(
         [
             function(callback){
-                var p = path.join(process.cwd(), '_site');
-                rimraf(p, callback);
+                rimraf(site_path, callback);
             },
             function(callback){
-                async.each(metadata, function(meta, callback){
-                    swig.renderFile(meta.template_filename, {site: site, meta: meta}, function (err, output) {
-                        var p = path.join(process.cwd(), '_site', meta.relative_path, 'index.html');
+                async.each(metadata.atomic_metadata, function(meta, callback){
+                    swig.renderFile(meta.content_filename, {site: site, meta: meta}, function (err, output) {
+                        var p = path.join(process.cwd(), '_site', meta.relative_url, 'index.html');
                         if (err) return callback(err);
                         grunt.file.write(p, output);
                         callback();
                     });
+                }, callback);
+            },
+            function(callback){
+                async.each([].concat(metadata.archives, metadata.tag_archives), function(archive, callback){
+                    async.each(archive.pages, function(page, callback){
+                        swig.renderFile('templates/archive.twig', {site: site, archive: archive, page: page, content: metadata.atomic_metadata}, function (err, output) {
+                            var p = path.join(process.cwd(), '_site', page.relative_url, 'index.html');
+                            if (err) return callback(err);
+                            grunt.file.write(p, output);
+                            callback();
+                        });
+                    }, callback);
+
                 }, callback);
             }
         ], callback

@@ -22,7 +22,9 @@
   "homepage": "https://github.com/nowzoo/nog",
   "devDependencies": {
     "async": "^1.2.1",
+    "bootstrap": "^3.3.5",
     "commander": "^2.8.1",
+    "express": "^4.13.0",
     "grunt": "^0.4.5",
     "lodash": "^3.9.3",
     "moment": "^2.10.3",
@@ -31,8 +33,5 @@
     "swig": "^1.4.2",
     "time-grunt": "^1.2.1",
     "yaml-front-matter": "^3.2.3"
-  },
-  "bin": {
-    "nog": "nog/index.js"
   }
 }

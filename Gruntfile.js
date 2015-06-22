@@ -4,10 +4,11 @@ module.exports = function (grunt) {
 
     var path = require('path');
     var _ = require('lodash');
+    var moment = require('moment');
 
 
     var nog_build = require('./grunt/build');
-    var gather_metadata = require('./grunt/gather_metadata');
+    var nog_meta = require('./grunt/meta');
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
 
@@ -48,25 +49,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('meta', 'See the metadata for your site.', function () {
-        var meta = gather_metadata.call(this, grunt);
-        grunt.log.subhead('Atomic Content');
-        grunt.log.writeln();
-        _.each(meta.atomic_metadata, function(post){
-            grunt.log.writeln(post.title);
-            grunt.log.writeln('Relative URL:',  post.relative_url);
-            grunt.log.writeln('Type:',post.post_type);
-            if (post.post_type === 'post'){
-                grunt.log.writeln('Tags:', grunt.log.wordlist(post.tags));
-                grunt.log.writeln('Primary Tag:', post.primary_tag);
-            } else {
-                grunt.log.writeln('Page Parent:', post.parent);
-
-                grunt.log.writeln('Parents:', post.parents, grunt.log.wordlist(post.parents));
-            }
-            grunt.log.writeln();
-        });
-
-        //console.log(meta.atomic_metadata);
+        nog_meta.call(this, grunt);
     });
 
     grunt.registerTask('build', 'Generate the site pages.', function() {
