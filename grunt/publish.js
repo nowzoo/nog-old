@@ -8,6 +8,7 @@ module.exports = function (grunt, done) {
     var async = require('async');
     var ncp = require('ncp').ncp;
     var rimraf = require('rimraf');
+    var _ = require('lodash');
 
     var repo;
     var index;
@@ -69,7 +70,12 @@ module.exports = function (grunt, done) {
             function(callback){
                 var files;
                 fs.readdir(process.cwd(), function(err, result){
-                    console.log('files', result);
+                    files = result;
+                    _.each(files, function(filename){
+                        if (_.indexOf(['_site', '.gitignore'], filename) !== -1) return;
+                        if (filename.indexOf('.') === 0) return;
+                        grunt.file.delete(path.join(process.cwd(), filename));
+                    });
                     callback();
                 });
 
