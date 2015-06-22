@@ -6,14 +6,19 @@ module.exports = function (grunt) {
     var path = require('path');
     var _ = require('lodash');
     var S = require('string');
+    var marked = require('marked');
+    var yamlFront = require('yaml-front-matter');
+    var stopwords = require('stopwords').english;
 
-    var files = grunt.file.expand('content/*.twig');
+    var files = grunt.file.expand('content/*.md');
     var nog_config = grunt.config.get('nog');
     var atomic_metadata = {};
     var assets = grunt.file.expand('assets/**/*');
     var atomic_errors = {};
     var archives = {};
     var tag_archives = {};
+    var search = {};
+
 
 
     var add_atomic_error = function(id, error){
@@ -21,6 +26,18 @@ module.exports = function (grunt) {
             atomic_errors[id] = [];
         }
         atomic_errors[id].push(error);
+    };
+
+
+    var add_search_word = function(word, id){
+        word = S(word).trim().toLowerCase().stripPunctuation().s;
+        if (_.indexOf(stopwords, word) !== -1) return;
+        if (! word.length === 0) return;
+        if (! word.match(/\w/)) return;
+        if (!_.has(search, word)){
+            search[word] = [];
+        }
+        search[word].push(id);
     };
 
 
@@ -113,7 +130,7 @@ module.exports = function (grunt) {
     // gather the path data...
     _.each(files, function(file_path){
         var slugs = _.rest(file_path.split(path.sep));
-        var id = path.basename(_.last(slugs), '.twig');
+        var id = path.basename(_.last(slugs), '.md');
         var content_filename = path.join(process.cwd(), file_path);
         var content_file_stats = fs.statSync(content_filename);
         atomic_metadata[id] = {
@@ -125,21 +142,11 @@ module.exports = function (grunt) {
     });
 
 
-    // gather the metadata defined in the content file for each atomic path...
+    // gather the metadata and content defined in the content file for each atomic path...
     _.each(atomic_metadata, function(meta){
-        var comment_rx = /{#([^]+)#}/;
-        var meta_rx = /(\w+)\s?:\s?([^\n]+)\n/g;
         var content = grunt.file.read(meta.content_filename);
-        var comment = content.match(comment_rx);
-        var defined = {};
-        var r;
-
-        if ( comment){
-            while (r = meta_rx.exec(comment)) {
-                defined[S(r[1]).trim().s] = S(r[2]).trim().s;
-            }
-        }
-        _.extend(meta, defined);
+        var front = yamlFront.loadFront(content);
+        _.extend(meta, _.omit(front, '__content'), {md_content: front.__content, content: marked(front.__content)});
     });
 
     // normalize meta.title for each...
@@ -301,20 +308,21 @@ module.exports = function (grunt) {
     });
 
 
-
-    archives = _.values(archives);
-    archives.sort(function(a, b){
-        if (a.slug < b.slug) return -1;
-        if (a.slug > b.slug) return 1;
-        return 0;
+    //populate search...
+    _.each(atomic_metadata, function(meta, id){
+        var words = S(meta.content).stripTags().s.split(' ');
+        _.each(words, function(word){
+            add_search_word(word, id);
+        });
+    });
+    _.each(search, function(arr, key){
+        search[key] = _.uniq(arr);
     });
 
-    tag_archives = _.values(tag_archives);
-    tag_archives.sort(function(a, b){
-        if (a.slug < b.slug) return -1;
-        if (a.slug > b.slug) return 1;
-        return 0;
-    });
+
+
+
+
 
 
 
@@ -323,7 +331,8 @@ module.exports = function (grunt) {
         tag_archives: tag_archives,
         atomic_metadata: atomic_metadata,
         atomic_errors: atomic_errors,
-        assets: assets
+        assets: assets,
+        search: search
     };
 
 

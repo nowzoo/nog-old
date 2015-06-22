@@ -45,7 +45,7 @@ module.exports = function (grunt) {
     grunt.log.subhead('Archives');
     grunt.log.writeln('--------');
     grunt.log.writeln('The following post archives were found:');
-    _.each([].concat(meta.archives, meta.tag_archives), function(archive){
+    _.each([].concat(_.values(meta.archives), _.values(meta.tag_archives)), function(archive){
         grunt.log.subhead(archive.title);
         grunt.log.writeln('Slug:', archive.slug);
         grunt.log.writeln('Type:', archive.type);
@@ -77,6 +77,8 @@ module.exports = function (grunt) {
         });
 
     });
+
+    console.log(meta.search);
 
 };
 

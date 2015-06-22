@@ -9,6 +9,7 @@ module.exports = function (grunt) {
 
     var nog_build = require('./grunt/build');
     var nog_meta = require('./grunt/meta');
+    var nog_publish = require('./grunt/publish');
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
 
@@ -57,14 +58,12 @@ module.exports = function (grunt) {
         nog_build.call(this, grunt, done);
     });
 
-
-    grunt.registerTask('foo', 'A sample task that logs stuff.', function(arg1, arg2) {
-        if (arguments.length === 0) {
-            grunt.log.writeln(this.name + ", no args");
-        } else {
-            grunt.log.writeln(this.name + ", " + arg1 + " " + arg2);
-        }
+    grunt.registerTask('publish', 'Publish the site to GitHub Pages.', function() {
+        var done = this.async();
+        nog_publish.call(this, grunt, done);
     });
+
+
 
 
     // Default distribution task.

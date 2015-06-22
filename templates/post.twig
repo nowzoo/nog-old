@@ -1,15 +1,14 @@
 {% extends 'main.twig' %}
-{% block head_title %}{{ meta.title }} | {{ site.title }}{% endblock %}
+{% block head_title %}{{ post.title }} | {{ post.title }}{% endblock %}
 {% block body %}
     <article>
         <header class="page-header">
-            <h1>{{ meta.title }}</h1>
+            <h1>{{ post.title }}</h1>
         </header>
         <div>
-            {% block content %}
-            <p>Missing content!</p>
-            {% endblock %}
+            {{ post.content }}
         </div>
     </article>
 {% endblock %}
+
 

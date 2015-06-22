@@ -28,7 +28,24 @@ module.exports = function (grunt, callback) {
             },
             function(callback){
                 async.each(metadata.atomic_metadata, function(meta, callback){
-                    swig.renderFile(meta.content_filename, {site: site, meta: meta}, function (err, output) {
+                    var template;
+                    var data = {
+                        post: meta,
+                        current_post: meta,
+                        site: site,
+                        posts: metadata.atomic_metadata,
+                        archives: metadata.archives,
+                        tag_archives: metadata.tag_archives
+                    };
+                    if (meta.post_type === 'post'){
+                        template = _.has(site, 'post_template') ? site.post_template : 'post.twig';
+
+                    } else {
+                        template = _.has(site, 'page_template') ? site.page_template : 'page.twig';
+                    }
+                    template = _.has(meta, 'template') ? meta.template : template;
+                    template = path.join(process.cwd(),'templates', template);
+                    swig.renderFile(template, data, function (err, output) {
                         var p = path.join(process.cwd(), '_site', meta.relative_url, 'index.html');
                         if (err) return callback(err);
                         grunt.file.write(p, output);
@@ -39,7 +56,22 @@ module.exports = function (grunt, callback) {
             function(callback){
                 async.each([].concat(metadata.archives, metadata.tag_archives), function(archive, callback){
                     async.each(archive.pages, function(page, callback){
-                        swig.renderFile('templates/archive.twig', {site: site, archive: archive, page: page, content: metadata.atomic_metadata}, function (err, output) {
+                        var template;
+                        var data = {
+                            post: null,
+                            current_post: null,
+                            site: site,
+                            posts: metadata.atomic_metadata,
+                            archives: metadata.archives,
+                            tag_archives: metadata.tag_archives,
+                            archive: archive,
+                            page: page
+                        };
+
+                        template = _.has(site, 'archive_template') ? site.archive_template : 'archive.twig';
+                        template = _.has(archive, 'template') ? archive.template : template;
+                        template = path.join(process.cwd(),'templates', template);
+                        swig.renderFile(template, data, function (err, output) {
                             var p = path.join(process.cwd(), '_site', page.relative_url, 'index.html');
                             if (err) return callback(err);
                             grunt.file.write(p, output);
