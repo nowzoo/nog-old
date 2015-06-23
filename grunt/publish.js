@@ -61,7 +61,7 @@ module.exports = function (grunt, done) {
                     })
                     .then(function(){
                         var result = repo.checkoutBranch('gh-pages');
-                        //console.log(result.isFulfilled(), result.reason())
+                        console.log('branch', result.isFulfilled(), result.reason())
                     })
 
                     .then(function(){
