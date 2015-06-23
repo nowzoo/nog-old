@@ -60,11 +60,12 @@ module.exports = function (grunt, done) {
                         console.log('New Commit', result);
                     })
                     .then(function(){
-                        var result = repo.checkoutBranch('gh-pages');
-                        console.log('branch', result.isFulfilled(), result.reason())
+                        return repo.checkoutBranch('gh-pages');
+
                     })
 
-                    .then(function(){
+                    .then(function(result){
+                        console.log('branch', result)
                         callback();
                     });
 
