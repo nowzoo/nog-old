@@ -119,14 +119,14 @@ module.exports = function (grunt, done) {
         })
         .then(function(result) {
             var signature = Git.Signature.default(repo);
-            var msg = 'Commit on gh-pages before publishing on ' + moment().format('LLLL');
+            var msg = 'Nog automated commit to gh-pages on ' + moment().toISOString();
             return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
         })
         .then(function(result) {
             grunt.log.writeln('New commit on gh-pages: %s', result);
         })
         .then(function() {
-            grunt.log.subhead('Getting remote origin...');
+            grunt.log.subhead('Pushing to origin gh-pages...');
             return repo.getRemote('origin');
         })
         .then(function(result) {
@@ -146,16 +146,18 @@ module.exports = function (grunt, done) {
 
         })
         .then(function() {
-            grunt.log.writeln('Connected:', remote.connected());
 
+            var msg = 'Nog automated push to gh-pages. ' + moment().toISOString();
+            grunt.log.writeln('Connected:', remote.connected());
             return remote.push(
-                ["refs/heads/gh-pages:refs/heads/gh-pages"],
+                ['refs/heads/gh-pages:refs/heads/gh-pages'],
                 null,
                 repo.defaultSignature(),
-                "Push to gh-pages")
+                msg
+            )
         })
         .then(function() {
-            console.log('Remote pushed!')
+            grunt.log.ok('Remote pushed!')
         })
         .then(function(){
             grunt.log.subhead('Checking out master.');
