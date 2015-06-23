@@ -7,7 +7,6 @@ module.exports = function (grunt, done) {
     var moment = require('moment');
     var ncp = require('ncp').ncp;
     var rimraf = require('rimraf');
-    var promisify = require('promisify-node');
     var _ = require('lodash');
 
     var fs = require('fs');
