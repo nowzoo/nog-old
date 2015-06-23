@@ -75,8 +75,8 @@ module.exports = function (grunt, done) {
             var keep = [ '.git', '.gitignore', '.idea', '_site', 'node_modules' ];
             grunt.log.write('Deleting content...');
             _.each(files, function(filename){
-                if (_.indexOf(keep, filename) >= 0) return callback();
-                if (filename.indexOf('.') === 0) return callback();
+                if (_.indexOf(keep, filename) >= 0) return;
+                if (filename.indexOf('.') === 0) return;
                 rimraf.sync(filename);
             });
         })
