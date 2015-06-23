@@ -62,7 +62,7 @@ module.exports = function (grunt, done) {
             return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
         })
         .then(function(result) {
-            grunt.log.write('New commit on master: %s', result);
+            grunt.log.writeln('New commit on master: %s', result);
         })
         .then(function(){
             grunt.log.subhead('Checking out gh-pages...');
@@ -122,7 +122,7 @@ module.exports = function (grunt, done) {
             return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
         })
         .then(function(result) {
-            grunt.log.write('New commit on gh-pages: %s', result);
+            grunt.log.writeln('New commit on gh-pages: %s', result);
         })
         .then(function() {
             return repo.getRemote('origin');
