@@ -103,6 +103,15 @@ module.exports = function (grunt, done) {
                 });
 
             },
+
+            function(callback){
+                async.eachSeries(files, function(filename, callback){
+                    var src = path.join(process.cwd(), '_site', filename);
+                    var dst = path.join(process.cwd(), filename);
+                    ncp(src, dst, callback);
+                }, callback)
+
+            }
         ], done
     )
 
