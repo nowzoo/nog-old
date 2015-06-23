@@ -73,15 +73,17 @@ module.exports = function (grunt, done) {
         })
         .then(function(files){
             var keep = [ '.git', '.gitignore', '.idea', '_site', 'node_modules' ];
+            grunt.log.subhead('Deleting content...');
             _.each(files, function(filename){
                 if (_.indexOf(keep, filename) >= 0) return;
                 if (filename.indexOf('.') === 0) return;
-                grunt.log.write('Deleting content...', filename);
+                grunt.log.writeln('%s deleted.', filename);
                 rimraf.sync(filename);
             });
         })
         
         .then(function(){
+            grunt.log.subhead('Adding content...');
             grunt.file.recurse(path.join(process.cwd(), '_site'), function(abspath, rootdir, subdir, filename){
                 console.log(abspath, rootdir, subdir, filename)
             });
