@@ -84,16 +84,13 @@ module.exports = function (grunt, callback) {
                 }, callback);
             },
             function(callback){
-                var p = path.join(process.cwd(), 'assets');
-                fs.readdir('assets', function(err, files){
-
-                    async.each(files, function(filename, callback){
-                        var src = path.join(process.cwd(), 'assets',filename );
-                        var dst = path.join(process.cwd(), '_site',filename );
-                        ncp(src, dst, callback);
-                    }, callback);
-                });
-
+                var src = path.join(process.cwd(), 'assets' );
+                var dst = path.join(process.cwd(), '_site', 'assets' );
+                ncp(src, dst, callback);
+            },
+            function(callback){
+                var p = path.join(process.cwd(), '_site', 'search.json');
+                fs.writeFile(p, JSON.stringify(metadata.search), callback);
             }
         ], callback
     );
