@@ -27,6 +27,10 @@ module.exports = function (grunt, done) {
             repo = result;
         })
         .then(function(){
+            return repo.checkoutBranch('master');
+
+        })
+        .then(function(){
             return repo.openIndex()
         })
         .then(function(result) {
@@ -57,13 +61,7 @@ module.exports = function (grunt, done) {
         .then(function(result) {
             console.log('New Commit', result);
         })
-        .then(function(){
-            return repo.checkoutBranch('gh-pages');
-
-        })
-        .then(function(result){
-            console.log('branch', result)
-        })
+        
         .catch(function(reason) {
             grunt.log.error(reason);
             done();
