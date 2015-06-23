@@ -20,6 +20,7 @@
     "url": "https://github.com/nowzoo/nog/issues"
   },
   "homepage": "https://github.com/nowzoo/nog",
+
   "devDependencies": {
     "async": "^1.2.1",
     "bootstrap": "^3.3.5",
@@ -30,7 +31,6 @@
     "marked": "^0.3.3",
     "moment": "^2.10.3",
     "nodegit": "^0.4.1",
-    "promisify-node": "^0.1.5",
     "rimraf": "^2.4.0",
     "stopwords": "0.0.4",
     "string": "^3.3.0",

@@ -10,8 +10,7 @@ module.exports = function (grunt, done) {
     var promisify = require('promisify-node');
     var _ = require('lodash');
 
-    var fs = promisify('fs');
-    var async = promisify('async');
+    var fs = require('fs');
 
     var repo;
     var index;
@@ -69,7 +68,7 @@ module.exports = function (grunt, done) {
             return repo.checkoutBranch('gh-pages');
         })
         .then(function(){
-            return fs.readdir(process.cwd());
+            return fs.readdirSync(process.cwd());
         })
         .then(function(files){
             var keep = [ '.git', '.gitignore', '.idea', '_site', 'node_modules' ];
