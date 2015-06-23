@@ -130,9 +130,32 @@ module.exports = function (grunt, done) {
             return repo.getRemote('origin');
         })
         .then(function(result) {
-            grunt.log.writeln('remote loaded');
+            grunt.log.writeln('Remote loaded.');
             remote = result;
            
+        })
+
+        .then(function() {
+            remote.setCallbacks({
+                credentials: function(url, userName) {
+                    return Git.Cred.sshKeyFromAgent(userName);
+                }
+            });
+            grunt.log.writeln('Remote configured.');
+            return remote.connect(Git.Enums.DIRECTION.PUSH);
+
+        })
+        .then(function() {
+            grunt.log.writeln('Connected:', remote.connected());
+
+            return remote.push(
+                ["refs/heads/gh-pages:refs/heads/gh-pages"],
+                null,
+                repo.defaultSignature(),
+                "Push to gh-pages")
+        })
+        .then(function() {
+            console.log('Remote pushed!')
         })
         .then(function(){
             grunt.log.subhead('Checking out master.');
@@ -150,32 +173,9 @@ module.exports = function (grunt, done) {
 
 
 
-    //                .then(function(result) {
-    //
-    //
-    //
-    //                    remote.setCallbacks({
-    //                        credentials: function(url, userName) {
-    //                            return Git.Cred.sshKeyFromAgent(userName);
-    //                        }
-    //                    });
-    //
-    //                    console.log('remote configured');
-    //                    return remote.connect(Git.Enums.DIRECTION.PUSH);
-    //
-    //                })
-    //                .then(function() {
-    //                    console.log('remote Connected?', remote.connected());
-    //
-    //                    return remote.push(
-    //                        ["refs/heads/gh-pages:refs/heads/gh-pages"],
-    //                        null,
-    //                        repo.defaultSignature(),
-    //                        "Push to gh-pages")
-    //                })
-    //                .then(function() {
-    //                    console.log('remote Pushed!')
-    //                })
+
+
+
     //                .catch(function(reason) {
     //                    console.log(reason);
     //                })
