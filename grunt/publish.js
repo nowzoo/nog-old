@@ -92,7 +92,13 @@ module.exports = function (grunt, done) {
                 var p = path.join(process.cwd(), '_site');
                 fs.readdir(p, function(err, result){
                     files = result;
-                    console.log(files)
+                    console.log(files);
+                    _.each(files, function(filename){
+                        var src = path.join(process.cwd(), '_site', filename);
+                        var dst = path.join(process.cwd(), filename);
+
+                        grunt.file.copy(src, dst);
+                    });
                     callback();
                 });
 
