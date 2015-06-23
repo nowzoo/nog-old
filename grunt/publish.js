@@ -14,6 +14,7 @@ module.exports = function (grunt, done) {
     var index;
     var oid;
     var files;
+    var remote;
 
     /**
      * require that we're on master
@@ -136,18 +137,42 @@ module.exports = function (grunt, done) {
                     .then(function(result) {
                         console.log('New Commit on gh-pages', result);
                     })
-                    .then(function(result) {
-                        Git.Remote.lookup(repo, 'gh-pages').then(function(remote) {
-                            console.log(remote);
-                            callback();
-                        });
+                    .then(function() {
+                        return repo.getRemote('gh-pages');
                     })
+                    .then(function(result) {
 
-                    .then(function(){
-                        console.log('branch');
+                        console.log('remote loaded');
+                        remote = result;
+
+                        remote.setCallbacks({
+                            credentials: function(url, userName) {
+                                return Git.Cred.sshKeyFromAgent(userName);
+                            }
+                        });
+
+                        console.log('remote configured');
+                        return remote.connect(Git.Enums.DIRECTION.PUSH);
+
+                    })
+                    .then(function() {
+                        console.log('remote Connected?', remote.connected());
+
+                        return remote.push(
+                            ["refs/heads/gh-pages:refs/heads/gh-pages"],
+                            null,
+                            repo.defaultSignature(),
+                            "Push to gh-pages")
+                    })
+                    .then(function() {
+                        console.log('remote Pushed!')
+                    })
+                    .catch(function(reason) {
+                        console.log(reason);
+                    })
+                    .done(function(){
                         callback();
-                    });
-
+                    })
 
             }
         ], done
