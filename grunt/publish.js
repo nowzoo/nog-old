@@ -92,6 +92,38 @@ module.exports = function (grunt, done) {
                 grunt.log.writeln('%s created.',  dst);
             });
         })
+
+        .then(function(){
+            return repo.openIndex()
+        })
+        .then(function(result) {
+            index = result;
+            return index.read(1);
+        })
+        .then(function() {
+            return index.addAll();
+        })
+        .then(function() {
+            return index.write();
+        })
+        .then(function() {
+            return index.writeTree();
+        })
+        .then(function(result) {
+            oid = result;
+            return Git.Reference.nameToId(repo, "HEAD");
+        })
+        .then(function(result) {
+            return repo.getCommit(result);
+        })
+        .then(function(result) {
+            var signature = Git.Signature.default(repo);
+            var msg = 'Commit on gh-pages before publishing on ' + moment().format('LLLL');
+            return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
+        })
+        .then(function(result) {
+            grunt.log.write('New commit on gh-pages: %s', result);
+        })
         .then(function() {
             return repo.getRemote('origin');
         })
