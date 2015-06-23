@@ -85,7 +85,11 @@ module.exports = function (grunt, done) {
         .then(function(){
             grunt.log.subhead('Adding content...');
             grunt.file.recurse(path.join(process.cwd(), '_site'), function(abspath, rootdir, subdir, filename){
-                console.log(abspath, rootdir, subdir, filename)
+                var dst = process.cwd();
+                if (subdir) dst = path.join(dst, subdir, filename );
+                else dst = path.join(dst, filename);
+                grunt.file.copy(abspath, dst);
+                grunt.log.writeln('%s created.',  dst);
             });
         })
         .then(function() {
