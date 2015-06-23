@@ -62,7 +62,7 @@ module.exports = function (grunt, done) {
             grunt.log.write('New commit on master: %s', result);
         })
         .then(function() {
-            return repo.getRemote('origin/gh-pages');
+            return repo.getRemote('origin');
         })
 
         .catch(function(reason) {
