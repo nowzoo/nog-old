@@ -94,6 +94,7 @@ module.exports = function (grunt, done) {
         })
 
         .then(function(){
+            grunt.log.subhead('Committing changes...');
             return repo.openIndex()
         })
         .then(function(result) {
@@ -125,7 +126,13 @@ module.exports = function (grunt, done) {
             grunt.log.writeln('New commit on gh-pages: %s', result);
         })
         .then(function() {
+            grunt.log.subhead('Getting remote origin...');
             return repo.getRemote('origin');
+        })
+        .then(function(result) {
+            grunt.log.writeln('remote loaded');
+            remote = result;
+           
         })
         .then(function(){
             grunt.log.subhead('Checking out master.');
@@ -142,61 +149,10 @@ module.exports = function (grunt, done) {
         });
 
 
-    //        function(callback){
-    //            var p = path.join(process.cwd(), '_site');
-    //            fs.readdir(p, function(err, result){
-    //                files = result;
-    //                console.log(files);
-    //                callback();
-    //            });
-    //
-    //        },
-    //
-    //        function(callback){
-    //            async.eachSeries(files, function(filename, callback){
-    //                var src = path.join(process.cwd(), '_site', filename);
-    //                var dst = path.join(process.cwd(), filename);
-    //                ncp(src, dst, callback);
-    //            }, callback)
-    //
-    //        },
-    //        function(callback){
-    //            repo.openIndex()
-    //                .then(function(result){
-    //                    index = result;
-    //                    return index.read(1);
-    //                })
-    //                .then(function() {
-    //                    return index.addAll();
-    //                })
-    //                .then(function() {
-    //                    return index.write();
-    //                })
-    //                .then(function() {
-    //                    return index.writeTree();
-    //                })
-    //                .then(function(result) {
-    //                    oid = result;
-    //                    return Git.Reference.nameToId(repo, "HEAD");
-    //                })
-    //                .then(function(result) {
-    //                    return repo.getCommit(result);
-    //                })
-    //                .then(function(result) {
-    //                    var signature = Git.Signature.default(repo);
-    //                    var msg = 'Commit on gh-pages branch before publishing on ' + moment().format('LLLL');
-    //                    return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
-    //                })
-    //                .then(function(result) {
-    //                    console.log('New Commit on gh-pages', result);
-    //                })
-    //                .then(function() {
-    //                    return repo.getRemote('gh-pages');
-    //                })
+
     //                .then(function(result) {
     //
-    //                    console.log('remote loaded');
-    //                    remote = result;
+    //
     //
     //                    remote.setCallbacks({
     //                        credentials: function(url, userName) {
