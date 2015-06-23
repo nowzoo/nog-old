@@ -10,6 +10,7 @@ module.exports = function (grunt) {
     var nog_build = require('./grunt/build');
     var nog_meta = require('./grunt/meta');
     var nog_publish = require('./grunt/publish');
+
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
 
@@ -62,6 +63,8 @@ module.exports = function (grunt) {
         var done = this.async();
         nog_publish.call(this, grunt, done);
     });
+
+
 
 
 

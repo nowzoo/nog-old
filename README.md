@@ -21,7 +21,13 @@ At this point you have a `master` branch, where you'll create and manage site co
     branch which functions as the site itself. You don't need to worry about the `gh-pages` branch --
     do all your work in `master`.
        
-In `master`:
+
+Fire up the local server:
+
+    grunt serve
+
+Add a blog post by creating a Markdown file in `content/my-first-post.md`:
+
        
 
 
