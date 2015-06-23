@@ -77,6 +77,10 @@ module.exports = function (grunt, done) {
         .then(function() {
             return repo.getRemote('origin');
         })
+        .then(function(){
+            grunt.log.subhead('Checking out master...');
+            return repo.checkoutBranch('master');
+        })
 
         .catch(function(reason) {
             grunt.log.error(reason);
