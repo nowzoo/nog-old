@@ -59,7 +59,7 @@ module.exports = function (grunt, done) {
             return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
         })
         .then(function(result) {
-            grunt.log('New commit on master: %s', result);
+            grunt.log.write('New commit on master: %s', result);
         })
 
         .catch(function(reason) {
