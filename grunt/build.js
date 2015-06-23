@@ -1,10 +1,12 @@
 /* jshint node: true */
 module.exports = function (grunt, callback) {
     'use strict';
+    var fs = require('fs');
     var async = require('async');
     var path = require('path');
     var rimraf = require('rimraf');
     var swig = require('swig');
+    var ncp = require('ncp').ncp;
     var _ = require('lodash');
 
     var gather_metadata = require('./gather_metadata');
@@ -80,6 +82,18 @@ module.exports = function (grunt, callback) {
                     }, callback);
 
                 }, callback);
+            },
+            function(callback){
+                var p = path.join(process.cwd(), 'assets');
+                fs.readdir('assets', function(err, files){
+
+                    async.each(files, function(filename, callback){
+                        var src = path.join(process.cwd(), 'assets',filename );
+                        var dst = path.join(process.cwd(), '_site',filename );
+                        ncp(src, dst, callback);
+                    }, callback);
+                });
+
             }
         ], callback
     );
