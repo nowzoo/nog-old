@@ -27,6 +27,7 @@ module.exports = function (grunt, done) {
             repo = result;
         })
         .then(function(){
+            grunt.log.subhead('Checking out master...')
             return repo.checkoutBranch('master');
         })
         .then(function(){
@@ -61,7 +62,7 @@ module.exports = function (grunt, done) {
             console.log('New Commit', result);
         })
         .catch(function(reason) {
-            console.log(reason);
+            grunt.log.error(reason);
             done();
         })
         .done(function(){
