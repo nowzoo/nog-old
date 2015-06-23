@@ -21,162 +21,210 @@ module.exports = function (grunt, done) {
      * require
      */
 
-    async.series(
-        [
-            function(callback){
-                Git.Repository
-                    .open(path.resolve(process.cwd(), './.git'))
-                    .then(function(result) {
-                        repo = result;
-                        return repo.getStatus();
-                    })
-                    .then(function(result){
-                        return repo.openIndex()
-                    })
-                    .then(function(result) {
-                        index = result;
-                        return index.read(1);
-                    })
-                    .then(function() {
-                        return index.addAll();
-                    })
-                    .then(function() {
-                        return index.write();
-                    })
-                    .then(function() {
-                        return index.writeTree();
-                    })
-                    .then(function(result) {
-                        oid = result;
-                        return Git.Reference.nameToId(repo, "HEAD");
-                    })
-                    .then(function(result) {
-                        return repo.getCommit(result);
-                    })
-                    .then(function(result) {
-                        var signature = Git.Signature.default(repo);
-                        var msg = 'Commit before publishing on ' + moment().format('LLLL');
-                        return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
-                    })
-                    .then(function(result) {
-                        console.log('New Commit', result);
-                    })
-                    .then(function(){
-                        return repo.checkoutBranch('gh-pages');
+    Git.Repository
+        .open(path.resolve(process.cwd(), './.git'))
+        .then(function(result) {
+            repo = result;
+        })
+        .then(function(){
+            return repo.checkoutBranch('master');
+        })
+        .then(function(){
+            return repo.openIndex()
+        })
+        .then(function(result) {
+            index = result;
+            return index.read(1);
+        })
+        .then(function() {
+            return index.addAll();
+        })
+        .then(function() {
+            return index.write();
+        })
+        .then(function() {
+            return index.writeTree();
+        })
+        .then(function(result) {
+            oid = result;
+            return Git.Reference.nameToId(repo, "HEAD");
+        })
+        .then(function(result) {
+            return repo.getCommit(result);
+        })
+        .then(function(result) {
+            var signature = Git.Signature.default(repo);
+            var msg = 'Commit before publishing on ' + moment().format('LLLL');
+            return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
+        })
+        .then(function(result) {
+            console.log('New Commit', result);
+        })
+        .catch(function(reason) {
+            console.log(reason);
+            done();
+        })
+        .done(function(){
+            done();
+        });
 
-                    })
 
-                    .then(function(result){
-                        console.log('branch', result)
-                        callback();
-                    });
-
-            },
-            function(callback){
-
-                fs.readdir(process.cwd(), function(err, result){
-                    files = result;
-                    callback();
-                });
-
-            },
-            function(callback){
-                var keep = [ '.git', '.gitignore', '.idea', '_site', 'node_modules' ];
-                async.each(files, function(filename, callback){
-                    if (_.indexOf(keep, filename) >= 0) return callback();
-                    if (filename.indexOf('.') === 0) return callback();
-                    rimraf(filename, callback);
-                }, callback)
-
-            },
-            function(callback){
-                var p = path.join(process.cwd(), '_site');
-                fs.readdir(p, function(err, result){
-                    files = result;
-                    console.log(files);
-                    callback();
-                });
-
-            },
-
-            function(callback){
-                async.eachSeries(files, function(filename, callback){
-                    var src = path.join(process.cwd(), '_site', filename);
-                    var dst = path.join(process.cwd(), filename);
-                    ncp(src, dst, callback);
-                }, callback)
-
-            },
-            function(callback){
-                repo.openIndex()
-                    .then(function(result){
-                        index = result;
-                        return index.read(1);
-                    })
-                    .then(function() {
-                        return index.addAll();
-                    })
-                    .then(function() {
-                        return index.write();
-                    })
-                    .then(function() {
-                        return index.writeTree();
-                    })
-                    .then(function(result) {
-                        oid = result;
-                        return Git.Reference.nameToId(repo, "HEAD");
-                    })
-                    .then(function(result) {
-                        return repo.getCommit(result);
-                    })
-                    .then(function(result) {
-                        var signature = Git.Signature.default(repo);
-                        var msg = 'Commit on gh-pages branch before publishing on ' + moment().format('LLLL');
-                        return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
-                    })
-                    .then(function(result) {
-                        console.log('New Commit on gh-pages', result);
-                    })
-                    .then(function() {
-                        return repo.getRemote('gh-pages');
-                    })
-                    .then(function(result) {
-
-                        console.log('remote loaded');
-                        remote = result;
-
-                        remote.setCallbacks({
-                            credentials: function(url, userName) {
-                                return Git.Cred.sshKeyFromAgent(userName);
-                            }
-                        });
-
-                        console.log('remote configured');
-                        return remote.connect(Git.Enums.DIRECTION.PUSH);
-
-                    })
-                    .then(function() {
-                        console.log('remote Connected?', remote.connected());
-
-                        return remote.push(
-                            ["refs/heads/gh-pages:refs/heads/gh-pages"],
-                            null,
-                            repo.defaultSignature(),
-                            "Push to gh-pages")
-                    })
-                    .then(function() {
-                        console.log('remote Pushed!')
-                    })
-                    .catch(function(reason) {
-                        console.log(reason);
-                    })
-                    .done(function(){
-                        callback();
-                    })
-
-            }
-        ], done
-    )
+    //async.series(
+    //    [
+    //        function(callback){
+    //            Git.Repository
+    //                .open(path.resolve(process.cwd(), './.git'))
+    //                .then(function(result) {
+    //                    repo = result;
+    //                    return repo.getStatus();
+    //                })
+    //                .then(function(result){
+    //                    return repo.openIndex()
+    //                })
+    //                .then(function(result) {
+    //                    index = result;
+    //                    return index.read(1);
+    //                })
+    //                .then(function() {
+    //                    return index.addAll();
+    //                })
+    //                .then(function() {
+    //                    return index.write();
+    //                })
+    //                .then(function() {
+    //                    return index.writeTree();
+    //                })
+    //                .then(function(result) {
+    //                    oid = result;
+    //                    return Git.Reference.nameToId(repo, "HEAD");
+    //                })
+    //                .then(function(result) {
+    //                    return repo.getCommit(result);
+    //                })
+    //                .then(function(result) {
+    //                    var signature = Git.Signature.default(repo);
+    //                    var msg = 'Commit before publishing on ' + moment().format('LLLL');
+    //                    return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
+    //                })
+    //                .then(function(result) {
+    //                    console.log('New Commit', result);
+    //                })
+    //                .then(function(){
+    //                    return repo.checkoutBranch('gh-pages');
+    //
+    //                })
+    //
+    //                .then(function(result){
+    //                    console.log('branch', result)
+    //                    callback();
+    //                });
+    //
+    //        },
+    //        function(callback){
+    //
+    //            fs.readdir(process.cwd(), function(err, result){
+    //                files = result;
+    //                callback();
+    //            });
+    //
+    //        },
+    //        function(callback){
+    //            var keep = [ '.git', '.gitignore', '.idea', '_site', 'node_modules' ];
+    //            async.each(files, function(filename, callback){
+    //                if (_.indexOf(keep, filename) >= 0) return callback();
+    //                if (filename.indexOf('.') === 0) return callback();
+    //                rimraf(filename, callback);
+    //            }, callback)
+    //
+    //        },
+    //        function(callback){
+    //            var p = path.join(process.cwd(), '_site');
+    //            fs.readdir(p, function(err, result){
+    //                files = result;
+    //                console.log(files);
+    //                callback();
+    //            });
+    //
+    //        },
+    //
+    //        function(callback){
+    //            async.eachSeries(files, function(filename, callback){
+    //                var src = path.join(process.cwd(), '_site', filename);
+    //                var dst = path.join(process.cwd(), filename);
+    //                ncp(src, dst, callback);
+    //            }, callback)
+    //
+    //        },
+    //        function(callback){
+    //            repo.openIndex()
+    //                .then(function(result){
+    //                    index = result;
+    //                    return index.read(1);
+    //                })
+    //                .then(function() {
+    //                    return index.addAll();
+    //                })
+    //                .then(function() {
+    //                    return index.write();
+    //                })
+    //                .then(function() {
+    //                    return index.writeTree();
+    //                })
+    //                .then(function(result) {
+    //                    oid = result;
+    //                    return Git.Reference.nameToId(repo, "HEAD");
+    //                })
+    //                .then(function(result) {
+    //                    return repo.getCommit(result);
+    //                })
+    //                .then(function(result) {
+    //                    var signature = Git.Signature.default(repo);
+    //                    var msg = 'Commit on gh-pages branch before publishing on ' + moment().format('LLLL');
+    //                    return repo.createCommit("HEAD", signature, signature, msg, oid, [result]);
+    //                })
+    //                .then(function(result) {
+    //                    console.log('New Commit on gh-pages', result);
+    //                })
+    //                .then(function() {
+    //                    return repo.getRemote('gh-pages');
+    //                })
+    //                .then(function(result) {
+    //
+    //                    console.log('remote loaded');
+    //                    remote = result;
+    //
+    //                    remote.setCallbacks({
+    //                        credentials: function(url, userName) {
+    //                            return Git.Cred.sshKeyFromAgent(userName);
+    //                        }
+    //                    });
+    //
+    //                    console.log('remote configured');
+    //                    return remote.connect(Git.Enums.DIRECTION.PUSH);
+    //
+    //                })
+    //                .then(function() {
+    //                    console.log('remote Connected?', remote.connected());
+    //
+    //                    return remote.push(
+    //                        ["refs/heads/gh-pages:refs/heads/gh-pages"],
+    //                        null,
+    //                        repo.defaultSignature(),
+    //                        "Push to gh-pages")
+    //                })
+    //                .then(function() {
+    //                    console.log('remote Pushed!')
+    //                })
+    //                .catch(function(reason) {
+    //                    console.log(reason);
+    //                })
+    //                .done(function(){
+    //                    callback();
+    //                })
+    //
+    //        }
+    //    ], done
+    //)
 
 
 
