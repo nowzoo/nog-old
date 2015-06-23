@@ -136,6 +136,12 @@ module.exports = function (grunt, done) {
                     .then(function(result) {
                         console.log('New Commit on gh-pages', result);
                     })
+                    .then(function(result) {
+                        Git.Remote.lookup(repo, 'gh-pages').then(function(remote) {
+                            console.log(remote);
+                            callback();
+                        });
+                    })
 
                     .then(function(){
                         console.log('branch');
@@ -143,7 +149,7 @@ module.exports = function (grunt, done) {
                     });
 
 
-            },
+            }
         ], done
     )
 
