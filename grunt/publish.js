@@ -1,14 +1,17 @@
 /* jshint node: true */
 module.exports = function (grunt, done) {
     'use strict';
-    var fs = require('fs');
+
     var path = require('path');
     var Git = require('nodegit');
     var moment = require('moment');
     var async = require('async');
     var ncp = require('ncp').ncp;
     var rimraf = require('rimraf');
+    var promisify = require('promisify-node');
     var _ = require('lodash');
+
+    var fs = promisify('fs');
 
     var repo;
     var index;
@@ -60,6 +63,16 @@ module.exports = function (grunt, done) {
         })
         .then(function(result) {
             grunt.log.write('New commit on master: %s', result);
+        })
+        .then(function(){
+            grunt.log.subhead('Checking out gh-pages...');
+            return repo.checkoutBranch('gh-pages');
+        })
+        .then(function(){
+            return fs.readdir(process.cwd());
+        })
+        .then(function(files){
+            console.log(files)
         })
         .then(function() {
             return repo.getRemote('origin');
