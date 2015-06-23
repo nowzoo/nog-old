@@ -13,6 +13,7 @@ module.exports = function (grunt, done) {
     var repo;
     var index;
     var oid;
+    var files;
 
     /**
      * require that we're on master
@@ -71,14 +72,31 @@ module.exports = function (grunt, done) {
 
             },
             function(callback){
-                var files;
+
                 fs.readdir(process.cwd(), function(err, result){
                     files = result;
-                    console.log (files);
                     callback();
                 });
 
-            }
+            },
+            function(callback){
+                var keep = [ '.git', '.gitignore', '.idea', '_site', 'node_modules' ];
+                async.each(files, function(filename, callback){
+                    if (_.indexOf(keep, filename) >= 0) return callback();
+                    if (filename.indexOf('.') === 0) return callback();
+                    rimraf(filename, callback);
+                }, callback)
+
+            },
+            function(callback){
+                var p = path.join(process.cwd(), '_site');
+                fs.readdir(p, function(err, result){
+                    files = result;
+                    console.log(files)
+                    callback();
+                });
+
+            },
         ], done
     )
 
