@@ -107,6 +107,7 @@ module.exports = function (grunt, callback) {
                             page: page
                         };
 
+                        console.log('write archive');
                         template = _.has(site, 'archive_template') ? site.archive_template : 'archive.twig';
                         template = _.has(archive, 'template') ? archive.template : template;
                         template = path.join(process.cwd(), '_nog', 'templates', template);
