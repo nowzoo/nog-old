@@ -171,7 +171,8 @@ module.exports = function (grunt, callback) {
             }
 
         ], function(err){
-            console.log('err', err)
+            console.log('Error:', err);
+            callback();
         }
     );
 
