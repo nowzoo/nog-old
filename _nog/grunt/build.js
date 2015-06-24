@@ -19,6 +19,17 @@ module.exports = function (grunt, callback) {
     var metadata = gather_metadata(grunt);
     var files;
 
+    var stdout_or_err = function(stdout, stderr){
+        if (stderr){
+            grunt.log.error(stderr);
+        } else {
+            if (stdout){
+                grunt.log.ok(stderr);
+            }
+
+        }
+    }
+
 
     async.series(
         [
@@ -125,7 +136,7 @@ module.exports = function (grunt, callback) {
             function(callback){
                 exec(
                     'git add -A',
-                    function (error, stdout) {
+                    function (error, stdout, stderr) {
                         callback(error)
                     }
                 );
@@ -135,7 +146,8 @@ module.exports = function (grunt, callback) {
             function(callback){
                 exec(
                     'git commit -m "nog build on ' + moment().toISOString() + '"',
-                    function (error, stdout) {
+                    function (error, stdout, stderr) {
+                        stdout_or_err(stdout, stderr)
                         callback(error)
                     }
                 );
