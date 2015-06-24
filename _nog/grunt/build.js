@@ -112,7 +112,7 @@ module.exports = function (grunt, callback) {
 
             //write the assets
             function(callback){
-                var src = path.join(process.cwd(), 'nog', 'assets' );
+                var src = path.join(process.cwd(), '_nog', 'assets' );
                 var dst = path.join(process.cwd(), 'assets' );
                 ncp(src, dst, callback);
             },
@@ -170,7 +170,9 @@ module.exports = function (grunt, callback) {
                 );
             }
 
-        ], callback
+        ], function(err){
+            console.log('err', err)
+        }
     );
 
 
