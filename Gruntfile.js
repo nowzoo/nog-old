@@ -7,9 +7,9 @@ module.exports = function (grunt) {
     var moment = require('moment');
 
 
-    var nog_build = require('./grunt/build');
-    var nog_meta = require('./grunt/meta');
-    var nog_push = require('./grunt/push');
+    var build = require('./_nog/grunt/build');
+    var meta = require('./_nog/grunt/meta');
+    var serve = require('./_nog/grunt/serve');
 
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
@@ -52,18 +52,20 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('meta', 'See the metadata for your site.', function () {
-        nog_meta.call(this, grunt);
+        meta.call(this, grunt);
     });
 
     grunt.registerTask('build', 'Generate the site pages.', function() {
         var done = this.async();
-        nog_build.call(this, grunt, done);
+        build.call(this, grunt, done);
     });
 
-    grunt.registerTask('push', 'Push the site to GitHub Pages.', function() {
+    grunt.registerTask('serve', 'Serve the site locally.', function() {
         var done = this.async();
-        nog_push.call(this, grunt, done);
+        build.call(this, grunt, done);
     });
+
+
 
 
 
@@ -72,7 +74,7 @@ module.exports = function (grunt) {
 
     // Default distribution task.
     grunt.registerTask('default', function(){
-        grunt.log.writeln(grunt.config.get('nog.site_name'));
+        grunt.log.writeln(grunt.config.get('nog.title'));
     });
 };
 

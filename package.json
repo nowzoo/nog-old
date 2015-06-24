@@ -23,8 +23,6 @@
   "devDependencies": {
     "async": "^1.2.1",
     "bootstrap": "^3.3.5",
-    "colors": "^1.1.2",
-    "commander": "^2.8.1",
     "express": "^4.13.0",
     "grunt": "^0.4.5",
     "lodash": "^3.9.3",
@@ -32,14 +30,10 @@
     "moment": "^2.10.3",
     "ncp": "^2.0.0",
     "rimraf": "^2.4.0",
-    "sprintf-js": "^1.0.2",
     "stopwords": "0.0.4",
     "string": "^3.3.0",
     "swig": "^1.4.2",
     "time-grunt": "^1.2.1",
     "yaml-front-matter": "^3.2.3"
-  },
-  "bin": {
-    "nog": "./nog.js"
   }
 }
