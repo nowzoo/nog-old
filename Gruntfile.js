@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
     var nog_build = require('./grunt/build');
     var nog_meta = require('./grunt/meta');
-    var nog_publish = require('./grunt/publish');
+    var nog_push = require('./grunt/push');
 
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
@@ -60,9 +60,9 @@ module.exports = function (grunt) {
         nog_build.call(this, grunt, done);
     });
 
-    grunt.registerTask('publish', 'Publish the site to GitHub Pages.', function() {
+    grunt.registerTask('push', 'Push the site to GitHub Pages.', function() {
         var done = this.async();
-        nog_publish.call(this, grunt, done);
+        nog_push.call(this, grunt, done);
     });
 
 
