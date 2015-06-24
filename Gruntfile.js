@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', 'Serve the site locally.', function() {
         var done = this.async();
-        build.call(this, grunt, done);
+        serve.call(this, grunt, done);
     });
     
 
