@@ -64,13 +64,7 @@ module.exports = function (grunt) {
         var done = this.async();
         build.call(this, grunt, done);
     });
-
-
-
-
-
-
-
+    
 
     // Default distribution task.
     grunt.registerTask('default', function(){
