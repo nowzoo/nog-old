@@ -181,6 +181,7 @@ module.exports = function (grunt) {
 
 
 
+
     // deal with populating meta.parent for each...
     _.each(atomic_metadata, function(meta){
         if ('post' === meta.post_type){
@@ -268,6 +269,8 @@ module.exports = function (grunt) {
         });
     });
 
+
+
     // sort the tag archives by date, descending
     _.each(tag_archives, function(archive){
         archive.posts.sort(function(a, b){
@@ -291,7 +294,6 @@ module.exports = function (grunt) {
             meta.relative_url = nog_config.page_url(_.clone(meta), id);
         }
     });
-
 
 
 

@@ -18,20 +18,19 @@ module.exports = function (grunt, callback) {
     var files;
 
 
-
     async.series(
         [
             //read the old...
             function(callback){
                 fs.readdir(process.cwd(), function(err, result){
-                    files = result();
+                    files = result;
                     callback(err);
                 });
             },
 
             //delete the old...
             function(callback){
-                var keep = ['_nog', 'README.md', 'package.json', 'LICENSE', 'Gruntfile.js'];
+                var keep = ['_nog', 'node_modules', 'README.md', 'package.json', 'LICENSE', 'Gruntfile.js'];
                 async.each(files, function(name, callback){
                     if (_.indexOf(keep, name) !== -1) return callback(null);
                     if (name.indexOf('.') === 0) return callback(null);
