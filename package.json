@@ -31,7 +31,6 @@
     "marked": "^0.3.3",
     "moment": "^2.10.3",
     "ncp": "^2.0.0",
-    "nodegit": "^0.4.1",
     "rimraf": "^2.4.0",
     "sprintf-js": "^1.0.2",
     "stopwords": "0.0.4",
