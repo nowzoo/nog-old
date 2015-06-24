@@ -7,7 +7,9 @@ module.exports = function (grunt, callback) {
     var rimraf = require('rimraf');
     var swig = require('swig');
     var ncp = require('ncp').ncp;
+    var moment = require('moment');
     var _ = require('lodash');
+    var exec = require('child_process').exec;
 
     var gather_metadata = require('./gather_metadata');
 
@@ -20,6 +22,17 @@ module.exports = function (grunt, callback) {
 
     async.series(
         [
+            // Make sure we're on master...
+            function(callback){
+                exec(
+                    'git checkout master',
+                    function (error, stdout) {
+                        callback(error)
+                    }
+                );
+            },
+
+
             //read the old...
             function(callback){
                 fs.readdir(process.cwd(), function(err, result){
@@ -106,7 +119,57 @@ module.exports = function (grunt, callback) {
             function(callback){
                 var p = path.join(process.cwd(), 'search.json');
                 fs.writeFile(p, JSON.stringify(metadata.search), callback);
+            },
+
+            // git add -A ...
+            function(callback){
+                exec(
+                    'git add -A',
+                    function (error, stdout) {
+                        callback(error)
+                    }
+                );
+            },
+
+            // git commit -A ...
+            function(callback){
+                exec(
+                    'git commit -m "nog build on ' + moment().toISOString() + '"',
+                    function (error, stdout) {
+                        callback(error)
+                    }
+                );
+            },
+            // checkout gh-pages...
+            function(callback){
+                exec(
+                    'git checkout gh-pages',
+                    function (error, stdout) {
+                        callback(error)
+                    }
+                );
+            },
+
+            // merge master into gh-pages...
+            function(callback){
+                exec(
+                    'git merge master',
+                    function (error, stdout) {
+                        callback(error)
+                    }
+                );
+            },
+
+            // checkout master...
+            function(callback){
+                exec(
+                    'git checkout master',
+                    function (error, stdout) {
+                        callback(error)
+                    }
+                );
             }
+
         ], callback
     );
 
