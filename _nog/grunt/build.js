@@ -15,19 +15,31 @@ module.exports = function (grunt, callback) {
 
     var site = grunt.config.get('nog');
     var metadata = gather_metadata(grunt);
-
-
-    var site_path = path.join(process.cwd(), '_site');
-
-
+    var files;
 
 
 
     async.series(
         [
+            //read the old...
             function(callback){
-                rimraf(site_path, callback);
+                fs.readdir(process.cwd(), function(err, result){
+                    files = result();
+                    callback(err);
+                });
             },
+
+            //delete the old...
+            function(callback){
+                var keep = ['_nog', 'README.md', 'package.json', 'LICENSE', 'Gruntfile.js'];
+                async.each(files, function(name, callback){
+                    if (_.indexOf(keep, name) !== -1) return callback(null);
+                    if (name.indexOf('.') === 0) return callback(null);
+                    rimraf(path.join(process.cwd(), name), callback);
+                }, callback)
+            },
+
+            //write the atomic URLs
             function(callback){
                 async.each(metadata.atomic_metadata, function(meta, callback){
                     var template;
@@ -46,15 +58,17 @@ module.exports = function (grunt, callback) {
                         template = _.has(site, 'page_template') ? site.page_template : 'page.twig';
                     }
                     template = _.has(meta, 'template') ? meta.template : template;
-                    template = path.join(process.cwd(),'templates', template);
+                    template = path.join(process.cwd(), '_nog', 'templates', template);
                     swig.renderFile(template, data, function (err, output) {
-                        var p = path.join(process.cwd(), '_site', meta.relative_url, 'index.html');
+                        var p = path.join(process.cwd(), meta.relative_url, 'index.html');
                         if (err) return callback(err);
                         grunt.file.write(p, output);
                         callback();
                     });
                 }, callback);
             },
+
+            //write the archive URLs
             function(callback){
                 async.each([].concat(metadata.archives, metadata.tag_archives), function(archive, callback){
                     async.each(archive.pages, function(page, callback){
@@ -72,9 +86,9 @@ module.exports = function (grunt, callback) {
 
                         template = _.has(site, 'archive_template') ? site.archive_template : 'archive.twig';
                         template = _.has(archive, 'template') ? archive.template : template;
-                        template = path.join(process.cwd(),'templates', template);
+                        template = path.join(process.cwd(), '_nog', 'templates', template);
                         swig.renderFile(template, data, function (err, output) {
-                            var p = path.join(process.cwd(), '_site', page.relative_url, 'index.html');
+                            var p = path.join(process.cwd(), page.relative_url, 'index.html');
                             if (err) return callback(err);
                             grunt.file.write(p, output);
                             callback();
@@ -83,13 +97,15 @@ module.exports = function (grunt, callback) {
 
                 }, callback);
             },
+
+            //write the assets
             function(callback){
-                var src = path.join(process.cwd(), 'assets' );
-                var dst = path.join(process.cwd(), '_site', 'assets' );
+                var src = path.join(process.cwd(), 'nog', 'assets' );
+                var dst = path.join(process.cwd(), 'assets' );
                 ncp(src, dst, callback);
             },
             function(callback){
-                var p = path.join(process.cwd(), '_site', 'search.json');
+                var p = path.join(process.cwd(), 'search.json');
                 fs.writeFile(p, JSON.stringify(metadata.search), callback);
             }
         ], callback

@@ -10,10 +10,10 @@ module.exports = function (grunt) {
     var yamlFront = require('yaml-front-matter');
     var stopwords = require('stopwords').english;
 
-    var files = grunt.file.expand('content/*.md');
+    var files = grunt.file.expand('_nog/content/*.md');
     var nog_config = grunt.config.get('nog');
     var atomic_metadata = {};
-    var assets = grunt.file.expand('assets/**/*');
+    var assets = grunt.file.expand('_nog/assets/**/*');
     var atomic_errors = {};
     var archives = {};
     var tag_archives = {};
