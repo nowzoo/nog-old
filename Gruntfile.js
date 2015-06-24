@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
 
-    require('time-grunt')(grunt);
+
 
 
     grunt.initConfig({
@@ -48,8 +48,17 @@ module.exports = function (grunt) {
                 return url;
             },
             posts_per_page: 10
+        },
+        watch: {
+            build: {
+                files: ['_nog/content/*', '_nog/templates/*', '_nog/assets/*'],
+                tasks: 'build'
+            }
         }
     });
+
+    require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
+    require('time-grunt')(grunt);
 
     grunt.registerTask('meta', 'See the metadata for your site.', function () {
         meta.call(this, grunt);
