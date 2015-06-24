@@ -6,7 +6,7 @@
             <h1>{{ post.title }}</h1>
         </header>
         <div>
-            {{ post.content }}
+            {% autoescape false %}{{ post.content }}{% endautoescape %}
         </div>
     </article>
 {% endblock %}
