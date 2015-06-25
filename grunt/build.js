@@ -14,6 +14,10 @@ module.exports = function (grunt, data, callback) {
 
     grunt.verbose.subhead('Building site...');
 
+    var orig_dir = process.cwd();
+    var _site_dir = path.join(orig_dir, '_site');
+    var old_files;
+
     async.series(
         [
 
@@ -26,13 +30,31 @@ module.exports = function (grunt, data, callback) {
             },
 
 
-            //delete the old _site...
+            //get the old files...
             function(callback){
-                var p = path.join(process.cwd(), '_site');
-                grunt.verbose.writeln('Removing _site...');
-                rimraf(p, callback);
+                grunt.verbose.writeln('Reading old files...');
+                fs.readdir(_site_dir, function(err, result){
+                    old_files = result;
+                    callback(null);
+                });
             },
 
+            //remove the old files
+            //
+
+            //remove the old files...
+            function(callback){
+
+                var keep = ['README.md', '.gitignore', '.git'];
+                grunt.verbose.writeln('Deleting old files...');
+                async.each(old_files, function(name, callback){
+                    var p = path.join(_site_dir, name);
+                    if (_.indexOf(keep, name) !== -1) return callback();
+                    if (name.indexOf('.') === 0) return callback();
+                    grunt.verbose.writeln('Deleting: %s', name);
+                    rimraf(p, callback);
+                });
+            },
 
             //write the atomic content...
             function(callback){
@@ -45,7 +67,7 @@ module.exports = function (grunt, data, callback) {
                         post: post
                     };
                     swig.renderFile(template, passed, function (err, output) {
-                        var p = path.join(process.cwd(), '_site', post.path, 'index.html');
+                        var p = path.join(_site_dir, post.path, 'index.html');
                         if (err) return callback(err);
                         grunt.file.write(p, output);
                         grunt.verbose.writeln('Wrote _site/%s.', post.path);
@@ -72,7 +94,7 @@ module.exports = function (grunt, data, callback) {
                             page: page
                         };
                         swig.renderFile(template, passed, function (err, output) {
-                            var p = path.join(process.cwd(), '_site', page.path,  'index.html');
+                            var p = path.join(_site_dir, page.path,  'index.html');
                             if (err) return callback(err);
                             grunt.file.write(p, output);
                             grunt.verbose.writeln('_site/%s written.', page.path);
@@ -91,7 +113,7 @@ module.exports = function (grunt, data, callback) {
                 ncp(src, dst, callback);
             },
             function(callback){
-                var p = path.join(process.cwd(), '_site', 'search.json');
+                var p = path.join(_site_dir, 'search.json');
                 grunt.verbose.writeln('Writing /%s...', 'search.json');
                 grunt.file.write(p, JSON.stringify(data.search));
                 callback();
