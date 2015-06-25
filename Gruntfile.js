@@ -71,6 +71,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', 'Build the site.', function() {
         var done = this.async();
+        if (grunt.option('pushing')) return;
         get_data(grunt, function(err, data){
             if (err) return done(err);
             build.call(this, grunt, data, function(err){
@@ -79,6 +80,7 @@ module.exports = function (grunt) {
         });
 
     });
+
 
     grunt.registerTask('show', 'Show site data.', function(what) {
         var done = this.async();
@@ -93,7 +95,12 @@ module.exports = function (grunt) {
 
     grunt.registerTask('push', 'Commit and push site changes to GitHub.', function() {
         var done = this.async();
-        push.call(this, grunt, done);
+        if (grunt.option('pushing')) return;
+        grunt.option('pushing', true);
+        push.call(this, grunt, function(err){
+            grunt.option('pushing', false);
+            done(err);
+        });
 
     });
 
