@@ -20,9 +20,10 @@ Install the dependencies with NPM.
 Initialize the site with `grunt init`. This creates the special `gh-pages` 
    pages branch.
    
-   grunt init
+    grunt init
     
 Make changes to the content:
  
  - Add a post
+ - Add a page
 
