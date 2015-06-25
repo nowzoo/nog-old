@@ -28,4 +28,8 @@ Make changes to the content in the `content` directory.
 
 ## Commands
 
+`$ grunt init`
+
 `$ grunt watch:build`
+
+
