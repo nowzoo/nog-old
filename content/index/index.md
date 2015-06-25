@@ -5,31 +5,57 @@ published: 2015/06/20 15:13:56
 
 ---
 
-This is the home page! Woot! Let's see if this takes hold!
+# Nog
+Nog is a simple site generator for GitHub Pages using [Grunt](http://gruntjs.com).
 
 ## Quick Start
 
-Fork the repo and clone the fork to your local machine.
+First, [fork Nog](https://github.com/nowzoo/nog#fork-destination-box).
+ 
 
-    git clone git@github.com:YOUR_USER/nog.git
-    cd nog
+```
+# clone your fork (replace YOUR_USER!)...
+$ git clone git@github.com:YOUR_USER/nog.git
 
-Install the dependencies with NPM.   
+# switch to the nog directory...
+$ cd nog
+
+# install the dependencies...
+$ npm install
+
+# initialize the site...
+$ grunt init
+
+# build the site...
+$ grunt build
+
+# serve the site locally
+$ grunt serve
+Running "serve" task
+>> Server listening on port 3000. Go to  http://localhost:3000/nog
+>> Press ^C to stop.
+
+# After making some content changes (see below), push your site to GitHub Pages
+$ grunt push
+```    
     
-    npm install
-    
-Initialize the site with `grunt init`. This creates the special `gh-pages` 
-   pages branch.
-   
-   grunt init
+
     
 Make changes to the content in the `content` directory.
 
 
-## Commands
+## Grunt Tasks
 
 `$ grunt init`
 
+Initializes the site. This is a necessary step after cloning a repo.
+
+## Watchers
+
 `$ grunt watch:build`
+
+`$ grunt watch:serve`
+
+Enables live reload.
 
 

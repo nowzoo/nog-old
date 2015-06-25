@@ -12,6 +12,7 @@ module.exports = function (grunt) {
     var show = require('./grunt/show');
     var build = require('./grunt/build');
     var push = require('./grunt/push');
+    var serve = require('./grunt/serve');
     var get_data = require('./grunt/get_data');
 
     // Force use of Unix newlines
@@ -53,6 +54,12 @@ module.exports = function (grunt) {
             posts_per_page: 10
         },
         watch: {
+            serve: {
+                options: {
+                    livereload: true,
+                },
+                files: ['./_site/**/*']
+            },
             build: {
                 files: ['./content/**/*', './templates/**/*', './assets/**/*'],
                 tasks: ['build']
@@ -78,6 +85,11 @@ module.exports = function (grunt) {
             });
         });
 
+    });
+
+    grunt.registerTask('serve', 'Serve the site locally.', function(port) {
+        var done = this.async();
+        serve.call(this, grunt, port, done);
     });
     
 
