@@ -1,11 +1,10 @@
 /* jshint node: true */
-module.exports = function (program, options, callback) {
+module.exports = function (grunt, options, callback) {
     'use strict';
     var async = require('async');
     var fs = require('fs');
     var path = require('path');
     var _ = require('lodash');
-    var colors = require('colors/safe');
 
 
 
@@ -18,14 +17,14 @@ module.exports = function (program, options, callback) {
     var lib_path = path.dirname(__dirname);
     var content_path_exists = true;
 
-    if (program.verbose) console.log(colors.gray.bold('Gathering metadata for the home page...'));
+    grunt.verbose.writeln('Gathering home page data.');
 
     async.series(
         [
             // Read the content/index directory
             function(callback){
                 var p = path.join(process.cwd(), 'content', 'index');
-                if (program.verbose) console.log(colors.cyan('Reading the content/index directory...'));
+                grunt.verbose.writeln('Reading the content/index directory...');
                 fs.readdir(p, function(err, result){
                     file_list = result;
                     callback(err);
@@ -45,7 +44,7 @@ module.exports = function (program, options, callback) {
                         content_path_exists = false;
                     }
                 }
-                read_content(program, filename, 'index', function(err, post){
+                read_content(grunt, filename, 'index', function(err, post){
                     if (! err && post){
                         index = post;
                     }

@@ -1,19 +1,13 @@
 /* jshint node: true */
-module.exports = function (program, callback) {
+module.exports = function (grunt) {
     'use strict';
-    var async = require('async');
     var fs = require('fs');
     var path = require('path');
     var _ = require('lodash');
-    var colors = require('colors/safe');
 
 
 
-
-
-    var options = {};
-
-    var defaults = {
+    return {
         title: 'Nog',
         tagline: 'A simple site generator for GitHub Pages.',
         site_url: '',
@@ -63,24 +57,7 @@ module.exports = function (program, callback) {
 
 
 
-    async.series(
-        [
-            // Read the content/posts directory
-            function(callback){
-                var p = path.join(process.cwd(), 'options.js');
-                if (program.verbose) console.log(colors.cyan('Reading site options from %s.'), p);
-                fs.exists(p, function(exists){
-                    if (! exists)  return callback('Missing options.js.');
-                    options = _.extend({}, defaults, require(p));
-                    callback(null);
-                });
-            }
-        ],
-        function(err){
-            if (program.verbose && ! err) console.log(colors.green('Done!'));
-            callback(err, options);
-        }
-    );
+
 
 
 

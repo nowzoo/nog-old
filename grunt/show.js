@@ -1,113 +1,129 @@
 /* jshint node: true */
-module.exports = function (program, thing, otherthings, data) {
+module.exports = function (grunt, what, data) {
     'use strict';
 
     var _ = require('lodash');
-    var grunt = require('grunt');
-    var colors = require('colors');
     var sprintf = require('sprintf-js').sprintf;
 
+
+
     var header = function(title){
-        var sep = colors.cyan.bold('--------------');
-        console.log(sep,  colors.cyan.bold(title), sep);
+        var sep = '--------------';
+        grunt.log.subhead(sep, title, sep);
     };
     var errors = function(errors){
         if (errors.length > 0){
-            console.log(colors.red.bold('Errors (%s)'), errors.length);
+            grunt.log.writeln('Errors (%s)', errors.length);
             _.each(errors, function(e, i){
-                console.log( colors.red(' ' + (i + 1) + '.', e));
+                grunt.log.writeln( ' ' + (i + 1) + '.', e);
             })
         }
     };
 
 
+    var show_site = function () {
+        grunt.log.writeln('');
+        header('Site Options');
+        grunt.log.writeln('');
+        _.each(data.site, function(value, key){
+            var text;
+            if (_.isFunction(value)){
+                text =  '[function]';
+            } else {
+                text = value
+            }
+            grunt.log.writeln(key + ':',  text);
+        });
+        grunt.log.writeln('');
+    };
 
     var show_index = function () {
-        console.log('');
+        grunt.log.writeln('');
         header('Home Page');
-        console.log('');
+        grunt.log.writeln('');
         var post = data.index;
-        console.log(colors.bold(post.title));
-        console.log('ID:',  post.id);
-        console.log('Path:',  post.path);
-        console.log('Type:',post.type);
-        console.log('Published:',post.published_at.format('LLLL'));
+        grunt.log.writeln(post.title);
+        grunt.log.writeln('ID:',  post.id);
+        grunt.log.writeln('Path:',  post.path);
+        grunt.log.writeln('Type:',post.type);
+        grunt.log.writeln('Published:',post.published_at.format('LLLL'));
         errors(post.errors);
-        console.log('');
+        grunt.log.writeln('');
     };
 
     var show_pages = function(){
-        console.log('');
+        grunt.log.writeln('');
         header(sprintf('Pages (%s)', _.size(data.pages)));
         _.each(data.pages, function(post){
-            console.log('');
-            console.log(colors.bold(post.title));
-            console.log('ID:',  post.id);
-            console.log('Path:',  post.path);
-            console.log('Type:',post.type);
-            console.log('Published:',post.published_at.format('LLLL'));
-            console.log('Page Parent:', post.parent ? post.parent.id : '[none]');
+            grunt.log.writeln('');
+            grunt.log.writeln(post.title);
+            grunt.log.writeln('ID:',  post.id);
+            grunt.log.writeln('Path:',  post.path);
+            grunt.log.writeln('Type:',post.type);
+            grunt.log.writeln('Published:',post.published_at.format('LLLL'));
+            grunt.log.writeln('Page Parent:', post.parent ? post.parent.id : '[none]');
             errors(post.errors);
 
         });
     };
 
     var show_posts = function(){
-        console.log('');
+        grunt.log.writeln('');
         header(sprintf('Posts (%s)', _.size(data.posts)));
         _.each(data.posts, function(post){
-            console.log('');
-            console.log(colors.bold(post.title));
-            console.log('ID:',  post.id);
-            console.log('Path:',  post.path);
-            console.log('Type:',post.type);
-            console.log('Published:',post.published_at.format('LLLL'));
-            console.log('Tags:', grunt.log.wordlist(post.tags));
+            grunt.log.writeln('');
+            grunt.log.writeln(post.title);
+            grunt.log.writeln('ID:',  post.id);
+            grunt.log.writeln('Path:',  post.path);
+            grunt.log.writeln('Type:',post.type);
+            grunt.log.writeln('Published:',post.published_at.format('LLLL'));
+            grunt.log.writeln('Tags:', grunt.log.wordlist(post.tags));
             errors(post.errors);
 
         });
-        console.log('');
+        grunt.log.writeln('');
     };
 
     var show_archives = function(){
-        console.log('');
+        grunt.log.writeln('');
         header(sprintf('Date Archives (%s)', _.size(data.archives.date)));
         _.each(data.archives.date, function(archive){
-            console.log('');
-            console.log(colors.bold(archive.name));
-            console.log('ID:',  archive.id);
-            console.log('Path:',  archive.pages[0].path);
-            console.log('Posts:', _.size(archive.posts));
+            grunt.log.writeln('');
+            grunt.log.writeln(archive.name);
+            grunt.log.writeln('ID:',  archive.id);
+            grunt.log.writeln('Path:',  archive.pages[0].path);
+            grunt.log.writeln('Posts:', _.size(archive.posts));
 
         });
-        console.log('');
+        grunt.log.writeln('');
     };
 
     var show_tags = function(){
-        console.log('');
+        grunt.log.writeln('');
         header(sprintf('Post Tags (%s)', _.size(data.archives.tags)));
         _.each(data.archives.tags, function(archive){
-            console.log('');
-            console.log(colors.bold(archive.name));
-            console.log('ID:',  archive.id);
-            console.log('Path:',  archive.pages[0].path);
-            console.log('Posts:', _.size(archive.posts));
+            grunt.log.writeln('');
+            grunt.log.writeln(archive.name);
+            grunt.log.writeln('ID:',  archive.id);
+            grunt.log.writeln('Path:',  archive.pages[0].path);
+            grunt.log.writeln('Posts:', _.size(archive.posts));
 
         });
-        console.log('');
+        grunt.log.writeln('');
     };
 
     var show_search_words = function(){
-        console.log('');
+        grunt.log.writeln('');
         header(sprintf('Search Words (%s)', _.size(data.search)));
-        console.log('');
+        grunt.log.writeln('');
         _.each(data.search, function(arr, word){
-            console.log(colors.bold(word),  _.size(arr), 'match(es)');
+            grunt.log.writeln(word,  _.size(arr), 'match(es)');
         });
-        console.log('');
+        grunt.log.writeln('');
     };
 
     var things = {
+        site: [show_site, 'Site data'],
         index: [show_index, 'Home page data'],
         pages: [show_pages, 'Pages data'],
         posts: [show_posts, 'Posts data'],
@@ -116,27 +132,20 @@ module.exports = function (program, thing, otherthings, data) {
         search: [show_search_words, 'Search words data']
     };
 
-    var show = [thing];
-    if (_.isArray(otherthings)) show = show.concat(otherthings);
-    var err = _.size(show) === 0;
-    console.log(show, otherthings);
+    what = what.length === 0 ? _.keys(things) : what;
+    grunt.verbose.writeln('Showing site data.', grunt.log.wordlist(what));
 
-    _.each(show, function(what){
-        if (!_.has(things, what)) err = true;
+
+    _.each(what, function(thing){
+        if (_.has(things, thing)){
+            grunt.verbose.writeln('Showing ' , things[thing][1]);
+            things[thing][0]();
+        } else {
+            grunt.log.error('Cannot show  ' , thing, '(invalid key)');
+        }
     });
 
-    if (err){
-        console.log(colors.red('Invalid arguments!'));
-        console.log(colors.bold('Options:'));
-        _.each(things, function(arr, str){
-            console.log(colors.bold.cyan('nog show ' + str), colors.gray(arr[1]));
-        });
-        return;
-
-    }
-    _.each(show, function(thing){
-        things[thing][0]();
-    });
+    grunt.verbose.writeln('Showed site data: ', grunt.log.wordlist(what));
 
 };
 

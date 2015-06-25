@@ -1,13 +1,11 @@
 /* jshint node: true */
-module.exports = function (program, options, posts, callback) {
+module.exports = function (grunt, options, posts, callback) {
     'use strict';
-    var colors = require('colors');
     var async = require('async');
     var moment = require('moment');
     var _ = require('lodash');
     var S = require('string');
 
-    var get_options = require('./get_options');
 
     var main;
     var tags = {};
@@ -43,14 +41,14 @@ module.exports = function (program, options, posts, callback) {
         })
     };
 
-    if (program.verbose) console.log(colors.gray.bold('Creating post archives.'));
+    grunt.verbose.writeln('Gathering post archives data.');
 
 
     async.series(
         [
 
             function(callback){
-                if (program.verbose) console.log(colors.cyan('Creating main post archive...'));
+                grunt.verbose.writeln('Creating main post archive...');
                 // make the main archive...
                 main = {
                     id: 'main',
@@ -63,7 +61,7 @@ module.exports = function (program, options, posts, callback) {
 
                 reverse_sort_archive_posts(main);
 
-                if (program.verbose) console.log(colors.cyan('Creating tag archives...'));
+                grunt.verbose.writeln('Creating tag archives...');
                 // gather all the tags...
                 _.each(posts, function(post){
                     var post_tags = post.tags;
@@ -84,7 +82,7 @@ module.exports = function (program, options, posts, callback) {
                 });
 
                 _.each(tags, function(tag){
-                    if (program.verbose) console.log(colors.cyan('Creating tag archive for %s'), tag.name);
+                    grunt.verbose.writeln('Creating tag archive for %s', tag.name);
                     reverse_sort_archive_posts(tag);
                 });
 
@@ -125,7 +123,7 @@ module.exports = function (program, options, posts, callback) {
                 });
 
                 _.each(date_archives, function(archive){
-                    if (program.verbose) console.log(colors.cyan('Creating date archive for %s'), archive.name);
+                    grunt.verbose.writeln('Creating date archive for %s', archive.name);
                     reverse_sort_archive_posts(archive);
                 });
                 callback();

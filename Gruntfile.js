@@ -9,6 +9,8 @@ module.exports = function (grunt) {
 
 
     var init = require('./grunt/init');
+    var show = require('./grunt/show');
+    var get_data = require('./grunt/get_data');
 
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
@@ -60,8 +62,19 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     grunt.registerTask('init', 'Initialize the site.', function() {
+
         var done = this.async();
         init.call(this, grunt, done);
+    });
+
+    grunt.registerTask('show', 'Show site data.', function(what) {
+        var done = this.async();
+        what = Array.prototype.slice.call(arguments);
+        get_data(grunt, function(err, data){
+            show.call(this, grunt, what, data);
+            done(err);
+        });
+
     });
 
     

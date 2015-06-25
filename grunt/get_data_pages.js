@@ -1,11 +1,10 @@
 /* jshint node: true */
-module.exports = function (program, options, callback) {
+module.exports = function (grunt, options, callback) {
     'use strict';
     var async = require('async');
     var fs = require('fs');
     var path = require('path');
     var _ = require('lodash');
-    var colors = require('colors/safe');
 
 
     var read_content = require('./read_content');
@@ -15,7 +14,7 @@ module.exports = function (program, options, callback) {
 
 
 
-    if (program.verbose) console.log(colors.gray.bold('Gathering metadata for pages...'));
+    grunt.verbose.writeln('Gathering pages data.');
 
     var pages_path = path.join(process.cwd(), 'content', 'pages');
 
@@ -25,7 +24,7 @@ module.exports = function (program, options, callback) {
 
             // Read the content/posts directory
             function(callback){
-                if (program.verbose) console.log(colors.cyan('Reading the content/pages directory...'));
+                grunt.verbose.writeln('Reading the content/pages directory...');
                 fs.readdir(pages_path, function(err, result){
                     file_list = result;
                     callback(err);
@@ -36,7 +35,7 @@ module.exports = function (program, options, callback) {
             function(callback){
                 async.each(file_list, function(filename, callback){
                     var p = path.join(pages_path, filename);
-                    read_content(program, p, 'page', function(err, page){
+                    read_content(grunt, p, 'page', function(err, page){
                         if (! err && page){
                             pages[page.id] = page;
                         }
@@ -51,7 +50,7 @@ module.exports = function (program, options, callback) {
 
 
                 _.each(pages, function(page, id){
-                    if (program.verbose) console.log(colors.cyan('Normalizing the page parent for %s...'), id);
+                    grunt.verbose.writeln('Normalizing the page parent for %s...', id);
                     var parent_id = page.parent || null;
                     var parent = _.has(pages, parent_id) ? pages[parent_id] : null;
                     var parents = [];
@@ -74,7 +73,7 @@ module.exports = function (program, options, callback) {
             function (callback) {
 
                 _.each(pages, function(page, id){
-                    if (program.verbose) console.log(colors.cyan('Normalizing the page children for %s...'), id);
+                    grunt.verbose.writeln('Normalizing the page children for %s...', id);
                     var children = [];
                     _.each(pages, function(child){
                         if (child.parent && child.parent === id){
@@ -90,7 +89,7 @@ module.exports = function (program, options, callback) {
             //get the path...
             function (callback) {
                 _.each(pages, function(page, id){
-                    if (program.verbose) console.log(colors.cyan('Normalizing the path for %s...'), id);
+                    grunt.verbose.writeln('Normalizing the path for %s...', id);
                     page.path = options.atomic_path(page, id);
                 });
                 callback(null);

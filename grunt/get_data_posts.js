@@ -1,14 +1,13 @@
 /* jshint node: true */
-module.exports = function (program, options, callback) {
+module.exports = function (grunt, options, callback) {
     'use strict';
     var async = require('async');
     var fs = require('fs');
     var path = require('path');
     var _ = require('lodash');
-    var colors = require('colors/safe');
 
 
-    var metadata_post_archives = require('./metadata_post_archives');
+    var get_data_post_archives = require('./get_data_post_archives');
 
 
     var read_content = require('./read_content');
@@ -19,13 +18,13 @@ module.exports = function (program, options, callback) {
 
     var posts_path = path.join(process.cwd(), 'content', 'posts');
 
-    if (program.verbose) console.log(colors.gray.bold('Gathering metadata for posts...'));
+    grunt.verbose.writeln('Gathering posts data.');
 
     async.series(
         [
             // Read the content/posts directory
             function(callback){
-                if (program.verbose) console.log(colors.cyan('Reading the content/posts directory...'));
+                grunt.verbose.writeln('Reading the content/posts directory...');
                 fs.readdir(posts_path, function(err, result){
                     file_list = result;
                     callback(err);
@@ -36,7 +35,7 @@ module.exports = function (program, options, callback) {
             function(callback){
                 async.each(file_list, function(filename, callback){
                     var p = path.join(posts_path, filename);
-                    read_content(program, p, 'post', function(err, post){
+                    read_content(grunt, p, 'post', function(err, post){
                         if (! err && post){
                             posts[post.id] = post;
                         }
@@ -47,7 +46,7 @@ module.exports = function (program, options, callback) {
             },
 
             function (callback) {
-                metadata_post_archives(program, options, posts, function(err, result){
+                get_data_post_archives(grunt, options, posts, function(err, result){
                     archives = result;
                     callback(err);
                 })
@@ -55,7 +54,7 @@ module.exports = function (program, options, callback) {
             //get the path...
             function (callback) {
                 _.each(posts, function(post, id){
-                    if (program.verbose) console.log(colors.cyan('Normalizing the path for %s...'), id);
+                    grunt.verbose.writeln('Normalizing the path for %s...', id);
                     post.path = options.atomic_path(post, id);
                 });
                 callback(null);
