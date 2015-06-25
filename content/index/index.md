@@ -23,4 +23,4 @@ Initialize the site with `grunt init`. This creates the special `gh-pages`
    
    grunt init
     
-Make changes to the content 
+Make changes to the content in the `content` directory.

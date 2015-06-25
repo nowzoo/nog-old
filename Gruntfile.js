@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         },
         watch: {
             nog: {
-                files: ['content/**/*', 'templates/**/*', 'assets/**/*'],
+                files: ['./content/**/*', './templates/**/*', './assets/**/*'],
                 tasks: 'build'
             }
         }
