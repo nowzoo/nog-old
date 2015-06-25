@@ -53,8 +53,8 @@ module.exports = function (grunt) {
             posts_per_page: 10
         },
         watch: {
-            build: {
-                files: ['_nog/content/*', '_nog/templates/*', '_nog/assets/*'],
+            nog: {
+                files: ['content/**/*', 'templates/**/*', 'assets/**/*'],
                 tasks: 'build'
             }
         }
