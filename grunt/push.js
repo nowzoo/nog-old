@@ -11,10 +11,19 @@ module.exports = function(grunt, callback){
 
     var file_list;
 
+    var git_get_origin = require('./git_get_origin');
+
 
 
     async.series(
         [
+            function(callback){
+                git_get_origin(grunt, function(err, origin){
+                    console.log(origin);
+                    callback(err)
+                })
+            },
+
             // Make sure we're on master
             function(callback){
                 var cmd = 'git checkout master';
