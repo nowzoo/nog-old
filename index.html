@@ -39,19 +39,41 @@
     
     <article>
         <div>
-            <p>This is the home page! Woot! Let&#39;s see if this takes hold!</p>
+            <h1 id="nog">Nog</h1>
+<p>Nog is a simple site generator for GitHub Pages using <a href="http://gruntjs.com">Grunt</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
-<p>Fork the repo and clone the fork to your local machine.</p>
-<pre><code>git clone git@github.com:YOUR_USER/nog.git
-cd nog
-</code></pre><p>Install the dependencies with NPM.   </p>
-<pre><code>npm install
-</code></pre><p>Initialize the site with <code>grunt init</code>. This creates the special <code>gh-pages</code> 
-   pages branch.</p>
-<p>   grunt init</p>
-<p>Make changes to the content in the <code>content</code> directory.</p>
-<h2 id="commands">Commands</h2>
+<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork Nog</a>.</p>
+<pre><code># clone your fork (replace YOUR_USER!)...
+$ git clone git@github.com:YOUR_USER/nog.git
+
+# switch to the nog directory...
+$ cd nog
+
+# install the dependencies...
+$ npm install
+
+# initialize the site...
+$ grunt init
+
+# build the site...
+$ grunt build
+
+# serve the site locally
+$ grunt serve
+Running &quot;serve&quot; task
+&gt;&gt; Server listening on port 3000. Go to  http://localhost:3000/nog
+&gt;&gt; Press ^C to stop.
+
+# After making some content changes (see below), push your site to GitHub Pages
+$ grunt push
+</code></pre><p>Make changes to the content in the <code>content</code> directory.</p>
+<h2 id="grunt-tasks">Grunt Tasks</h2>
+<p><code>$ grunt init</code></p>
+<p>Initializes the site. This is a necessary step after cloning a repo.</p>
+<h2 id="watchers">Watchers</h2>
 <p><code>$ grunt watch:build</code></p>
+<p><code>$ grunt watch:serve</code></p>
+<p>Enables live reload.</p>
 
         </div>
     </article>
