@@ -13,6 +13,12 @@ module.exports = function(grunt, done){
     async.series(
         [
 
+            // Make sure we're on master
+            function(callback){
+                var cmd = 'git checkout master';
+                grunt.verbose.writeln('Checking out master: %s', cmd);
+                exec(cmd, callback);
+            },
 
 
             // Create gh-pages branch
