@@ -3,6 +3,7 @@ module.exports = function(grunt, done){
     var fs =  require('fs');
     var ncp =  require('ncp').ncp;
     var path =  require('path');
+    var rimraf =  require('rimraf');
     var sprintf = require('sprintf-js').sprintf;
     var exec = require('child_process').exec;
 
@@ -10,34 +11,43 @@ module.exports = function(grunt, done){
     var git_get_origin = require('./git_get_origin');
 
 
+    var origin;
+
+    var orig_dir = process.cwd();
+    var _site_dir = path.join(orig_dir, '_site');
 
 
     async.series(
         [
-
-            // Make sure we're on master
+            //get the origin...
             function(callback){
-                var cmd = 'git checkout master';
-                grunt.log.writeln('Checking out master: %s', cmd);
+                git_get_origin(grunt, function(err, result){
+                    origin = result;
+                    callback(err)
+                })
+            },
+
+            function(callback){
+                rimraf(_site_dir, callback);
+            },
+
+            function(callback){
+
+                fs.mkdir(_site_dir, callback);
+            },
+
+            //git init
+            function(callback){
+                var cmd = 'git init';
+                process.chdir(_site_dir);
+                grunt.log.writeln('Initializing git in _site: %s', cmd);
                 exec(cmd, callback);
             },
 
-
-            // Create gh-pages branch
+            //git init
             function(callback){
-                var cmd = 'git status --porcelain';
-                grunt.log.writeln('Checking git status: %s', cmd);
-                exec(cmd, function(err, stdout, stderr){
-                    if (err) return callback(err);
-                    if (stdout.length > 0) err = new Error('You have uncommitted changes on the master branch. Commit these changes first.');
-                    callback(err);
-                });
-            },
-
-            // Delete gh-pages branch
-            function(callback){
-                var cmd = 'git branch -D gh-pages';
-                grunt.log.writeln('Deleting gh-pages branch, if any: %s', cmd);
+                var cmd = sprintf('git remote add origin %s', origin.push);
+                grunt.log.writeln('Adding remote for _site: %s', cmd);
                 exec(cmd, callback);
             },
 
@@ -48,24 +58,10 @@ module.exports = function(grunt, done){
                 exec(cmd, callback);
             },
 
-            // Empty gh-pages branch...
-            function(callback){
-                var cmd = 'git rm -rf .';
-                grunt.log.writeln('Emptying gh-pages branch: %s', cmd);
-                exec(cmd, callback);
-            },
-
             // Pull origin gh-pages...
             function(callback){
                 var cmd = 'git pull origin gh-pages';
                 grunt.log.writeln('Pulling: %s', cmd);
-                exec(cmd, callback);
-            },
-
-            // Checkout master
-            function(callback){
-                var cmd = 'git checkout master';
-                grunt.log.writeln('Checking out master: %s', cmd);
                 exec(cmd, callback);
             }
 
@@ -73,6 +69,7 @@ module.exports = function(grunt, done){
 
         ],
         function(err){
+            process.chdir(orig_dir);
             done(err);
         }
     )

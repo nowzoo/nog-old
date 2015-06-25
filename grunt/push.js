@@ -9,17 +9,18 @@ module.exports = function(grunt, callback){
     var sprintf = require('sprintf-js').sprintf;
     var exec = require('child_process').exec;
 
-    var file_list;
 
     var git_get_origin = require('./git_get_origin');
 
+    var origin;
+    var file_list;
 
 
     async.series(
         [
             function(callback){
-                git_get_origin(grunt, function(err, origin){
-                    console.log(origin);
+                git_get_origin(grunt, function(err, result){
+                    origin = result;
                     callback(err)
                 })
             },
