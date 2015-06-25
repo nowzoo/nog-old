@@ -7,7 +7,9 @@ module.exports = function(grunt, done){
     var exec = require('child_process').exec;
 
 
-    var lib_path = path.dirname(__dirname);
+    var git_get_origin = require('./git_get_origin');
+
+
 
 
     async.series(
