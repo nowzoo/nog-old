@@ -99,9 +99,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('push', 'Commit and push site changes to GitHub.', function() {
         var done = this.async();
-        grunt.option('pushing', true);
         push.call(this, grunt, function(err){
-            grunt.option('pushing', false);
             done(err);
         });
 

@@ -110,6 +110,7 @@ module.exports = function(grunt, callback){
             function(callback){
                 var err = null;
                 process.chdir(orig_dir);
+
                 if (! gh_pages_needs_update  && ! master_needs_update) {
                     err = 'Both master and gh-pages branches are up to date.';
                 }
@@ -124,4 +125,4 @@ module.exports = function(grunt, callback){
             callback(err);
         }
     )
-}
+};
