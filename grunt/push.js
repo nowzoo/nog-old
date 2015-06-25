@@ -12,18 +12,15 @@ module.exports = function(grunt, callback){
 
     var git_get_origin = require('./git_get_origin');
 
-    var origin;
-    var file_list;
 
+    var orig_dir = process.cwd();
+    var _site_dir = path.join(orig_dir, '_site');
+    var master_needs_update = false;
+    var gh_pages_needs_update = false;
 
     async.series(
         [
-            function(callback){
-                git_get_origin(grunt, function(err, result){
-                    origin = result;
-                    callback(err)
-                })
-            },
+
 
             // Make sure we're on master
             function(callback){
@@ -50,38 +47,17 @@ module.exports = function(grunt, callback){
                 grunt.verbose.writeln('Push changes in master: %s', cmd);
                 exec(cmd, callback);
             },
-            // Create gh-pages branch
+
+
+            // switch to _site directory...
             function(callback){
-                var cmd = 'git checkout gh-pages';
-                grunt.verbose.writeln('Checkout gh-pages branch: %s', cmd);
-                exec(cmd, callback);
+                process.chdir(_site_dir);
+                grunt.verbose.writeln('Changed working directory to %s', _site_dir);
+                callback();
             },
 
-            function(callback){
-                grunt.verbose.writeln('Reading old files...');
-                fs.readdir(process.cwd(), function(err, result){
-                    file_list = result;
-                    callback(err);
-                })
-            },
 
-            function(callback){
-                var keep = ['README.md', 'node_modules', '.gitignore', '_site'];
-                grunt.verbose.writeln('Deleting old files...');
-                async.each(file_list, function(name, callback){
-                    if (_.indexOf(keep, name) !== -1) return callback();
-                    if (name.indexOf('.') === 0) return callback();
-                    grunt.verbose.writeln('Deleting %s.', name);
-                    rimraf(name, callback);
-                }, callback)
-            },
 
-            function(callback){
-                var src = path.join(process.cwd(), '_site');
-                var dst = process.cwd();
-                grunt.verbose.writeln('Copying _site to root directory...');
-                ncp(src, dst, callback);
-            },
 
             // Add all the changes...
             function(callback){
@@ -101,22 +77,14 @@ module.exports = function(grunt, callback){
                 var cmd = 'git push origin gh-pages';
                 grunt.verbose.writeln('Push changes to gh-pages: %s', cmd);
                 exec(cmd, callback);
-            },
-            // Make sure we're on master
-            function(callback){
-                var cmd = 'git checkout master';
-                grunt.verbose.writeln('Checking out master: %s', cmd);
-                exec(cmd, callback);
             }
 
 
         ],
         function(err){
-            var cmd = 'git checkout master';
-            grunt.verbose.writeln('Checking out master: %s', cmd);
-            exec(cmd, function(){
-                callback(err);
-            });
+            process.chdir(orig_dir);
+            grunt.verbose.writeln('Changed working directory to %s', orig_dir);
+            callback(err);
         }
     )
 }

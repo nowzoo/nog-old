@@ -23,17 +23,18 @@ module.exports = function(grunt, done){
             function(callback){
                 grunt.log.write('Getting origin...');
                 git_get_origin(grunt, function(err, result){
-                    origin = result; grunt.log.write(origin.fetch);
+                    origin = result; grunt.log.writeln(origin.fetch);
                     callback(err)
                 })
             },
 
             function(callback){
+                grunt.log.write('Deleting _site directory...');
                 rimraf(_site_dir, callback);
             },
 
             function(callback){
-
+                grunt.log.write('Making fresh _site directory...');
                 fs.mkdir(_site_dir, callback);
             },
 
