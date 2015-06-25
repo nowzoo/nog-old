@@ -17,6 +17,19 @@ module.exports = function(grunt, done){
 
             // Create gh-pages branch
             function(callback){
+                var cmd = 'git status --porcelain';
+                grunt.verbose.writeln('Git status: %s', cmd);
+                exec(cmd, function(err, stdout, stderr){
+                    console.log('err', err);
+                    console.log('stdout', stdout);
+                    console.log('stderr', stderr);
+                    callback();
+                });
+            },
+
+
+            // Create gh-pages branch
+            function(callback){
                 var cmd = 'git checkout --orphan gh-pages';
                 grunt.verbose.writeln('Creating gh-pages branch: %s', cmd);
                 exec(cmd, callback);
