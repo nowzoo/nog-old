@@ -42,14 +42,14 @@ module.exports = function(grunt, callback){
             // Add all the changes...
             function(callback){
                 var cmd = 'git add -A';
-                if (! master_needs_update) return (callback);
+                if (! master_needs_update) return callback();
                 grunt.verbose.writeln('Adding changes in master: %s', cmd);
                 exec(cmd, callback);
             },
             // Commit the changes...
             function(callback){
                 var cmd = sprintf('git commit -m \'Automated nog commit on %s\'', moment().toISOString());
-                if (! master_needs_update) return (callback);
+                if (! master_needs_update) return callback();
                 grunt.verbose.writeln('Commit changes in master: %s', cmd);
                 exec(cmd, callback);
             },
@@ -57,7 +57,7 @@ module.exports = function(grunt, callback){
             // Push the changes...
             function(callback){
                 var cmd = 'git push origin master';
-                if (! master_needs_update) return (callback);
+                if (! master_needs_update) return callback();
                 grunt.verbose.writeln('Push changes in master: %s', cmd);
                 exec(cmd, callback);
             },
@@ -86,14 +86,14 @@ module.exports = function(grunt, callback){
             // Add all the changes...
             function(callback){
                 var cmd = 'git add -A';
-                if (! gh_pages_needs_update) return (callback);
+                if (! gh_pages_needs_update) return callback();
                 grunt.verbose.writeln('Adding changes in gh-pages: %s', cmd);
                 exec(cmd, callback);
             },
             // Commit the changes...
             function(callback){
                 var cmd = sprintf('git commit -m \'Automated nog commit to gh-pages on %s\'', moment().toISOString());
-                if (! gh_pages_needs_update) return (callback);
+                if (! gh_pages_needs_update) return callback();
                 grunt.verbose.writeln('Commit changes in gh-pages: %s', cmd);
                 exec(cmd, callback);
             },
@@ -101,7 +101,7 @@ module.exports = function(grunt, callback){
             // Push the changes...
             function(callback){
                 var cmd = 'git push origin gh-pages';
-                if (! gh_pages_needs_update) return (callback);
+                if (! gh_pages_needs_update) return callback();
                 grunt.verbose.writeln('Push changes to gh-pages: %s', cmd);
                 exec(cmd, callback);
             },
