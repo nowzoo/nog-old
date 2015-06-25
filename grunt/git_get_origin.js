@@ -8,6 +8,7 @@ module.exports = function(grunt, callback){
 
     var cmd = 'git remote -v';
 
+    grunt.verbose.writeln('Getting origin: %s', cmd);
     exec(cmd, function(err, stdout){
         var lines = stdout.split('\n');
         var origin = {
@@ -33,7 +34,7 @@ module.exports = function(grunt, callback){
         } else {
             callback(null, origin);
         }
-    })
+    });
 
 
-}
+};
