@@ -21,8 +21,9 @@ module.exports = function(grunt, done){
         [
             //get the origin...
             function(callback){
+                grunt.log.write('Getting origin...');
                 git_get_origin(grunt, function(err, result){
-                    origin = result;
+                    origin = result; grunt.log.write(origin.fetch);
                     callback(err)
                 })
             },
