@@ -32,11 +32,17 @@ module.exports = function(grunt, done){
                 });
             },
 
+            // Delete gh-pages branch
+            function(callback){
+                var cmd = 'git branch -D gh-pages';
+                grunt.log.writeln('Deleting gh-pages branch, if any: %s', cmd);
+                exec(cmd, callback);
+            },
 
             // Create gh-pages branch
             function(callback){
                 var cmd = 'git checkout --orphan gh-pages';
-                grunt.log.writeln('Creating gh-pages branch: %s', cmd);
+                grunt.log.writeln('Creating fresh gh-pages branch: %s', cmd);
                 exec(cmd, callback);
             },
 
@@ -47,36 +53,10 @@ module.exports = function(grunt, done){
                 exec(cmd, callback);
             },
 
-            // Add the initial files that go in the gh-pages branch...
-            // - .gitignore created from scratch
-
-
-            // create .gitignore ...
-            function(callback){
-                var dst = path.join(process.cwd(), '.gitignore');
-                var ignore = ['node_modules', '_site'];
-                grunt.log.writeln('Creating .gitignore');
-                fs.writeFile(dst, ignore.join('\n'), callback);
-            },
-
-            // Add the files to git on gh-pages...
-            function(callback){
-                var cmd = 'git add -A';
-                grunt.log.writeln('Add: %s', cmd);
-                exec(cmd, callback);
-            },
-
-            // Commit on gh-pages...
-            function(callback){
-                var cmd = 'git commit -m \'Initial nog commit on gh-pages\'';
-                grunt.log.writeln('Commit: %s', cmd);
-                exec(cmd, callback);
-            },
-
             // Pull origin gh-pages...
             function(callback){
                 var cmd = 'git pull origin gh-pages';
-                grunt.log.writeln('Pull: %s', cmd);
+                grunt.log.writeln('Pulling: %s', cmd);
                 exec(cmd, callback);
             },
 
