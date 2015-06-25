@@ -11,6 +11,7 @@ module.exports = function (grunt) {
     var init = require('./grunt/init');
     var show = require('./grunt/show');
     var build = require('./grunt/build');
+    var push = require('./grunt/push');
     var get_data = require('./grunt/get_data');
 
     // Force use of Unix newlines
@@ -87,6 +88,12 @@ module.exports = function (grunt) {
             show.call(this, grunt, what, data);
             done(err);
         });
+
+    });
+
+    grunt.registerTask('push', 'Commit and push site changes to GitHub.', function() {
+        var done = this.async();
+        push.call(this, grunt, done);
 
     });
 
