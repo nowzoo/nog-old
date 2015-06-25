@@ -20,8 +20,9 @@ module.exports = function(grunt, done){
                 var cmd = 'git status --porcelain';
                 grunt.verbose.writeln('Git status: %s', cmd);
                 exec(cmd, function(err, stdout, stderr){
+                    if (err) return callback(err);
                     console.log('err', err);
-                    console.log('stdout', stdout);
+                    console.log('stdout', stdout, stdout.length);
                     console.log('stderr', stderr);
                     callback();
                 });
