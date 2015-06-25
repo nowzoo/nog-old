@@ -18,13 +18,11 @@ module.exports = function(grunt, done){
             // Create gh-pages branch
             function(callback){
                 var cmd = 'git status --porcelain';
-                grunt.verbose.writeln('Git status: %s', cmd);
+                grunt.verbose.writeln('Checking git status: %s', cmd);
                 exec(cmd, function(err, stdout, stderr){
                     if (err) return callback(err);
-                    console.log('err', err);
-                    console.log('stdout', stdout, stdout.length);
-                    console.log('stderr', stderr);
-                    callback();
+                    if (stdout.length > 0) err = new Error('You have uncommitted changes on the master branch. Commit these changes first.');
+                    callback(err);
                 });
             },
 
