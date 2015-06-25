@@ -18,14 +18,14 @@ module.exports = function(grunt, done){
             // Create gh-pages branch
             function(callback){
                 var cmd = 'git checkout --orphan gh-pages';
-                grunt.log.writeln('Creating gh-pages branch: %s', cmd);
+                grunt.verbose.writeln('Creating gh-pages branch: %s', cmd);
                 exec(cmd, callback);
             },
 
             // Empty gh-pages branch...
             function(callback){
                 var cmd = 'git rm -rf .';
-                grunt.log.writeln('Emptying gh-pages branch: %s', cmd);
+                grunt.verbose.writeln('Emptying gh-pages branch: %s', cmd);
                 exec(cmd, callback);
             },
 
@@ -37,28 +37,28 @@ module.exports = function(grunt, done){
             function(callback){
                 var dst = path.join(process.cwd(), '.gitignore');
                 var ignore = ['node_modules', '_site'];
-                grunt.log.writeln('Creating .gitignore');
+                grunt.verbose.writeln('Creating .gitignore');
                 fs.writeFile(dst, ignore.join('\n'), callback);
             },
 
             // Add the files to git on gh-pages...
             function(callback){
                 var cmd = 'git add -A';
-                grunt.log.writeln('Add: %s', cmd);
+                grunt.verbose.writeln('Add: %s', cmd);
                 exec(cmd, callback);
             },
 
             // Commit on gh-pages...
             function(callback){
                 var cmd = 'git commit -m "Initial nog commit on gh-pages"';
-                grunt.log.writeln('Commit: %s', cmd);
+                grunt.verbose.writeln('Commit: %s', cmd);
                 exec(cmd, callback);
             },
 
             // Checkout master
             function(callback){
                 var cmd = 'git checkout master';
-                grunt.log.writeln('Checking out master: %s', cmd);
+                grunt.verbose.writeln('Checking out master: %s', cmd);
                 exec(cmd, callback);
             }
 
@@ -67,9 +67,9 @@ module.exports = function(grunt, done){
         ],
         function(err){
             if (err){
-                grunt.log.error(err);
+                grunt.verbose.error(err);
             } else {
-                grunt.log.ok('Site successfully initialized!');
+                grunt.verbose.ok('Site successfully initialized!');
             }
             done();
         }
