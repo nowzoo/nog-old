@@ -53,7 +53,7 @@ module.exports = function (grunt, data, callback) {
                     if (name.indexOf('.') === 0) return callback();
                     grunt.verbose.writeln('Deleting: %s', name);
                     rimraf(p, callback);
-                });
+                }, callback);
             },
 
             //write the atomic content...
@@ -112,17 +112,46 @@ module.exports = function (grunt, data, callback) {
                 grunt.verbose.writeln('Copying assets...');
                 ncp(src, dst, callback);
             },
+
+            //write search...
             function(callback){
                 var p = path.join(_site_dir, 'search.json');
                 grunt.verbose.writeln('Writing /%s...', 'search.json');
                 grunt.file.write(p, JSON.stringify(data.search));
+                callback();
+            },
+
+            // switch to _site directory...
+            function(callback){
+                process.chdir(_site_dir);
+                grunt.verbose.writeln('Changed working directory to %s', _site_dir);
+                callback();
+            },
+
+            // Checkout gh-pages branch
+            function(callback){
+                var cmd = 'git checkout gh-pages';
+                grunt.log.writeln('Checkout gh-pages: %s', cmd);
+                exec(cmd, callback);
+            },
+
+            // Add -A
+            function(callback){
+                var cmd = 'git add -A';
+                grunt.log.writeln('Add: %s', cmd);
+                exec(cmd, callback);
+            },
+            // switch to orig directory...
+            function(callback){
+                process.chdir(orig_dir);
+                grunt.verbose.writeln('Changed working directory to %s', orig_dir);
                 callback();
             }
 
 
 
         ], function(err){
-
+            process.chdir(orig_dir);
             callback(err);
         }
     );
