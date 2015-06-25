@@ -26,4 +26,6 @@ Initialize the site with `grunt init`. This creates the special `gh-pages`
 Make changes to the content in the `content` directory.
 
 
-Watch build command
+## Commands
+
+`$ grunt watch:build`
