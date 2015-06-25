@@ -79,12 +79,7 @@ module.exports = function(grunt, done){
 
         ],
         function(err){
-            if (err){
-                grunt.verbose.error(err);
-            } else {
-                grunt.verbose.ok('Site successfully initialized!');
-            }
-            done();
+            done(err);
         }
     )
 }
