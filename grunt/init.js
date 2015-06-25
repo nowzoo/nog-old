@@ -29,12 +29,12 @@ module.exports = function(grunt, done){
             },
 
             function(callback){
-                grunt.log.write('Deleting _site directory...');
+                grunt.log.writeln('Deleting _site directory...');
                 rimraf(_site_dir, callback);
             },
 
             function(callback){
-                grunt.log.write('Making fresh _site directory...');
+                grunt.log.writeln('Making fresh _site directory...');
                 fs.mkdir(_site_dir, callback);
             },
 
