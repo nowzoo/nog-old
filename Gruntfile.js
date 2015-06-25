@@ -7,9 +7,10 @@ module.exports = function (grunt) {
     var moment = require('moment');
 
 
-    var build = require('./_nog/grunt/build');
-    var meta = require('./_nog/grunt/meta');
-    var serve = require('./_nog/grunt/serve');
+    var build = require('./grunt/build');
+    var meta = require('./grunt/meta');
+    var serve = require('./grunt/serve');
+    var init = require('./grunt/init');
 
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
@@ -59,6 +60,12 @@ module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
     require('time-grunt')(grunt);
+
+    grunt.registerTask('init', 'Initialize the site.', function() {
+        var done = this.async();
+        init.call(this, grunt, done);
+    });
+
 
     grunt.registerTask('meta', 'See the metadata for your site.', function () {
         meta.call(this, grunt);
