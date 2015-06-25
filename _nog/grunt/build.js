@@ -93,7 +93,8 @@ module.exports = function (grunt, callback) {
 
             //write the archive URLs
             function(callback){
-                async.each([].concat(metadata.archives, metadata.tag_archives), function(archive, callback){
+                async.each([].concat(_.values(metadata.archives), _.values(metadata.tag_archives)), function(archive, callback){
+                    console.log('write archive', archive.pages);
                     async.each(archive.pages, function(page, callback){
                         var template;
                         var data = {
@@ -107,7 +108,6 @@ module.exports = function (grunt, callback) {
                             page: page
                         };
 
-                        console.log('write archive');
                         template = _.has(site, 'archive_template') ? site.archive_template : 'archive.twig';
                         template = _.has(archive, 'template') ? archive.template : template;
                         template = path.join(process.cwd(), '_nog', 'templates', template);
@@ -133,55 +133,55 @@ module.exports = function (grunt, callback) {
                 fs.writeFile(p, JSON.stringify(metadata.search), callback);
             },
 
-            // git add -A ...
-            function(callback){
-                exec(
-                    'git add -A',
-                    function (error, stdout, stderr) {
-                        callback(error)
-                    }
-                );
-            },
-
-            // git commit -A ...
-            function(callback){
-                exec(
-                    'git commit -m "nog build on ' + moment().toISOString() + '"',
-                    function (error, stdout, stderr) {
-                        stdout_or_err(stdout, stderr)
-                        callback(error)
-                    }
-                );
-            },
-            // checkout gh-pages...
-            function(callback){
-                exec(
-                    'git checkout gh-pages',
-                    function (error, stdout) {
-                        callback(error)
-                    }
-                );
-            },
-
-            // merge master into gh-pages...
-            function(callback){
-                exec(
-                    'git merge master',
-                    function (error, stdout) {
-                        callback(error)
-                    }
-                );
-            },
-
-            // checkout master...
-            function(callback){
-                exec(
-                    'git checkout master',
-                    function (error, stdout) {
-                        callback(error)
-                    }
-                );
-            }
+            //// git add -A ...
+            //function(callback){
+            //    exec(
+            //        'git add -A',
+            //        function (error, stdout, stderr) {
+            //            callback(error)
+            //        }
+            //    );
+            //},
+            //
+            //// git commit -A ...
+            //function(callback){
+            //    exec(
+            //        'git commit -m "nog build on ' + moment().toISOString() + '"',
+            //        function (error, stdout, stderr) {
+            //            stdout_or_err(stdout, stderr)
+            //            callback(error)
+            //        }
+            //    );
+            //},
+            //// checkout gh-pages...
+            //function(callback){
+            //    exec(
+            //        'git checkout gh-pages',
+            //        function (error, stdout) {
+            //            callback(error)
+            //        }
+            //    );
+            //},
+            //
+            //// merge master into gh-pages...
+            //function(callback){
+            //    exec(
+            //        'git merge master',
+            //        function (error, stdout) {
+            //            callback(error)
+            //        }
+            //    );
+            //},
+            //
+            //// checkout master...
+            //function(callback){
+            //    exec(
+            //        'git checkout master',
+            //        function (error, stdout) {
+            //            callback(error)
+            //        }
+            //    );
+            //}
 
         ], function(err){
             console.log('Error:', err);
