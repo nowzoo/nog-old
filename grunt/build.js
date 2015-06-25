@@ -1,5 +1,5 @@
 /* jshint node: true */
-module.exports = function (program, metadata, callback) {
+module.exports = function (grunt, data, callback) {
     'use strict';
     var fs = require('fs');
     var async = require('async');
@@ -10,7 +10,6 @@ module.exports = function (program, metadata, callback) {
     var moment = require('moment');
     var _ = require('lodash');
     var exec = require('child_process').exec;
-    var grunt = require('grunt');
 
 
 
@@ -36,15 +35,15 @@ module.exports = function (program, metadata, callback) {
 
             //write the atomic content...
             function(callback){
-                var content = [].concat(metadata.index, _.values(metadata.posts), _.values(metadata.pages));
+                var content = [].concat(data.index, _.values(data.posts), _.values(data.pages));
 
                 async.each(content, function(post, callback){
                     var template = path.join(process.cwd(), 'templates', post.type + '.twig');
-                    var data = {
-                        data: metadata,
+                    var passed = {
+                        data: data,
                         post: post
                     };
-                    swig.renderFile(template, data, function (err, output) {
+                    swig.renderFile(template, passed, function (err, output) {
                         console.log(post.path);
                         var p = path.join(process.cwd(), '_site', post.path, 'index.html');
                         if (err) return callback(err);
@@ -59,18 +58,18 @@ module.exports = function (program, metadata, callback) {
             function(callback){
                 var template = path.join(process.cwd(), 'templates', 'archive.twig');
                 var archives = [].concat(
-                    metadata.archives.main,
-                    _.values(metadata.archives.tags),
-                    _.values(metadata.archives.date)
+                    data.archives.main,
+                    _.values(data.archives.tags),
+                    _.values(data.archives.date)
                 );
                 async.each(archives, function(archive, callback){
                     async.each(archive.pages, function(page, callback){
-                        var data = {
-                            data: metadata,
+                        var passed = {
+                            data: data,
                             archive: archive,
                             page: page
                         };
-                        swig.renderFile(template, data, function (err, output) {
+                        swig.renderFile(template, passed, function (err, output) {
                             var p = path.join(process.cwd(), '_site', page.path,  'index.html');
                             if (err) return callback(err);
                             grunt.file.write(p, output);
@@ -89,7 +88,7 @@ module.exports = function (program, metadata, callback) {
             },
             function(callback){
                 var p = path.join(process.cwd(), '_site', 'search.json');
-                grunt.file.write(p, JSON.stringify(metadata.search));
+                grunt.file.write(p, JSON.stringify(data.search));
                 callback();
             }
 

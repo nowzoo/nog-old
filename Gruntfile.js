@@ -10,6 +10,7 @@ module.exports = function (grunt) {
 
     var init = require('./grunt/init');
     var show = require('./grunt/show');
+    var build = require('./grunt/build');
     var get_data = require('./grunt/get_data');
 
     // Force use of Unix newlines
@@ -67,10 +68,22 @@ module.exports = function (grunt) {
         init.call(this, grunt, done);
     });
 
+    grunt.registerTask('build', 'Build the site.', function() {
+        var done = this.async();
+        get_data(grunt, function(err, data){
+            if (err) return done(err);
+            build.call(this, grunt, data, function(err){
+                done(err);
+            });
+        });
+
+    });
+
     grunt.registerTask('show', 'Show site data.', function(what) {
         var done = this.async();
         what = Array.prototype.slice.call(arguments);
         get_data(grunt, function(err, data){
+            if (err) return done(err);
             show.call(this, grunt, what, data);
             done(err);
         });
