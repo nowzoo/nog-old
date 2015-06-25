@@ -7,9 +7,7 @@ module.exports = function (grunt) {
     var moment = require('moment');
 
 
-    var build = require('./grunt/build');
-    var meta = require('./grunt/meta');
-    var serve = require('./grunt/serve');
+
     var init = require('./grunt/init');
 
     // Force use of Unix newlines
@@ -66,20 +64,6 @@ module.exports = function (grunt) {
         init.call(this, grunt, done);
     });
 
-
-    grunt.registerTask('meta', 'See the metadata for your site.', function () {
-        meta.call(this, grunt);
-    });
-
-    grunt.registerTask('build', 'Generate the site pages.', function() {
-        var done = this.async();
-        build.call(this, grunt, done);
-    });
-
-    grunt.registerTask('serve', 'Serve the site locally.', function() {
-        var done = this.async();
-        serve.call(this, grunt, done);
-    });
     
 
     // Default distribution task.
