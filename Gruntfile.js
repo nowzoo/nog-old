@@ -71,7 +71,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', 'Build the site.', function() {
         var done = this.async();
-        if (! grunt.file.exists('Gruntfile.js')) done(new Error('in the middle of a push'));
         get_data(grunt, function(err, data){
             if (err) return done(err);
             build.call(this, grunt, data, function(err){
@@ -80,7 +79,7 @@ module.exports = function (grunt) {
         });
 
     });
-
+    
 
 
 
