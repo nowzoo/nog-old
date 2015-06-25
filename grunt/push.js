@@ -6,7 +6,6 @@ module.exports = function(grunt, callback){
     var ncp =  require('ncp').ncp;
     var rimraf =  require('rimraf');
     var path =  require('path');
-    var colors = require('colors/safe');
     var sprintf = require('sprintf-js').sprintf;
     var exec = require('child_process').exec;
 
