@@ -12,6 +12,7 @@ module.exports = function(grunt, callback){
 
     var git_get_origin = require('./git_get_origin');
     var git_get_status = require('./git_get_status');
+    var git_get_current_branch = require('./git_get_current_branch');
 
 
     var orig_dir = process.cwd();
@@ -22,6 +23,11 @@ module.exports = function(grunt, callback){
     async.series(
         [
 
+
+            // Make sure we're on master
+            function(callback){
+                git_get_current_branch(grunt, callback);
+            },
 
             // Make sure we're on master
             function(callback){
