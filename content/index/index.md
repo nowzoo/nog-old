@@ -6,15 +6,21 @@ published: 2015/06/20 15:13:56
 ---
 
 # Nog
-Nog is a simple site generator for GitHub Pages using [Grunt](http://gruntjs.com).
+Nog is a [Grunt](http://gruntjs.com)-based site manager for GitHub Pages. It strives to be
+
+ - simple to learn and operate,
+ - unopinionated,
+ - adaptable to different build flows.
+ 
+ 
 
 ### Quick Start
 
-First, [fork Nog](https://github.com/nowzoo/nog#fork-destination-box).
+First, [fork your own Nog](https://github.com/nowzoo/nog#fork-destination-box).
  
 
 ```
-# clone your fork (replace YOUR_USER!)...
+# clone your fork (replace YOUR_USER)...
 $ git clone git@github.com:YOUR_USER/nog.git 
 $ cd nog
 # install the dependencies...
@@ -27,7 +33,7 @@ $ grunt serve
 
 At this point you can see your site at <http://localhost:3000/nog/>.
     
-### Directory and Repository Structure
+### Directory Structure
 
 After running `grunt init` your directory will look like this:
 
@@ -46,12 +52,12 @@ After running `grunt init` your directory will look like this:
  - `package.json`
  - `README.md`
  
+### Repository and Branch Structure
  
+GitHub Pages sites rely special branch called `gh-pages`. Nog maintains this branch in a **separate** repository in the `_site` directory. All other branches, for example, `master`, reside in the root directory.
 
+The `grunt push` task pushes both the the current main branch (e.g. `master`) and the `gh-pages` branch in the `_site` folder. 
  
-
-    
-Make changes to the content in the `content` directory.
 
 
 ### Grunt Tasks
