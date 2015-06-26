@@ -40,10 +40,15 @@
     <article>
         <div>
             <h1 id="nog">Nog</h1>
-<p>Nog is a simple site generator for GitHub Pages using <a href="http://gruntjs.com">Grunt</a>.</p>
+<p>Nog is a <a href="http://gruntjs.com">Grunt</a>-based site manager for GitHub Pages. It strives to be</p>
+<ul>
+<li>simple to learn and operate,</li>
+<li>unopinionated,</li>
+<li>adaptable to different build flows.</li>
+</ul>
 <h3 id="quick-start">Quick Start</h3>
-<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork Nog</a>.</p>
-<pre><code># clone your fork (replace YOUR_USER!)...
+<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
+<pre><code># clone your fork (replace YOUR_USER)...
 $ git clone git@github.com:YOUR_USER/nog.git 
 $ cd nog
 # install the dependencies...
@@ -53,7 +58,7 @@ $ grunt init
 # serve the site locally...
 $ grunt serve
 </code></pre><p>At this point you can see your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</p>
-<h3 id="directory-and-repository-structure">Directory and Repository Structure</h3>
+<h3 id="directory-structure">Directory Structure</h3>
 <p>After running <code>grunt init</code> your directory will look like this:</p>
 <ul>
 <li><code>_site</code> The directory where Nog places the generated site content. <strong>These files should not be edited</strong> &mdash;
@@ -71,7 +76,9 @@ some build processes for the stylesheet of the default site.</li>
 <li><code>package.json</code></li>
 <li><code>README.md</code></li>
 </ul>
-<p>Make changes to the content in the <code>content</code> directory.</p>
+<h3 id="repository-and-branch-structure">Repository and Branch Structure</h3>
+<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog maintains this branch in a <strong>separate</strong> repository in the <code>_site</code> directory. All other branches, for example, <code>master</code>, reside in the root directory.</p>
+<p>The <code>grunt push</code> task pushes both the the current main branch (e.g. <code>master</code>) and the <code>gh-pages</code> branch in the <code>_site</code> folder. </p>
 <h3 id="grunt-tasks">Grunt Tasks</h3>
 <p><code>$ grunt init</code></p>
 <p>Initializes the site. This is a necessary step after cloning a repo.</p>
