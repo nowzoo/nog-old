@@ -41,33 +41,38 @@
         <div>
             <h1 id="nog">Nog</h1>
 <p>Nog is a simple site generator for GitHub Pages using <a href="http://gruntjs.com">Grunt</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
+<h3 id="quick-start">Quick Start</h3>
 <p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork Nog</a>.</p>
 <pre><code># clone your fork (replace YOUR_USER!)...
-$ git clone git@github.com:YOUR_USER/nog.git
-
-# switch to the nog directory...
+$ git clone git@github.com:YOUR_USER/nog.git 
 $ cd nog
-
 # install the dependencies...
 $ npm install
-
 # initialize the site...
 $ grunt init
-
-# build the site...
-$ grunt build
-
-# serve the site locally
+# serve the site locally...
 $ grunt serve
-Running &quot;serve&quot; task
-&gt;&gt; Server listening on port 3000. Go to  http://localhost:3000/nog
-&gt;&gt; Press ^C to stop.
-
-# After making some content changes (see below), push your site to GitHub Pages
-$ grunt push
-</code></pre><p>Make changes to the content in the <code>content</code> directory.</p>
-<h2 id="grunt-tasks">Grunt Tasks</h2>
+</code></pre><p>At this point you can see your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</p>
+<h3 id="directory-and-repository-structure">Directory and Repository Structure</h3>
+<p>After running <code>grunt init</code> your directory will look like this:</p>
+<ul>
+<li><code>_site</code> The directory where Nog places the generated site content. These files should not be edited &mdash;
+ the entire directory is overwritten each time the site is built.</li>
+<li><code>assets</code> This directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,
+either by hand or via a build process is copied wholesale to the site root on build.</li>
+<li><code>content</code> This directory is where you create and edit posts and pages.</li>
+<li><code>grunt</code> Contains Nog&#39;s Grunt tasks and helpers.</li>
+<li><code>node_modules</code>  </li>
+<li><code>templates</code> This directory contains the template files for your site.</li>
+<li><code>.gitignore</code></li>
+<li><code>Gruntfile.js</code> The task loader. Contains a <code>nog</code> config which you should edit to change your site; also contains
+some build processes for the stylesheet of the default site.</li>
+<li><code>LICENSE</code></li>
+<li><code>package.json</code></li>
+<li><code>README.md</code></li>
+</ul>
+<p>Make changes to the content in the <code>content</code> directory.</p>
+<h3 id="grunt-tasks">Grunt Tasks</h3>
 <p><code>$ grunt init</code></p>
 <p>Initializes the site. This is a necessary step after cloning a repo.</p>
 <h2 id="watchers">Watchers</h2>
