@@ -31,7 +31,7 @@ At this point you can see your site at <http://localhost:3000/nog/>.
 
 After running `grunt init` your directory will look like this:
 
- - `_site` The directory where Nog places the generated site content. These files should not be edited &mdash;
+ - `_site` The directory where Nog places the generated site content. **These files should not be edited** &mdash;
     the entire directory is overwritten each time the site is built.
  - `assets` This directory contains "static" assets such as images and stylesheets. Anything you place here,
    either by hand or via a build process is copied wholesale to the site root on build.
