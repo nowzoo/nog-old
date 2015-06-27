@@ -51,7 +51,7 @@ module.exports = function (grunt, data, callback) {
                 var content = [].concat(data.index, _.values(data.posts), _.values(data.pages));
                 grunt.verbose.writeln('Writing atomic content...');
                 async.each(content, function(post, callback){
-                    var template = path.join(process.cwd(), 'templates', post.type + '.twig');
+                    var template = path.join(process.cwd(), 'nog_templates', post.type + '.twig');
                     var passed = {
                         site: data.site,
                         data: data,
@@ -70,7 +70,7 @@ module.exports = function (grunt, data, callback) {
 
             //write the archives
             function(callback){
-                var template = path.join(process.cwd(), 'templates', 'archive.twig');
+                var template = path.join(process.cwd(), 'nog_templates', 'archive.twig');
                 var archives = [].concat(
                     data.archives.main,
                     _.values(data.archives.tags),

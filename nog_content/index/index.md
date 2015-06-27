@@ -39,10 +39,10 @@ After running `grunt build` for the first time, your directory will look like th
 
  - _site/
  - nog_assets/
- - content/
+ - nog_content/
  - grunt/
  - node_modules/
- - templates/
+ - nog_templates/
  - .gitignore
  - Gruntfile.js
  - LICENSE
@@ -54,9 +54,9 @@ The **_site/** directory is where Nog places the generated site content. **These
 
 The **nog_assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
 
-The **content/** directory is where you create and edit posts and pages.
+The **nog_content/** directory is where you create and edit posts and pages.
 
-The **templates/** directory contains the template files for your site.
+The **nog_templates/** directory contains the template files for your site.
 
 **Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.
 
@@ -126,7 +126,7 @@ Runs all the watches described below, plus any that you've defined.
 ```
 $ grunt watch:build
 ```
-Watches the nog_assets, content, and templates directories, and runs the build task when changes occur.
+Watches the nog_assets, nog_content, and nog_templates directories, and runs the build task when changes occur.
 
 #### grunt watch:livereload
 

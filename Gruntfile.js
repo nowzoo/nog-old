@@ -21,7 +21,7 @@ module.exports = function (grunt) {
 
 
     grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and nog_assets/README.md', function(){
-        var src = './content/index/index.md';
+        var src = './nog_content/index/index.md';
         var dst = './README.md';
         var yamlFront = require('yaml-front-matter');
         var data = yamlFront.loadFront(grunt.file.read(src));

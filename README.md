@@ -34,10 +34,10 @@ After running `grunt build` for the first time, your directory will look like th
 
  - _site/
  - nog_assets/
- - content/
+ - nog_content/
  - grunt/
  - node_modules/
- - templates/
+ - nog_templates/
  - .gitignore
  - Gruntfile.js
  - LICENSE
@@ -49,11 +49,11 @@ The **_site/** directory is where Nog places the generated site content. **These
 
 The **nog_assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
 
-The **content/** directory is where you create and edit posts and pages.
+The **nog_content/** directory is where you create and edit posts and pages.
 
-The **templates/** directory contains the template files for your site.
+The **nog_templates/** directory contains the template files for your site.
 
-**Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site.
+**Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.
 
 
 
@@ -121,7 +121,7 @@ Runs all the watches described below, plus any that you've defined.
 ```
 $ grunt watch:build
 ```
-Watches the nog_assets, content, and templates directories, and runs the build task when changes occur.
+Watches the nog_assets, nog_content, and nog_templates directories, and runs the build task when changes occur.
 
 #### grunt watch:livereload
 
@@ -131,7 +131,20 @@ $ grunt watch:livereload
 
 Enables a live reload server, watching the _site directory for changes.
 
-###Nog Options
+### Nog Site Configuration
+
+#### assets_copy_to_subdir
+
+string|boolean
+
+Default: `false`
+
+By default, Nog copies the contents of the `nog_assets/` directory to the site's root. For example, if you have a favicon at `nog_assets/favicon.ico` that file will exist at http://your-site/favicon.ico.
+
+You can tell Nog to place the assets in a subfolder. Setting the config option to `true` will place the assets in a folder called `assets`. Setting it to a `'path'` will place the assets in a folder called `path`.
+
+
+
 
 ```
 {
@@ -140,7 +153,7 @@ Enables a live reload server, watching the _site directory for changes.
         site_url: '',
         site_prefix: '/nog',
         posts_per_page: 10,
-        asset_contents_copy_to_site_root:  true,
+        assets_copy_to_subdir:  false,
         atomic_path: function (post, id) {
             var slugs;
             var type = post.type;

@@ -21,10 +21,10 @@ module.exports = function (grunt, options, callback) {
 
     async.series(
         [
-            // Read the content/index directory
+            // Read the nog_content/index directory
             function(callback){
-                var p = path.join(process.cwd(), 'content', 'index');
-                grunt.verbose.writeln('Reading the content/index directory...');
+                var p = path.join(process.cwd(), 'nog_content', 'index');
+                grunt.verbose.writeln('Reading the nog_content/index directory...');
                 fs.readdir(p, function(err, result){
                     file_list = result;
                     callback(err);
@@ -35,14 +35,20 @@ module.exports = function (grunt, options, callback) {
             function(callback){
                 var filename = null;
                 if (_.indexOf(file_list, 'index.md') !== -1){
-                    filename = path.join(process.cwd(), 'content', 'index', 'index.md');
+                    filename = path.join(process.cwd(), 'nog_content', 'index', 'index.md');
                 } else {
                     if (_.indexOf(file_list, 'index.html') !== -1){
-                        filename = path.join(lib_path, 'content', 'index', 'index.md');
+                        filename = path.join(lib_path, 'nog_content', 'index', 'index.html');
                     } else {
-                        filename = path.join(lib_path, 'initial_site_files', 'content', 'index', 'index.md');
                         content_path_exists = false;
                     }
+                }
+                if (! content_path_exists){
+                  index = {
+                    title: 'Home Page',
+                    errors: ['There was no index.md or index.html file found at nog_content/index.']
+                  };
+                  return callback(null);
                 }
                 read_content(grunt, filename, 'index', function(err, post){
                     if (! err && post){
@@ -53,14 +59,7 @@ module.exports = function (grunt, options, callback) {
 
 
             },
-            //Set an error if ! content_path_exists...
-            function (callback) {
-                if (! content_path_exists){
-                    index.has_error = true;
-                    index.errors.push('There was no index.md or index.html file found at content/index. Substituting default content for home page.');
-                }
-                callback(null);
-            },
+            
 
             //Set the path...
             function (callback) {
@@ -74,10 +73,4 @@ module.exports = function (grunt, options, callback) {
             });
         }
     );
-
-
-
-
 };
-
-

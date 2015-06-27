@@ -16,15 +16,15 @@ module.exports = function (grunt, options, callback) {
     var archives;
     var posts = {};
 
-    var posts_path = path.join(process.cwd(), 'content', 'posts');
+    var posts_path = path.join(process.cwd(), 'nog_content', 'posts');
 
     grunt.verbose.writeln('Gathering posts data.');
 
     async.series(
         [
-            // Read the content/posts directory
+            // Read the nog_content/posts directory
             function(callback){
-                grunt.verbose.writeln('Reading the content/posts directory...');
+                grunt.verbose.writeln('Reading the nog_content/posts directory...');
                 fs.readdir(posts_path, function(err, result){
                     file_list = result;
                     callback(err);
@@ -72,5 +72,3 @@ module.exports = function (grunt, options, callback) {
 
 
 };
-
-
