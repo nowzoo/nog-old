@@ -99,7 +99,10 @@ module.exports = function (grunt, data, callback) {
             //write the assets
             function(callback){
                 var src = path.join(process.cwd(), 'assets' );
-                var dst = path.join(process.cwd(), '_site', 'assets' );
+                var dst = path.join(process.cwd(), '_site' );
+                if (! grunt.option.(nog.asset_contents_copy_to_site_root)){
+                    dst = path.join(dst, 'assets' );
+                }
                 grunt.verbose.writeln('Copying assets...');
                 ncp(src, dst, callback);
             },

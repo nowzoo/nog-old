@@ -16,6 +16,7 @@ module.exports = function (grunt) {
             tagline: 'A simple site generator for GitHub Pages.',
             site_url: '',
             site_prefix: '/nog',
+            asset_contents_copy_to_site_root:  true,
             page_url: function(meta, id){
                 var slugs = _.clone(meta.parents);
                 if (id !== 'index') slugs.push(id);
