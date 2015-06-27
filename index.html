@@ -53,8 +53,8 @@ $ git clone git@github.com:YOUR_USER/nog.git
 $ cd nog
 # install the dependencies...
 $ npm install
-# initialize the site...
-$ grunt init
+# build the site...
+$ grunt build
 # serve the site locally...
 $ grunt serve
 </code></pre><p>At this point you can see your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</p>
@@ -80,30 +80,22 @@ $ grunt serve
 <p><strong>Gruntfile.js</strong> contains a <code>nog</code> config which you should edit to change your site; also contains some build processes for the stylesheet of the default site.</p>
 <h3 id="repo-structure-and-pushing-changes">Repo Structure and Pushing Changes</h3>
 <p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up. </p>
-<p>By default, Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git. This behavior can be changed: see <code>grunt push</code> below.</p>
+<p>Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git. </p>
 <h3 id="grunt-tasks">Grunt Tasks</h3>
-<h4 id="grunt-init">grunt init</h4>
-<pre><code>$ grunt init
-</code></pre><p>Initialize (or re-initialize) the site. This is a necessary step after cloning a repo. The task creates a fresh <code>_site</code> folder, initializes a separate repo, creates a <code>gh-pages</code> branch within that repo, and pulls the content of <code>gh-pages</code> from the origin.</p>
-<h2 id="watchers">Watchers</h2>
+<h4 id="grunt-build-push-">grunt build[:push]</h4>
+<pre><code>$ grunt build
+# or...
+# grunt build:push
+</code></pre><p>Builds the site in the <strong>_site</strong> directory, creating HTML files and copying over the contents of the <strong>assets</strong> directory. Optionally, <code>grunt build:push</code> will push the site content to GitHub after the build. </p>
+<h4 id="grunt-push-current-">grunt push[:current]</h4>
+<pre><code>grunt push
+# or...
+# grunt push:current
+</code></pre><p>Pushes the site content to the gh-pages branch on GitHub. Optionall</p>
+<h3 id="grunt-watchers">Grunt Watchers</h3>
 <p><code>$ grunt watch:build</code></p>
 <p><code>$ grunt watch:serve</code></p>
 <p>Enables live reload.</p>
-<h4 id="grunt-build">grunt build</h4>
-<ul>
-<li>On the current branch:<ul>
-<li>gets the current branch name and status from <code>git_get_status</code></li>
-<li>if ! status.clean<ul>
-<li>git add -A</li>
-<li>git commit -m &#39;message&#39;</li>
-</ul>
-</li>
-<li>Gather the data</li>
-<li>Delete  all the files in _site      </li>
-</ul>
-</li>
-<li><code>git checkout gh-pages</code> On the gh-pages branch:</li>
-</ul>
 <h4 id="grunt-push">grunt push</h4>
 <ul>
 <li>Switch to the _site directory</li>
