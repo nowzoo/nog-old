@@ -61,24 +61,26 @@ $ grunt serve
 <h3 id="directory-structure">Directory Structure</h3>
 <p>After running <code>grunt init</code> your directory will look like this:</p>
 <ul>
-<li><code>_site</code> The directory where Nog places the generated site content. <strong>These files should not be edited</strong> &mdash;
- the entire directory is overwritten each time the site is built.</li>
-<li><code>assets</code> This directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,
-either by hand or via a build process is copied wholesale to the site root on build.</li>
-<li><code>content</code> This directory is where you create and edit posts and pages.</li>
-<li><code>grunt</code> Contains Nog&#39;s Grunt tasks and helpers.</li>
-<li><code>node_modules</code>  </li>
-<li><code>templates</code> This directory contains the template files for your site.</li>
-<li><code>.gitignore</code></li>
-<li><code>Gruntfile.js</code> The task loader. Contains a <code>nog</code> config which you should edit to change your site; also contains
-some build processes for the stylesheet of the default site.</li>
-<li><code>LICENSE</code></li>
-<li><code>package.json</code></li>
-<li><code>README.md</code></li>
+<li>_site/</li>
+<li>assets/ </li>
+<li>content/</li>
+<li>grunt/ </li>
+<li>node_modules/</li>
+<li>templates/ </li>
+<li>.gitignore</li>
+<li>Gruntfile.js</li>
+<li>LICENSE</li>
+<li>package.json</li>
+<li>README.md</li>
 </ul>
-<h3 id="repository-structure-and-pushing-changes">Repository Structure and Pushing Changes</h3>
-<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog maintains this branch in a <strong>separate</strong> repository in the <code>_site</code> directory. All other branches, for example, <code>master</code>, reside in the main repository.</p>
-<p>By default, Nog&#39;s <code>grunt push</code> task only pushes this <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches in the normal way via git. This behavior can be changed: see <code>grunt push</code> below.</p>
+<p>The <strong>_site/</strong> directory is where Nog places the generated site content. <strong>These files should not be edited</strong>: the entire directory is overwritten each time the site is built.</p>
+<p>The <strong>assets/</strong> directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.</p>
+<p>The <strong>content/</strong> directory is where you create and edit posts and pages.</p>
+<p>The <strong>templates/</strong> directory contains the template files for your site.</p>
+<p><strong>Gruntfile.js</strong> contains a <code>nog</code> config which you should edit to change your site; also contains some build processes for the stylesheet of the default site.</p>
+<h3 id="repo-structure-and-pushing-changes">Repo Structure and Pushing Changes</h3>
+<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up. </p>
+<p>By default, Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git. This behavior can be changed: see <code>grunt push</code> below.</p>
 <h3 id="grunt-tasks">Grunt Tasks</h3>
 <h4 id="grunt-init">grunt init</h4>
 <pre><code>$ grunt init
