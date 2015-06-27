@@ -43,7 +43,7 @@ module.exports = function(grunt, done){
                 exec(cmd, callback);
             },
 
-            //git init
+            //add origin
             function(callback){
                 var cmd = sprintf('git remote add origin %s', origin);
                 grunt.log.writeln('Adding remote for _site: %s', cmd);

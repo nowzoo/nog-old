@@ -11,6 +11,7 @@ module.exports = function (grunt, data, callback) {
     var _ = require('lodash');
 
 
+
     grunt.verbose.subhead('Building site...');
 
     var orig_dir = process.cwd();
@@ -43,6 +44,8 @@ module.exports = function (grunt, data, callback) {
                 }, callback);
             },
 
+
+
             //write the atomic content...
             function(callback){
                 var content = [].concat(data.index, _.values(data.posts), _.values(data.pages));
@@ -50,6 +53,7 @@ module.exports = function (grunt, data, callback) {
                 async.each(content, function(post, callback){
                     var template = path.join(process.cwd(), 'templates', post.type + '.twig');
                     var passed = {
+                        site: data.site,
                         data: data,
                         post: post
                     };

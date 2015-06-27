@@ -61,6 +61,7 @@ module.exports = function (grunt, callback) {
             }
         ],
         function(err){
+
             callback(err, data);
         }
     );

@@ -4,21 +4,10 @@ module.exports = function (grunt) {
 
     var path = require('path');
     var _ = require('lodash');
-    var moment = require('moment');
 
-
-
-    var init = require('./grunt/init');
-    var show = require('./grunt/show');
-    var build = require('./grunt/build');
-    var push = require('./grunt/push');
-    var serve = require('./grunt/serve');
-    var get_data = require('./grunt/get_data');
 
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
-
-
 
 
     grunt.initConfig({
@@ -54,9 +43,9 @@ module.exports = function (grunt) {
             posts_per_page: 10
         },
         watch: {
-            serve: {
+            livereload: {
                 options: {
-                    livereload: true,
+                    livereload: true
                 },
                 files: ['./_site/**/*']
             },
@@ -68,60 +57,23 @@ module.exports = function (grunt) {
     });
 
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
-    require('time-grunt')(grunt);
 
-    grunt.registerTask('init', 'Initialize the site.', function() {
 
-        var done = this.async();
-        init.call(this, grunt, done);
+    require('./nog/tasks')(grunt);
+
+
+    grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and assets/README.md', function(){
+        var src = './content/index/index.md';
+        var dst = './README.md';
+        grunt.file.copy(src, dst);
+        dst = './assets/README.md';
+        grunt.file.copy(src, dst);
     });
 
-    grunt.registerTask('build', 'Build the site.', function() {
-        var done = this.async();
-        get_data(grunt, function(err, data){
-            if (err) return done(err);
-            build.call(this, grunt, data, function(err){
-                done(err);
-            });
-        });
 
-    });
-
-    grunt.registerTask('serve', 'Serve the site locally.', function(port) {
-        var done = this.async();
-        serve.call(this, grunt, port, done);
-    });
-    
-
-
-
-
-
-
-    grunt.registerTask('show', 'Show site data.', function(what) {
-        var done = this.async();
-        what = Array.prototype.slice.call(arguments);
-        get_data(grunt, function(err, data){
-            if (err) return done(err);
-            show.call(this, grunt, what, data);
-            done(err);
-        });
-
-    });
-
-    grunt.registerTask('push', 'Commit and push site changes to GitHub.', function() {
-        var done = this.async();
-        push.call(this, grunt, function(err){
-            done(err);
-        });
-
-    });
-
-    
-
-    // Default distribution task.
+    // Default task. Feel free to change this.
     grunt.registerTask('default', function(){
-        grunt.log.writeln(grunt.config.get('nog.title'));
+        grunt.log.oklns('Hello from %s!', grunt.config.get('nog.title'));
     });
 };
 

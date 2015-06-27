@@ -25,8 +25,8 @@ $ git clone git@github.com:YOUR_USER/nog.git
 $ cd nog
 # install the dependencies...
 $ npm install
-# initialize the site...
-$ grunt init
+# build the site...
+$ grunt build
 # serve the site locally...
 $ grunt serve
 ```    
@@ -35,74 +35,108 @@ At this point you can see your site at <http://localhost:3000/nog/>.
     
 ### Directory Structure
 
-After running `grunt init` your directory will look like this:
+After running `grunt build` for the first time, your directory will look like this:
 
- - `_site` The directory where Nog places the generated site content. **These files should not be edited** &mdash;
-    the entire directory is overwritten each time the site is built.
- - `assets` This directory contains "static" assets such as images and stylesheets. Anything you place here,
-   either by hand or via a build process is copied wholesale to the site root on build.
- - `content` This directory is where you create and edit posts and pages.
- - `grunt` Contains Nog's Grunt tasks and helpers.
- - `node_modules`  
- - `templates` This directory contains the template files for your site.
- - `.gitignore`
- - `Gruntfile.js` The task loader. Contains a `nog` config which you should edit to change your site; also contains
-   some build processes for the stylesheet of the default site.
- - `LICENSE`
- - `package.json`
- - `README.md`
+ - _site/
+ - assets/ 
+ - content/
+ - grunt/ 
+ - node_modules/
+ - templates/ 
+ - .gitignore
+ - Gruntfile.js
+ - LICENSE
+ - package.json
+ - README.md
+
+
+The **_site/** directory is where Nog places the generated site content. **These files should not be edited**: the entire directory is overwritten each time the site is built.
+
+The **assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
+
+The **content/** directory is where you create and edit posts and pages.
+
+The **templates/** directory contains the template files for your site.
+
+**Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site.
+
+
  
-### Repository and Branch Structure
+### Repo Structure and Pushing Changes
  
-GitHub Pages sites rely special branch called `gh-pages`. Nog maintains this branch in a **separate** repository in the `_site` directory. All other branches, for example, `master`, reside in the root directory.
+GitHub Pages sites rely special branch called `gh-pages`. Nog doesn't maintain this branch in the local repository. Instead, when you run the `grunt push` task, Nog creates a temporary directory to pull the current `gh-pages` branch from GitHub and push your changes back up. 
 
-The `grunt push` task pushes both the the current main branch (e.g. `master`) and the `gh-pages` branch in the `_site` folder. 
+Nog's `grunt push` task only pushes the `gh-pages` branch, leaving it up to you to pull and push changes on other branches (e.g.`master`) in the normal way via git. 
  
 
 
-### Grunt Tasks
-
-`$ grunt init`
-
-Initializes the site. This is a necessary step after cloning a repo.
-
-## Watchers
-
-`$ grunt watch:build`
-
-`$ grunt watch:serve`
-
-Enables live reload.
-
-
-#### grunt init
-
-- Deletes the `_site` folder.
-- Makes a fresh `_site` folder.
-- Initializes a separate repo for the `gh-pages` branch with the main repo's origin.
-- Creates the gh-pages branch: `git checkout --orphan gh-pages`.
-- Pulls from the origin: `git pull origin gh-pages`.
-
-
+### Tasks
 
 #### grunt build
 
-- On the current branch:
-  - gets the current branch name and status from `git_get_status`
-  - if ! status.clean
-    - git add -A
-    - git commit -m 'message'
-  - Gather the data
-  - Delete  all the files in _site      
-- `git checkout gh-pages` On the gh-pages branch:
-
+```
+$ grunt build
+```
+Builds the site in the **_site** directory, creating HTML files and copying over the contents of the **assets** directory. 
 
 #### grunt push
 
-- Switch to the _site directory
-- Checkout  gh-pages
+```
+$ grunt push
+```
+Pushes the site content to the gh-pages branch on GitHub. 
 
-       
-  
+#### grunt serve <--port=3000>
+
+```
+$ grunt serve
+```
+Serve the site on your local machine. Optionally supply a port for the server:
+
+```
+$ grunt serve --port=3002
+```
+
+#### grunt show[:what]
+
+```
+$ grunt show # all the data
+$ grunt show:site # site options
+$ grunt show:index # about the home page
+$ grunt show:pages # about the pages
+$ grunt show:posts # about the posts
+$ grunt show:archives # about the main and date-based archives
+$ grunt show:tags # about the tag archives
+$ grunt show:search #search words data
+# show more than one thing...
+$ grunt show:posts:tags
+```
+Log data about the site as it would currently be built to the console. 
+
+### Watches
+
+#### grunt watch
+```
+$ grunt watch
+```
+Runs all the watches described below, plus any that you've defined.
+
+
+#### grunt watch:build
+```
+$ grunt watch:build
+```
+Watches the assets, content, and templates directories, and runs the build task when changes occur.
+
+#### grunt watch:livereload
+
+```
+$ grunt watch:livereload
+```
+
+Enables a live reload server, watching the _site directory for changes.
+
+
+
 
 

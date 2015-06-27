@@ -13,7 +13,7 @@ module.exports = function (grunt, what, data) {
     };
     var errors = function(errors){
         if (errors.length > 0){
-            grunt.log.writeln('Errors (%s)', errors.length);
+            grunt.log.error('Errors (%s)', errors.length);
             _.each(errors, function(e, i){
                 grunt.log.writeln( ' ' + (i + 1) + '.', e);
             })
@@ -145,7 +145,6 @@ module.exports = function (grunt, what, data) {
         }
     });
 
-    grunt.verbose.writeln('Showed site data: ', grunt.log.wordlist(what));
 
 };
 

@@ -1,9 +1,14 @@
 {% extends 'main.twig' %}
-{% block head_title %}{{ post.title }} | {{ post.title }}{% endblock %}
+{% block head_title %}{{ site.title }} | {{ site.tagline }}{% endblock %}
 {% block body %}
-    <article>
-        <div>
-            {% autoescape false %}{{ post.content }}{% endautoescape %}
+    <div class="row">
+        <div class="col-sm-8">
+            <article>
+                <div>
+                    {% autoescape false %}{{ post.content }}{% endautoescape %}
+                </div>
+            </article>
         </div>
-    </article>
+    </div>
+
 {% endblock %}
