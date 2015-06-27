@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home | Home</title>
+    <title>Nog | A simple site generator for GitHub Pages.</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
@@ -13,33 +13,35 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/assets/favicons/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/assets/favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="/nog/assets/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/nog/assets/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/nog/assets/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/nog/assets/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/nog/assets/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/nog/assets/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/nog/assets/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/nog/assets/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/nog/assets/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/nog/assets/favicons/manifest.json">
     <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="/nog/assets/favicons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 
 <div class="container">
-    <p><a href="/">Home</a> </p>
+    <p><a href="/nog/">Home</a> </p>
     
-    <article>
-        <div>
-            <h1 id="nog">Nog</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            <article>
+                <div>
+                    <h1 id="nog">Nog</h1>
 <p>Nog is a <a href="http://gruntjs.com">Grunt</a>-based site manager for GitHub Pages. It strives to be</p>
 <ul>
 <li>simple to learn and operate,</li>
@@ -59,7 +61,7 @@ $ grunt build
 $ grunt serve
 </code></pre><p>At this point you can see your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</p>
 <h3 id="directory-structure">Directory Structure</h3>
-<p>After running <code>grunt init</code> your directory will look like this:</p>
+<p>After running <code>grunt build</code> for the first time, your directory will look like this:</p>
 <ul>
 <li>_site/</li>
 <li>assets/ </li>
@@ -81,29 +83,93 @@ $ grunt serve
 <h3 id="repo-structure-and-pushing-changes">Repo Structure and Pushing Changes</h3>
 <p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up. </p>
 <p>Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git. </p>
-<h3 id="grunt-tasks">Grunt Tasks</h3>
-<h4 id="grunt-build-push-">grunt build[:push]</h4>
+<h3 id="tasks">Tasks</h3>
+<h4 id="grunt-build">grunt build</h4>
 <pre><code>$ grunt build
-# or...
-# grunt build:push
-</code></pre><p>Builds the site in the <strong>_site</strong> directory, creating HTML files and copying over the contents of the <strong>assets</strong> directory. Optionally, <code>grunt build:push</code> will push the site content to GitHub after the build. </p>
-<h4 id="grunt-push-current-">grunt push[:current]</h4>
-<pre><code>grunt push
-# or...
-# grunt push:current
-</code></pre><p>Pushes the site content to the gh-pages branch on GitHub. Optionall</p>
-<h3 id="grunt-watchers">Grunt Watchers</h3>
-<p><code>$ grunt watch:build</code></p>
-<p><code>$ grunt watch:serve</code></p>
-<p>Enables live reload.</p>
+</code></pre><p>Builds the site in the <strong>_site</strong> directory, creating HTML files and copying over the contents of the <strong>assets</strong> directory. </p>
 <h4 id="grunt-push">grunt push</h4>
-<ul>
-<li>Switch to the _site directory</li>
-<li>Checkout  gh-pages</li>
-</ul>
+<pre><code>$ grunt push
+</code></pre><p>Pushes the site content to the gh-pages branch on GitHub. </p>
+<h4 id="grunt-serve-port-3000-">grunt serve &lt;--port=3000&gt;</h4>
+<pre><code>$ grunt serve
+</code></pre><p>Serve the site on your local machine. Optionally supply a port for the server:</p>
+<pre><code>$ grunt serve --port=3002
+</code></pre><h4 id="grunt-show-what-">grunt show[:what]</h4>
+<pre><code>$ grunt show # all the data
+$ grunt show:site # site options
+$ grunt show:index # about the home page
+$ grunt show:pages # about the pages
+$ grunt show:posts # about the posts
+$ grunt show:archives # about the main and date-based archives
+$ grunt show:tags # about the tag archives
+$ grunt show:search #search words data
+# show more than one thing...
+$ grunt show:posts:tags
+</code></pre><p>Log data about the site as it would currently be built to the console. </p>
+<h3 id="watches">Watches</h3>
+<h4 id="grunt-watch">grunt watch</h4>
+<pre><code>$ grunt watch
+</code></pre><p>Runs all the watches described below, plus any that you&#39;ve defined.</p>
+<h4 id="grunt-watch-build">grunt watch:build</h4>
+<pre><code>$ grunt watch:build
+</code></pre><p>Watches the assets, content, and templates directories, and runs the build task when changes occur.</p>
+<h4 id="grunt-watch-livereload">grunt watch:livereload</h4>
+<pre><code>$ grunt watch:livereload
+</code></pre><p>Enables a live reload server, watching the _site directory for changes.</p>
+<h3 id="nog-options">Nog Options</h3>
+<pre><code>{
+        title: &#39;Nog&#39;,
+        tagline: &#39;A Grunt-based site manager for GitHub Pages.&#39;,
+        site_url: &#39;&#39;,
+        site_prefix: &#39;/nog&#39;,
+        posts_per_page: 10,
+        asset_contents_copy_to_site_root:  true,
+        atomic_path: function (post, id) {
+            var slugs;
+            var type = post.type;
+            if (type === &#39;post&#39;) {
+                return path.join(&#39;posts&#39;, id);
+            }
+            slugs = post.parents ? _.clone(post.parents) : [];
+            slugs.push(id);
+            return slugs.join(&#39;/&#39;);
+        },
+        archive_path: function (archive, page) {
+            var type = archive.type;
+            var p;
+            page = page || 0;
 
+            switch (type) {
+                case &#39;main&#39;:
+                    p = &#39;posts&#39;;
+                    break;
+                case &#39;year&#39;:
+                case &#39;month&#39;:
+                case &#39;day&#39;:
+                    p = path.join(&#39;posts&#39;, archive.slug);
+                    break;
+                case &#39;tag&#39;:
+                    p = path.join(&#39;tags&#39;, archive.slug);
+                    break;
+                default:
+                    throw(new Error(&#39;Unknown archive type&#39;));
+                    break;
+            }
+            if (page &gt; 0) {
+                p = path.join(p, &#39;page&#39;, page.toString());
+            }
+            return p;
+        },
+        search_path: function () {
+            return &#39;search&#39;;
+        }
+    }
+</code></pre>
+                </div>
+            </article>
         </div>
-    </article>
+    </div>
+
 
 </div>
 
