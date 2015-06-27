@@ -6,17 +6,17 @@ Nog is a [Grunt](http://gruntjs.com)-based site manager for GitHub Pages. It str
  - simple to learn and operate,
  - unopinionated,
  - adaptable to different build flows.
- 
- 
+
+
 
 ### Quick Start
 
 First, [fork your own Nog](https://github.com/nowzoo/nog#fork-destination-box).
- 
+
 
 ```
 # clone your fork (replace YOUR_USER)...
-$ git clone git@github.com:YOUR_USER/nog.git 
+$ git clone git@github.com:YOUR_USER/nog.git
 $ cd nog
 # install the dependencies...
 $ npm install
@@ -24,20 +24,20 @@ $ npm install
 $ grunt build
 # serve the site locally...
 $ grunt serve
-```    
+```
 
 At this point you can see your site at <http://localhost:3000/nog/>.
-    
+
 ### Directory Structure
 
 After running `grunt build` for the first time, your directory will look like this:
 
  - _site/
- - assets/ 
+ - nog_assets/
  - content/
- - grunt/ 
+ - grunt/
  - node_modules/
- - templates/ 
+ - templates/
  - .gitignore
  - Gruntfile.js
  - LICENSE
@@ -47,7 +47,7 @@ After running `grunt build` for the first time, your directory will look like th
 
 The **_site/** directory is where Nog places the generated site content. **These files should not be edited**: the entire directory is overwritten each time the site is built.
 
-The **assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
+The **nog_assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
 
 The **content/** directory is where you create and edit posts and pages.
 
@@ -56,13 +56,13 @@ The **templates/** directory contains the template files for your site.
 **Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site.
 
 
- 
-### Repo Structure and Pushing Changes
- 
-GitHub Pages sites rely special branch called `gh-pages`. Nog doesn't maintain this branch in the local repository. Instead, when you run the `grunt push` task, Nog creates a temporary directory to pull the current `gh-pages` branch from GitHub and push your changes back up. 
 
-Nog's `grunt push` task only pushes the `gh-pages` branch, leaving it up to you to pull and push changes on other branches (e.g.`master`) in the normal way via git. 
- 
+### Repo Structure and Pushing Changes
+
+GitHub Pages sites rely special branch called `gh-pages`. Nog doesn't maintain this branch in the local repository. Instead, when you run the `grunt push` task, Nog creates a temporary directory to pull the current `gh-pages` branch from GitHub and push your changes back up.
+
+Nog's `grunt push` task only pushes the `gh-pages` branch, leaving it up to you to pull and push changes on other branches (e.g.`master`) in the normal way via git.
+
 
 
 ### Tasks
@@ -72,14 +72,14 @@ Nog's `grunt push` task only pushes the `gh-pages` branch, leaving it up to you 
 ```
 $ grunt build
 ```
-Builds the site in the **_site** directory, creating HTML files and copying over the contents of the **assets** directory. 
+Builds the site in the **_site** directory, creating HTML files and copying over the contents of the **nog_assets** directory.
 
 #### grunt push
 
 ```
 $ grunt push
 ```
-Pushes the site content to the gh-pages branch on GitHub. 
+Pushes the site content to the gh-pages branch on GitHub.
 
 #### grunt serve <--port=3000>
 
@@ -106,7 +106,7 @@ $ grunt show:search #search words data
 # show more than one thing...
 $ grunt show:posts:tags
 ```
-Log data about the site as it would currently be built to the console. 
+Log data about the site as it would currently be built to the console.
 
 ### Watches
 
@@ -121,7 +121,7 @@ Runs all the watches described below, plus any that you've defined.
 ```
 $ grunt watch:build
 ```
-Watches the assets, content, and templates directories, and runs the build task when changes occur.
+Watches the nog_assets, content, and templates directories, and runs the build task when changes occur.
 
 #### grunt watch:livereload
 
@@ -181,9 +181,4 @@ Enables a live reload server, watching the _site directory for changes.
             return 'search';
         }
     }
-```    
-
-
-
-
-
+```

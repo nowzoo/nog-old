@@ -14,6 +14,8 @@ module.exports = function (grunt) {
         site_prefix: '/nog',
         posts_per_page: 10,
         asset_contents_copy_to_site_root:  true,
+
+
         atomic_path: function (post, id) {
             var slugs;
             var type = post.type;
@@ -54,14 +56,6 @@ module.exports = function (grunt) {
             return 'search';
         }
     };
-
-
-
-
-
-
-
-
 
 };
 

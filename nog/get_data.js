@@ -10,10 +10,9 @@ module.exports = function (grunt, callback) {
     var get_data_pages = require('./get_data_pages');
     var get_data_posts = require('./get_data_posts');
     var get_data_search = require('./get_data_search');
-    var get_default_options = require('./get_default_options');
 
 
-    var options = _.extend(get_default_options(grunt), grunt.config.get('nog'));
+    var options = grunt.config.get('nog');
 
 
     var data = {

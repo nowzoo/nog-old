@@ -98,12 +98,16 @@ module.exports = function (grunt, data, callback) {
 
             //write the assets
             function(callback){
-                var src = path.join(process.cwd(), 'assets' );
+                var src = path.join(process.cwd(), 'nog_assets' );
                 var dst = path.join(process.cwd(), '_site' );
-                var foo = grunt.config('nog.asset_contents_copy_to_site_root');
-                console.log(foo);
-                if (! grunt.config('nog.asset_contents_copy_to_site_root')){
+                var copy_to_site_root = grunt.config('nog.asset_contents_copy_to_site_root');
+                console.log(copy_to_site_root);
+                if (copy_to_site_root !== false){
+                  if (_.isString(copy_to_site_root)){
+                    dst = path.join(dst, copy_to_site_root.trim());
+                  } else if (copy_to_site_root === true) {
                     dst = path.join(dst, 'assets' );
+                  }
                 }
                 grunt.verbose.writeln('Copying assets...');
                 ncp(src, dst, callback);
