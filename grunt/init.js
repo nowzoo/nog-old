@@ -1,7 +1,6 @@
 module.exports = function(grunt, done){
     var async = require('async');
     var fs =  require('fs');
-    var ncp =  require('ncp').ncp;
     var path =  require('path');
     var rimraf =  require('rimraf');
     var sprintf = require('sprintf-js').sprintf;
@@ -9,10 +8,7 @@ module.exports = function(grunt, done){
 
 
     var git_get_origin = require('./git_get_origin');
-
-
     var origin;
-
     var orig_dir = process.cwd();
     var _site_dir = path.join(orig_dir, '_site');
 
@@ -23,9 +19,10 @@ module.exports = function(grunt, done){
             function(callback){
                 grunt.log.write('Getting origin...');
                 git_get_origin(grunt, function(err, result){
-                    origin = result; grunt.log.writeln(origin.fetch);
+                    origin = result;
+                    grunt.log.writeln(origin);
                     callback(err)
-                })
+                });
             },
 
             function(callback){
@@ -48,7 +45,7 @@ module.exports = function(grunt, done){
 
             //git init
             function(callback){
-                var cmd = sprintf('git remote add origin %s', origin.push);
+                var cmd = sprintf('git remote add origin %s', origin);
                 grunt.log.writeln('Adding remote for _site: %s', cmd);
                 exec(cmd, callback);
             },
@@ -75,4 +72,4 @@ module.exports = function(grunt, done){
             done(err);
         }
     )
-}
+};

@@ -1,40 +1,24 @@
 module.exports = function(grunt, callback){
-    //origin	git@github.com:nowzoo/nog.git (fetch)
-    //origin	git@github.com:nowzoo/nog.git (push)
 
     var exec = require('child_process').exec;
-    var _ = require('lodash');
-    var S = require('string');
-
-    var cmd = 'git remote -v';
+    var cmd = 'git config -z --get remote.origin.url';
 
     grunt.verbose.writeln('Getting origin: %s', cmd);
     exec(cmd, function(err, stdout){
-        var lines = stdout.split('\n');
-        var origin = {
-            fetch: null,
-            push: null
-        };
-        var rx_fetch = /origin([^\()]+)\(fetch\)/;
-        var rx_push = /origin([^\()]+)\(push\)/;
-        _.each(lines, function(line){
-            var match;
-            match = line.match(rx_fetch);
-            if (match){
-                origin.fetch = S(match[1]).trim().s;
-                return;
-            }
-            match = line.match(rx_push);
-            if (match){
-                origin.push = S(match[1]).trim().s;
-            }
-        });
-        if (! origin.fetch || ! origin.push){
-            callback(new Error('Invalid origin'), origin);
-        } else {
-            callback(null, origin);
+        if (err) return callback(err);
+
+        //@TODO:
+        // not sure philosophically whether we should return an error
+        // if the origin does not exist, but in the context of this project,
+        // for now, we rely on the repo having a remote named "origin".
+        // Perhaps this can be changed later.
+        // For now...
+
+        err = null;
+        stdout = stdout.trim();
+        if (stdout.length === 0) {
+            err = new Error('No remote named "origin" exists.')
         }
+        return callback(err, stdout);
     });
-
-
 };

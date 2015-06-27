@@ -77,11 +77,11 @@ Enables live reload.
 
 #### grunt init
 
-- checks whether a local gh-pages branch exists `git show-ref`
-- deletes the gh-pages if it exists `git branch -D gh-pages`
-- creates a gh-pages branch `git checkout --orphan gh-pages`
-- adds a `.gitignore` file that ignores all the files and folders that are not part of the site. Users can modify this list with `nog.ignored_files`
-- pulls from the origin: `git pull origin gh-pages`
+- Deletes the `_site` folder.
+- Makes a fresh `_site` folder.
+- Initializes a separate repo for the `gh-pages` branch with the main repo's origin.
+- Creates the gh-pages branch: `git checkout --orphan gh-pages`.
+- Pulls from the origin: `git pull origin gh-pages`.
 
 
 
@@ -95,6 +95,13 @@ Enables live reload.
   - Gather the data
   - Delete  all the files in _site      
 - `git checkout gh-pages` On the gh-pages branch:
+
+
+#### grunt push
+
+- Switch to the _site directory
+- Checkout  gh-pages
+
        
   
 

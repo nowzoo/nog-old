@@ -9,7 +9,6 @@ module.exports = function (grunt, data, callback) {
     var ncp = require('ncp').ncp;
     var moment = require('moment');
     var _ = require('lodash');
-    var exec = require('child_process').exec;
 
 
     grunt.verbose.subhead('Building site...');
@@ -21,15 +20,6 @@ module.exports = function (grunt, data, callback) {
     async.series(
         [
 
-
-            // Make sure we're on master
-            function(callback){
-                var cmd = 'git checkout master';
-                grunt.verbose.writeln('Checking out master: %s', cmd);
-                exec(cmd, callback);
-            },
-
-
             //get the old files...
             function(callback){
                 grunt.verbose.writeln('Reading old files...');
@@ -39,13 +29,10 @@ module.exports = function (grunt, data, callback) {
                 });
             },
 
-            //remove the old files
-            //
 
             //remove the old files...
             function(callback){
-
-                var keep = ['README.md', '.gitignore', '.git'];
+                var keep = ['.gitignore', '.git'];
                 grunt.verbose.writeln('Deleting old files...');
                 async.each(old_files, function(name, callback){
                     var p = path.join(_site_dir, name);
@@ -119,33 +106,6 @@ module.exports = function (grunt, data, callback) {
                 grunt.verbose.writeln('Writing /%s...', 'search.json');
                 grunt.file.write(p, JSON.stringify(data.search));
                 callback();
-            },
-
-            // switch to _site directory...
-            function(callback){
-                process.chdir(_site_dir);
-                grunt.verbose.writeln('Changed working directory to %s', _site_dir);
-                callback();
-            },
-
-            // Checkout gh-pages branch
-            function(callback){
-                var cmd = 'git checkout gh-pages';
-                grunt.log.writeln('Checkout gh-pages: %s', cmd);
-                exec(cmd, callback);
-            },
-
-            // Add -A
-            function(callback){
-                var cmd = 'git add -A';
-                grunt.log.writeln('Add: %s', cmd);
-                exec(cmd, callback);
-            },
-            // switch to orig directory...
-            function(callback){
-                process.chdir(orig_dir);
-                grunt.verbose.writeln('Changed working directory to %s', orig_dir);
-                callback();
             }
 
 
@@ -156,12 +116,4 @@ module.exports = function (grunt, data, callback) {
         }
     );
 
-
-
-
-
-
-
 };
-
-
