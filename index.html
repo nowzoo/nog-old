@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nog | A simple site generator for GitHub Pages.</title>
+    <title>Nog | A Grunt-based site manager for GitHub Pages.</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
@@ -79,7 +79,7 @@ $ grunt serve
 <p>The <strong>assets/</strong> directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.</p>
 <p>The <strong>content/</strong> directory is where you create and edit posts and pages.</p>
 <p>The <strong>templates/</strong> directory contains the template files for your site.</p>
-<p><strong>Gruntfile.js</strong> contains a <code>nog</code> config which you should edit to change your site; also contains some build processes for the stylesheet of the default site.</p>
+<p><strong>Gruntfile.js</strong> contains a <code>nog</code> config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.</p>
 <h3 id="repo-structure-and-pushing-changes">Repo Structure and Pushing Changes</h3>
 <p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up. </p>
 <p>Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git. </p>
@@ -116,7 +116,7 @@ $ grunt show:posts:tags
 <h4 id="grunt-watch-livereload">grunt watch:livereload</h4>
 <pre><code>$ grunt watch:livereload
 </code></pre><p>Enables a live reload server, watching the _site directory for changes.</p>
-<h3 id="nog-options">Nog Options</h3>
+<h3 id="nog-configuration">Nog Configuration</h3>
 <pre><code>{
         title: &#39;Nog&#39;,
         tagline: &#39;A Grunt-based site manager for GitHub Pages.&#39;,
