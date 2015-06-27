@@ -88,11 +88,11 @@ some build processes for the stylesheet of the default site.</li>
 <p>Enables live reload.</p>
 <h4 id="grunt-init">grunt init</h4>
 <ul>
-<li>checks whether a local gh-pages branch exists <code>git show-ref</code></li>
-<li>deletes the gh-pages if it exists <code>git branch -D gh-pages</code></li>
-<li>creates a gh-pages branch <code>git checkout --orphan gh-pages</code></li>
-<li>adds a <code>.gitignore</code> file that ignores all the files and folders that are not part of the site. Users can modify this list with <code>nog.ignored_files</code></li>
-<li>pulls from the origin: <code>git pull origin gh-pages</code></li>
+<li>Deletes the <code>_site</code> folder.</li>
+<li>Makes a fresh <code>_site</code> folder.</li>
+<li>Initializes a separate repo for the <code>gh-pages</code> branch with the main repo&#39;s origin.</li>
+<li>Creates the gh-pages branch: <code>git checkout --orphan gh-pages</code>.</li>
+<li>Pulls from the origin: <code>git pull origin gh-pages</code>.</li>
 </ul>
 <h4 id="grunt-build">grunt build</h4>
 <ul>
@@ -108,6 +108,11 @@ some build processes for the stylesheet of the default site.</li>
 </ul>
 </li>
 <li><code>git checkout gh-pages</code> On the gh-pages branch:</li>
+</ul>
+<h4 id="grunt-push">grunt push</h4>
+<ul>
+<li>Switch to the _site directory</li>
+<li>Checkout  gh-pages</li>
 </ul>
 
         </div>
