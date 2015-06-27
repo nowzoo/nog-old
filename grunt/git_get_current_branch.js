@@ -6,7 +6,7 @@ module.exports = function(grunt, callback){
     var _ = require('lodash');
     var S = require('string');
 
-    var cmd = 'git branch';
+    var cmd = 'git status --porcelain';
 
     grunt.verbose.writeln('Getting current branch: %s', cmd);
     exec(cmd, function(err, stdout){

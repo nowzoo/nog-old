@@ -75,3 +75,27 @@ Initializes the site. This is a necessary step after cloning a repo.
 Enables live reload.
 
 
+#### grunt init
+
+- checks whether a local gh-pages branch exists `git show-ref`
+- deletes the gh-pages if it exists `git branch -D gh-pages`
+- creates a gh-pages branch `git checkout --orphan gh-pages`
+- adds a `.gitignore` file that ignores all the files and folders that are not part of the site. Users can modify this list with `nog.ignored_files`
+- pulls from the origin: `git pull origin gh-pages`
+
+
+
+#### grunt build
+
+- On the current branch:
+  - gets the current branch name and status from `git_get_status`
+  - if ! status.clean
+    - git add -A
+    - git commit -m 'message'
+  - Gather the data
+  - Delete  all the files in _site      
+- `git checkout gh-pages` On the gh-pages branch:
+       
+  
+
+
