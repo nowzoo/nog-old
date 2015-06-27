@@ -76,24 +76,17 @@ some build processes for the stylesheet of the default site.</li>
 <li><code>package.json</code></li>
 <li><code>README.md</code></li>
 </ul>
-<h3 id="repository-and-branch-structure">Repository and Branch Structure</h3>
-<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog maintains this branch in a <strong>separate</strong> repository in the <code>_site</code> directory. All other branches, for example, <code>master</code>, reside in the root directory.</p>
-<p>The <code>grunt push</code> task pushes both the the current main branch (e.g. <code>master</code>) and the <code>gh-pages</code> branch in the <code>_site</code> folder. </p>
+<h3 id="repository-structure-and-pushing-changes">Repository Structure and Pushing Changes</h3>
+<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog maintains this branch in a <strong>separate</strong> repository in the <code>_site</code> directory. All other branches, for example, <code>master</code>, reside in the main repository.</p>
+<p>By default, Nog&#39;s <code>grunt push</code> task only pushes this <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches in the normal way via git. This behavior can be changed: see <code>grunt push</code> below.</p>
 <h3 id="grunt-tasks">Grunt Tasks</h3>
-<p><code>$ grunt init</code></p>
-<p>Initializes the site. This is a necessary step after cloning a repo.</p>
+<h4 id="grunt-init">grunt init</h4>
+<pre><code>$ grunt init
+</code></pre><p>Initialize (or re-initialize) the site. This is a necessary step after cloning a repo. The task creates a fresh <code>_site</code> folder, initializes a separate repo, creates a <code>gh-pages</code> branch within that repo, and pulls the content of <code>gh-pages</code> from the origin.</p>
 <h2 id="watchers">Watchers</h2>
 <p><code>$ grunt watch:build</code></p>
 <p><code>$ grunt watch:serve</code></p>
 <p>Enables live reload.</p>
-<h4 id="grunt-init">grunt init</h4>
-<ul>
-<li>Deletes the <code>_site</code> folder.</li>
-<li>Makes a fresh <code>_site</code> folder.</li>
-<li>Initializes a separate repo for the <code>gh-pages</code> branch with the main repo&#39;s origin.</li>
-<li>Creates the gh-pages branch: <code>git checkout --orphan gh-pages</code>.</li>
-<li>Pulls from the origin: <code>git pull origin gh-pages</code>.</li>
-</ul>
 <h4 id="grunt-build">grunt build</h4>
 <ul>
 <li>On the current branch:<ul>
