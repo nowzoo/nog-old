@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | Home</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/assets/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+<div class="container">
+    <p><a href="/">Home</a> </p>
+    
+    <article>
+        <div>
+            <h1 id="nog">Nog</h1>
+<p>Nog is a <a href="http://gruntjs.com">Grunt</a>-based site manager for GitHub Pages. It strives to be</p>
+<ul>
+<li>simple to learn and operate,</li>
+<li>unopinionated,</li>
+<li>adaptable to different build flows.</li>
+</ul>
+<h3 id="quick-start">Quick Start</h3>
+<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
+<pre><code># clone your fork (replace YOUR_USER)...
+$ git clone git@github.com:YOUR_USER/nog.git 
+$ cd nog
+# install the dependencies...
+$ npm install
+# initialize the site...
+$ grunt init
+# serve the site locally...
+$ grunt serve
+</code></pre><p>At this point you can see your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</p>
+<h3 id="directory-structure">Directory Structure</h3>
+<p>After running <code>grunt init</code> your directory will look like this:</p>
+<ul>
+<li><code>_site</code> The directory where Nog places the generated site content. <strong>These files should not be edited</strong> &mdash;
+ the entire directory is overwritten each time the site is built.</li>
+<li><code>assets</code> This directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,
+either by hand or via a build process is copied wholesale to the site root on build.</li>
+<li><code>content</code> This directory is where you create and edit posts and pages.</li>
+<li><code>grunt</code> Contains Nog&#39;s Grunt tasks and helpers.</li>
+<li><code>node_modules</code>  </li>
+<li><code>templates</code> This directory contains the template files for your site.</li>
+<li><code>.gitignore</code></li>
+<li><code>Gruntfile.js</code> The task loader. Contains a <code>nog</code> config which you should edit to change your site; also contains
+some build processes for the stylesheet of the default site.</li>
+<li><code>LICENSE</code></li>
+<li><code>package.json</code></li>
+<li><code>README.md</code></li>
+</ul>
+<h3 id="repository-structure-and-pushing-changes">Repository Structure and Pushing Changes</h3>
+<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog maintains this branch in a <strong>separate</strong> repository in the <code>_site</code> directory. All other branches, for example, <code>master</code>, reside in the main repository.</p>
+<p>By default, Nog&#39;s <code>grunt push</code> task only pushes this <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches in the normal way via git. This behavior can be changed: see <code>grunt push</code> below.</p>
+<h3 id="grunt-tasks">Grunt Tasks</h3>
+<h4 id="grunt-init">grunt init</h4>
+<pre><code>$ grunt init
+</code></pre><p>Initialize (or re-initialize) the site. This is a necessary step after cloning a repo. The task creates a fresh <code>_site</code> folder, initializes a separate repo, creates a <code>gh-pages</code> branch within that repo, and pulls the content of <code>gh-pages</code> from the origin.</p>
+<h2 id="watchers">Watchers</h2>
+<p><code>$ grunt watch:build</code></p>
+<p><code>$ grunt watch:serve</code></p>
+<p>Enables live reload.</p>
+<h4 id="grunt-build">grunt build</h4>
+<ul>
+<li>On the current branch:<ul>
+<li>gets the current branch name and status from <code>git_get_status</code></li>
+<li>if ! status.clean<ul>
+<li>git add -A</li>
+<li>git commit -m &#39;message&#39;</li>
+</ul>
+</li>
+<li>Gather the data</li>
+<li>Delete  all the files in _site      </li>
+</ul>
+</li>
+<li><code>git checkout gh-pages</code> On the gh-pages branch:</li>
+</ul>
+<h4 id="grunt-push">grunt push</h4>
+<ul>
+<li>Switch to the _site directory</li>
+<li>Checkout  gh-pages</li>
+</ul>
+
+        </div>
+    </article>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
