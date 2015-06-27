@@ -32,17 +32,17 @@ At this point you can see your site at <http://localhost:3000/nog/>.
 
 After running `grunt build` for the first time, your directory will look like this:
 
- - _site/
- - nog_assets/
- - nog_content/
- - grunt/
- - node_modules/
- - nog_templates/
- - .gitignore
- - Gruntfile.js
- - LICENSE
- - package.json
- - README.md
+- \_site/
+- node_modules/
+- nog/
+- nog_assets/
+- nog_content/
+- nog_templates/
+- .gitignore
+- Gruntfile.js
+- LICENSE
+- package.json
+- README.md
 
 
 The **_site/** directory is where Nog places the generated site content. **These files should not be edited**: the entire directory is overwritten each time the site is built.
@@ -54,7 +54,6 @@ The **nog_content/** directory is where you create and edit posts and pages.
 The **nog_templates/** directory contains the template files for your site.
 
 **Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.
-
 
 
 ### Repo Structure and Pushing Changes
@@ -129,7 +128,7 @@ Watches the nog_assets, nog_content, and nog_templates directories, and runs the
 $ grunt watch:livereload
 ```
 
-Enables a live reload server, watching the _site directory for changes.
+Enables a live reload server, watching the \_site directory for changes. You'll have to [enable livereload with a script or browser extension](https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html).
 
 ### Nog Site Configuration
 
