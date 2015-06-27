@@ -100,12 +100,12 @@ module.exports = function (grunt, data, callback) {
             function(callback){
                 var src = path.join(process.cwd(), 'nog_assets' );
                 var dst = path.join(process.cwd(), '_site' );
-                var copy_to_site_root = grunt.config('nog.asset_contents_copy_to_site_root');
-                console.log(copy_to_site_root);
-                if (copy_to_site_root !== false){
-                  if (_.isString(copy_to_site_root)){
+                var assets_copy_to_subdir = grunt.config('nog.assets_copy_to_subdir');
+                console.log(assets_copy_to_subdir);
+                if (assets_copy_to_subdir !== false){
+                  if (_.isString(assets_copy_to_subdir)){
                     dst = path.join(dst, copy_to_site_root.trim());
-                  } else if (copy_to_site_root === true) {
+                  } else if (assets_copy_to_subdir === true) {
                     dst = path.join(dst, 'assets' );
                   }
                 }

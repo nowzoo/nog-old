@@ -9,15 +9,35 @@ module.exports = function (grunt) {
 
 
     grunt.initConfig({
-        nog: {
-            //include your site configuration here
-        }
+      nog: {
+          //include your site configuration here
+      }
+
     });
+
+
 
     require('./nog/config')(grunt);
     require('./nog/watches')(grunt);
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
     require('./nog/tasks')(grunt);
+
+    grunt.config.merge({
+      less: {
+        compile: {
+          files: {
+            'nog_assets/assets/theme/css/style.css': 'nog_assets/assets/theme/less/style.less',
+          }
+
+        }
+      },
+      watch: {
+        less: {
+          files: ['./nog_assets/assets/theme/less/**/*.less'],
+          tasks: ['less:compile']
+        }
+      }
+    });
 
 
     grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and nog_assets/README.md', function(){

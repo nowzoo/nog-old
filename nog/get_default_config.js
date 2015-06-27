@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         site_url: '',
         site_prefix: '/nog',
         posts_per_page: 10,
-        asset_contents_copy_to_site_root:  true,
+        assets_copy_to_subdir:  false,
 
 
         atomic_path: function (post, id) {
@@ -58,5 +58,3 @@ module.exports = function (grunt) {
     };
 
 };
-
-
