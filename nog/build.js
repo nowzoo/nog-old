@@ -100,7 +100,9 @@ module.exports = function (grunt, data, callback) {
             function(callback){
                 var src = path.join(process.cwd(), 'assets' );
                 var dst = path.join(process.cwd(), '_site' );
-                if (! grunt.option.(nog.asset_contents_copy_to_site_root)){
+                var foo = grunt.config('nog.asset_contents_copy_to_site_root');
+                console.log(foo);
+                if (! grunt.config('nog.asset_contents_copy_to_site_root')){
                     dst = path.join(dst, 'assets' );
                 }
                 grunt.verbose.writeln('Copying assets...');
