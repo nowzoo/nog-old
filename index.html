@@ -86,6 +86,29 @@ some build processes for the stylesheet of the default site.</li>
 <p><code>$ grunt watch:build</code></p>
 <p><code>$ grunt watch:serve</code></p>
 <p>Enables live reload.</p>
+<h4 id="grunt-init">grunt init</h4>
+<ul>
+<li>checks whether a local gh-pages branch exists <code>git show-ref</code></li>
+<li>deletes the gh-pages if it exists <code>git branch -D gh-pages</code></li>
+<li>creates a gh-pages branch <code>git checkout --orphan gh-pages</code></li>
+<li>adds a <code>.gitignore</code> file that ignores all the files and folders that are not part of the site. Users can modify this list with <code>nog.ignored_files</code></li>
+<li>pulls from the origin: <code>git pull origin gh-pages</code></li>
+</ul>
+<h4 id="grunt-build">grunt build</h4>
+<ul>
+<li>On the current branch:<ul>
+<li>gets the current branch name and status from <code>git_get_status</code></li>
+<li>if ! status.clean<ul>
+<li>git add -A</li>
+<li>git commit -m &#39;message&#39;</li>
+</ul>
+</li>
+<li>Gather the data</li>
+<li>Delete  all the files in _site      </li>
+</ul>
+</li>
+<li><code>git checkout gh-pages</code> On the gh-pages branch:</li>
+</ul>
 
         </div>
     </article>
