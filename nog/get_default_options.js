@@ -9,10 +9,11 @@ module.exports = function (grunt) {
 
     return {
         title: 'Nog',
-        tagline: 'A simple site generator for GitHub Pages.',
+        tagline: 'A Grunt-based site manager for GitHub Pages.',
         site_url: '',
         site_prefix: '/nog',
         posts_per_page: 10,
+        asset_contents_copy_to_site_root:  true,
         atomic_path: function (post, id) {
             var slugs;
             var type = post.type;
