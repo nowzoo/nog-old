@@ -65,9 +65,13 @@ module.exports = function (grunt) {
     grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and assets/README.md', function(){
         var src = './content/index/index.md';
         var dst = './README.md';
-        grunt.file.copy(src, dst);
+        var yamlFront = require('yaml-front-matter');
+        var data = yamlFront.loadFront(grunt.file.read(src));
+
+
+        grunt.file.write(dst, data.__content);
         dst = './assets/README.md';
-        grunt.file.copy(src, dst);
+        grunt.file.write(dst, data.__content);
     });
 
 

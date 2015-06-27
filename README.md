@@ -1,9 +1,4 @@
----
 
-title: Home
-published: 2015/06/20 15:13:56
-
----
 
 # Nog
 Nog is a [Grunt](http://gruntjs.com)-based site manager for GitHub Pages. It strives to be
