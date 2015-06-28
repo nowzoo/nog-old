@@ -5,6 +5,9 @@ module.exports = function (grunt) {
 
     grunt.config.merge({
         watch: {
+          nog: {
+
+          },
             livereload: {
                 options: {
                     livereload: true
