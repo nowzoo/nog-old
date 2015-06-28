@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nog | A Grunt-based site manager for GitHub Pages.</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -34,8 +34,62 @@
 </head>
 <body>
 
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/nog/">Nog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </nav>
 <div class="container">
-    <p><a href="/nog/">Home</a> </p>
+
+
     
     <div class="row">
         <div class="col-sm-8">
@@ -51,7 +105,7 @@
 <h3 id="quick-start">Quick Start</h3>
 <p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
 <pre><code># clone your fork (replace YOUR_USER)...
-$ git clone git@github.com:YOUR_USER/nog.git 
+$ git clone git@github.com:YOUR_USER/nog.git
 $ cd nog
 # install the dependencies...
 $ npm install
@@ -64,11 +118,11 @@ $ grunt serve
 <p>After running <code>grunt build</code> for the first time, your directory will look like this:</p>
 <ul>
 <li>_site/</li>
-<li>assets/ </li>
-<li>content/</li>
-<li>grunt/ </li>
 <li>node_modules/</li>
-<li>templates/ </li>
+<li>nog/</li>
+<li>nog_assets/</li>
+<li>nog_content/</li>
+<li>nog_templates/</li>
 <li>.gitignore</li>
 <li>Gruntfile.js</li>
 <li>LICENSE</li>
@@ -76,20 +130,20 @@ $ grunt serve
 <li>README.md</li>
 </ul>
 <p>The <strong>_site/</strong> directory is where Nog places the generated site content. <strong>These files should not be edited</strong>: the entire directory is overwritten each time the site is built.</p>
-<p>The <strong>assets/</strong> directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.</p>
-<p>The <strong>content/</strong> directory is where you create and edit posts and pages.</p>
-<p>The <strong>templates/</strong> directory contains the template files for your site.</p>
+<p>The <strong>nog_assets/</strong> directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.</p>
+<p>The <strong>nog_content/</strong> directory is where you create and edit posts and pages.</p>
+<p>The <strong>nog_templates/</strong> directory contains the template files for your site.</p>
 <p><strong>Gruntfile.js</strong> contains a <code>nog</code> config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.</p>
 <h3 id="repo-structure-and-pushing-changes">Repo Structure and Pushing Changes</h3>
-<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up. </p>
-<p>Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git. </p>
+<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up.</p>
+<p>Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git.</p>
 <h3 id="tasks">Tasks</h3>
 <h4 id="grunt-build">grunt build</h4>
 <pre><code>$ grunt build
-</code></pre><p>Builds the site in the <strong>_site</strong> directory, creating HTML files and copying over the contents of the <strong>assets</strong> directory. </p>
+</code></pre><p>Builds the site in the <strong>_site</strong> directory, creating HTML files and copying over the contents of the <strong>nog_assets</strong> directory.</p>
 <h4 id="grunt-push">grunt push</h4>
 <pre><code>$ grunt push
-</code></pre><p>Pushes the site content to the gh-pages branch on GitHub. </p>
+</code></pre><p>Pushes the site content to the gh-pages branch on GitHub.</p>
 <h4 id="grunt-serve-port-3000-">grunt serve &lt;--port=3000&gt;</h4>
 <pre><code>$ grunt serve
 </code></pre><p>Serve the site on your local machine. Optionally supply a port for the server:</p>
@@ -105,25 +159,30 @@ $ grunt show:tags # about the tag archives
 $ grunt show:search #search words data
 # show more than one thing...
 $ grunt show:posts:tags
-</code></pre><p>Log data about the site as it would currently be built to the console. </p>
+</code></pre><p>Log data about the site as it would currently be built to the console.</p>
 <h3 id="watches">Watches</h3>
 <h4 id="grunt-watch">grunt watch</h4>
 <pre><code>$ grunt watch
 </code></pre><p>Runs all the watches described below, plus any that you&#39;ve defined.</p>
 <h4 id="grunt-watch-build">grunt watch:build</h4>
 <pre><code>$ grunt watch:build
-</code></pre><p>Watches the assets, content, and templates directories, and runs the build task when changes occur.</p>
+</code></pre><p>Watches the nog_assets, nog_content, and nog_templates directories, and runs the build task when changes occur.</p>
 <h4 id="grunt-watch-livereload">grunt watch:livereload</h4>
 <pre><code>$ grunt watch:livereload
-</code></pre><p>Enables a live reload server, watching the _site directory for changes.</p>
-<h3 id="nog-configuration">Nog Configuration</h3>
+</code></pre><p>Enables a live reload server, watching the _site directory for changes. You&#39;ll have to <a href="https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html">enable livereload with a script or browser extension</a>.</p>
+<h3 id="nog-site-configuration">Nog Site Configuration</h3>
+<h4 id="assets_copy_to_subdir">assets_copy_to_subdir</h4>
+<p>string|boolean</p>
+<p>Default: <code>false</code></p>
+<p>By default, Nog copies the contents of the <code>nog_assets/</code> directory to the site&#39;s root. For example, if you have a favicon at <code>nog_assets/favicon.ico</code> that file will exist at <a href="http://your-site/favicon.ico">http://your-site/favicon.ico</a>.</p>
+<p>You can tell Nog to place the assets in a subfolder. Setting the config option to <code>true</code> will place the assets in a folder called <code>assets</code>. Setting it to a <code>&#39;path&#39;</code> will place the assets in a folder called <code>path</code>.</p>
 <pre><code>{
         title: &#39;Nog&#39;,
         tagline: &#39;A Grunt-based site manager for GitHub Pages.&#39;,
         site_url: &#39;&#39;,
         site_prefix: &#39;/nog&#39;,
         posts_per_page: 10,
-        asset_contents_copy_to_site_root:  true,
+        assets_copy_to_subdir:  false,
         atomic_path: function (post, id) {
             var slugs;
             var type = post.type;
