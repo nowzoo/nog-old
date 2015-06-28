@@ -12,6 +12,7 @@ module.exports = function (grunt, data, callback) {
 
 
 
+
     grunt.verbose.subhead('Building site...');
 
     var orig_dir = process.cwd();
@@ -33,7 +34,7 @@ module.exports = function (grunt, data, callback) {
 
             //remove the old files...
             function(callback){
-                var keep = ['.gitignore', '.git'];
+                var keep = ['.gitignore', '.git', 'updated.json'];
                 grunt.verbose.writeln('Deleting old files...');
                 async.each(old_files, function(name, callback){
                     var p = path.join(_site_dir, name);
@@ -118,6 +119,14 @@ module.exports = function (grunt, data, callback) {
                 var p = path.join(_site_dir, 'search.json');
                 grunt.verbose.writeln('Writing /%s...', 'search.json');
                 grunt.file.write(p, JSON.stringify(data.search));
+                callback();
+            },
+
+            //write search...
+            function(callback){
+                var p = path.join(_site_dir, 'updated.json');
+                grunt.verbose.writeln('Writing /%s...', 'updated.json');
+                grunt.file.write(p, JSON.stringify({updated: moment()}));
                 callback();
             }
 

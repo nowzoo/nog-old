@@ -31,13 +31,30 @@ module.exports = function (grunt) {
 
         }
       },
+      postcss: {
+        options: {
+          map: true, // inline sourcemaps
+
+          processors: [
+            require('pixrem')(), // add fallbacks for rem units
+            require('autoprefixer-core')({browsers: 'last 2 versions'}), // add vendor prefixes
+            require('cssnano')() // minify the result
+          ]
+        },
+        dist: {
+          src: 'nog_assets/assets/theme/css/*.css'
+        }
+      },
+
       watch: {
         less: {
-          files: ['./nog_assets/assets/theme/less/**/*.less'],
-          tasks: ['less:compile']
+          files: ['nog_assets/assets/theme/less/**/*.less'],
+          tasks: ['theme_css']
         }
       }
     });
+
+    grunt.registerTask('theme_css', ['less', 'postcss', 'build']);
 
 
     grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and nog_assets/README.md', function(){

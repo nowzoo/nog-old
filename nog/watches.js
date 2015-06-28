@@ -9,10 +9,10 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 },
-                files: ['./_site/**/*']
+                files: ['./_site/updated.json']
             },
-            build: {
-                files: ['./nog_content/**/*', './nog_templates/**/*', './nog_assets/**/*'],
+            build_content: {
+                files: ['nog_content/**/*', 'nog_templates/**/*', 'nog_assets/**/*'],
                 tasks: ['build']
             }
         }
