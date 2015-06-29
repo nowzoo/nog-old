@@ -14,6 +14,15 @@ module.exports = function (grunt) {
     var serve = require('./serve');
     var get_data = require('./get_data');
 
+    var nog = require('./nog')
+
+
+    grunt.registerTask('nog', function () {
+        var done = this.async();
+        nog.start.call(this, grunt, done);
+        //grunt.file.write(p, JSON.stringify(o));
+    });
+
 
 
     grunt.registerTask('build', 'Build the site.', function() {
@@ -34,11 +43,7 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('serve', 'Serve the site locally.', function() {
-        var done = this.async();
-        var port = parseInt(grunt.option('port') ? grunt.option('port') : 3000);
-        serve.call(this, grunt, port, done);
-    });
+
 
 
 
