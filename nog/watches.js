@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                 files: ['./_site/updated.json']
             },
             build_content: {
-                files: ['nog_content/**/*', 'nog_templates/**/*', 'nog_assets/**/*'],
+                files: ['_content/**/*', '_templates/**/*', '_assets/**/*'],
                 tasks: ['build']
             }
         }

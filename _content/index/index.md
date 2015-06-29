@@ -39,9 +39,9 @@ After running `grunt build` for the first time, your directory will look like th
 - \_site/
 - node_modules/
 - nog/
-- nog_assets/
-- nog_content/
-- nog_templates/
+- _assets/
+- _content/
+- _templates/
 - .gitignore
 - Gruntfile.js
 - LICENSE
@@ -51,11 +51,11 @@ After running `grunt build` for the first time, your directory will look like th
 
 The **_site/** directory is where Nog places the generated site content. **These files should not be edited**: the entire directory is overwritten each time the site is built.
 
-The **nog_assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
+The **_assets/** directory contains "static" assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.
 
-The **nog_content/** directory is where you create and edit posts and pages.
+The **_content/** directory is where you create and edit posts and pages.
 
-The **nog_templates/** directory contains the template files for your site.
+The **_templates/** directory contains the template files for your site.
 
 **Gruntfile.js** contains a `nog` config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.
 
@@ -75,7 +75,7 @@ Nog's `grunt push` task only pushes the `gh-pages` branch, leaving it up to you 
 ```
 $ grunt build
 ```
-Builds the site in the **_site** directory, creating HTML files and copying over the contents of the **nog_assets** directory.
+Builds the site in the **_site** directory, creating HTML files and copying over the contents of the **_assets** directory.
 
 #### grunt push
 
@@ -124,7 +124,7 @@ Runs all the watches described below, plus any that you've defined.
 ```
 $ grunt watch:build
 ```
-Watches the nog_assets, nog_content, and nog_templates directories, and runs the build task when changes occur.
+Watches the _assets, _content, and _templates directories, and runs the build task when changes occur.
 
 #### grunt watch:livereload
 
@@ -142,7 +142,7 @@ string|boolean
 
 Default: `false`
 
-By default, Nog copies the contents of the `nog_assets/` directory to the site's root. For example, if you have a favicon at `nog_assets/favicon.ico` that file will exist at http://your-site/favicon.ico.
+By default, Nog copies the contents of the `_assets/` directory to the site's root. For example, if you have a favicon at `_assets/favicon.ico` that file will exist at http://your-site/favicon.ico.
 
 You can tell Nog to place the assets in a subfolder. Setting the config option to `true` will place the assets in a folder called `assets`. Setting it to a `'path'` will place the assets in a folder called `path`.
 

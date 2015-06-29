@@ -26,7 +26,7 @@ module.exports = function (grunt) {
       less: {
         compile: {
           files: {
-            'nog_assets/assets/theme/css/style.css': 'nog_assets/assets/theme/less/style.less',
+            '_assets/assets/theme/css/style.css': '_assets/assets/theme/less/style.less',
           }
 
         }
@@ -42,13 +42,13 @@ module.exports = function (grunt) {
           ]
         },
         dist: {
-          src: 'nog_assets/assets/theme/css/*.css'
+          src: '_assets/assets/theme/css/*.css'
         }
       },
 
       watch: {
         less: {
-          files: ['nog_assets/assets/theme/less/**/*.less'],
+          files: ['_assets/assets/theme/less/**/*.less'],
           tasks: ['theme_css']
         }
       }
@@ -57,13 +57,13 @@ module.exports = function (grunt) {
     grunt.registerTask('theme_css', ['less', 'postcss', 'build']);
 
 
-    grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and nog_assets/README.md', function(){
-        var src = './nog_content/index/index.md';
+    grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and _assets/README.md', function(){
+        var src = './_content/index/index.md';
         var dst = './README.md';
         var yamlFront = require('yaml-front-matter');
         var data = yamlFront.loadFront(grunt.file.read(src));
         grunt.file.write(dst, data.__content);
-        dst = './nog_assets/README.md';
+        dst = './_assets/README.md';
         grunt.file.write(dst, data.__content);
     });
 
