@@ -1,5 +1,6 @@
+#!/usr/bin/env node
 /* jshint node: true */
-module.exports = function (grunt, data, callback) {
+module.exports = function (grunt, target_dir, callback) {
     'use strict';
     var fs = require('fs');
     var async = require('async');
@@ -10,34 +11,44 @@ module.exports = function (grunt, data, callback) {
     var moment = require('moment');
     var _ = require('lodash');
 
+    var get_data = require('./get_data');
 
 
 
     grunt.verbose.subhead('Building site...');
 
     var orig_dir = process.cwd();
-    var _site_dir = path.join(orig_dir, '_site');
     var old_files;
+    var data;
 
     async.series(
         [
+            //get the old files...
+            function(callback){
+                grunt.verbose.writeln('Gathering data...');
+                get_data(grunt, function (err, result) {
+                    data = result;
+                    callback(err);
+                });
+            },
 
             //get the old files...
             function(callback){
                 grunt.verbose.writeln('Reading old files...');
-                fs.readdir(_site_dir, function(err, result){
+                fs.readdir(target_dir, function(err, result){
                     old_files = result;
                     callback(null);
                 });
             },
 
+            //@TODO get the new paths, then delete only those files that  no longer exist...
 
             //remove the old files...
             function(callback){
                 var keep = ['.gitignore', '.git', 'updated.json'];
                 grunt.verbose.writeln('Deleting old files...');
                 async.each(old_files, function(name, callback){
-                    var p = path.join(_site_dir, name);
+                    var p = path.join(target_dir, name);
                     if (_.indexOf(keep, name) !== -1) return callback();
                     if (name.indexOf('.') === 0) return callback();
                     grunt.verbose.writeln('Deleting: %s', name);
@@ -59,10 +70,10 @@ module.exports = function (grunt, data, callback) {
                         post: post
                     };
                     swig.renderFile(template, passed, function (err, output) {
-                        var p = path.join(_site_dir, post.path, 'index.html');
+                        var p = path.join(target_dir, post.path, 'index.html');
                         if (err) return callback(err);
                         grunt.file.write(p, output);
-                        grunt.verbose.writeln('Wrote _site/%s.', post.path);
+                        grunt.verbose.writeln('Wrote /%s.', post.path);
                         callback();
                     });
                 }, callback);
@@ -86,7 +97,7 @@ module.exports = function (grunt, data, callback) {
                             page: page
                         };
                         swig.renderFile(template, passed, function (err, output) {
-                            var p = path.join(_site_dir, page.path,  'index.html');
+                            var p = path.join(target_dir, page.path,  'index.html');
                             if (err) return callback(err);
                             grunt.file.write(p, output);
                             grunt.verbose.writeln('_site/%s written.', page.path);
@@ -100,7 +111,7 @@ module.exports = function (grunt, data, callback) {
             //write the assets
             function(callback){
                 var src = path.join(process.cwd(), '_assets' );
-                var dst = path.join(process.cwd(), '_site' );
+                var dst = target_dir;
                 var assets_copy_to_subdir = grunt.config('nog.assets_copy_to_subdir');
                 console.log(assets_copy_to_subdir);
                 if (assets_copy_to_subdir !== false){
@@ -116,7 +127,7 @@ module.exports = function (grunt, data, callback) {
 
             //write search...
             function(callback){
-                var p = path.join(_site_dir, 'search.json');
+                var p = path.join(target_dir, 'search.json');
                 grunt.verbose.writeln('Writing /%s...', 'search.json');
                 grunt.file.write(p, JSON.stringify(data.search));
                 callback();
@@ -124,7 +135,7 @@ module.exports = function (grunt, data, callback) {
 
             //write search...
             function(callback){
-                var p = path.join(_site_dir, 'updated.json');
+                var p = path.join(target_dir, 'updated.json');
                 grunt.verbose.writeln('Writing /%s...', 'updated.json');
                 grunt.file.write(p, JSON.stringify({updated: moment()}));
                 callback();
@@ -132,10 +143,7 @@ module.exports = function (grunt, data, callback) {
 
 
 
-        ], function(err){
-            process.chdir(orig_dir);
-            callback(err);
-        }
+        ], callback
     );
 
 };

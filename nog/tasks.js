@@ -11,7 +11,6 @@ module.exports = function (grunt) {
     var show = require('./show');
     var build = require('./build');
     var push = require('./push');
-    var serve = require('./serve');
     var get_data = require('./get_data');
 
     var nog = require('./nog')
@@ -23,15 +22,10 @@ module.exports = function (grunt) {
         //grunt.file.write(p, JSON.stringify(o));
     });
 
-
-
     grunt.registerTask('build', 'Build the site.', function() {
         var done = this.async();
-        get_data(grunt, function(err, data){
-            if (err) return done(err);
-            build.call(this, grunt, data, function(err){
-                done(err);
-            });
+        build.call(this, grunt, data, function(err){
+            done(err);
         });
 
     });
