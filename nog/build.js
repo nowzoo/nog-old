@@ -131,7 +131,7 @@ module.exports = function (grunt, target_dir, callback) {
                 callback();
             },
 
-            //write search...
+            //write updated...
             function(callback){
                 var p = path.join(target_dir, 'updated.json');
                 grunt.verbose.writeln('Writing /%s...', 'updated.json');

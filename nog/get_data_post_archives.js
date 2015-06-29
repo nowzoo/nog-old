@@ -1,7 +1,8 @@
 /* jshint node: true */
-module.exports = function (grunt, options, posts, callback) {
+module.exports = function (grunt, options, posts, filenames, callback) {
     'use strict';
     var async = require('async');
+    var path = require('path');
     var moment = require('moment');
     var _ = require('lodash');
     var S = require('string');
@@ -37,8 +38,11 @@ module.exports = function (grunt, options, posts, callback) {
                 page: i,
                 path: options.archive_path(archive, i)
             };
+            page.relative_filename = path.join(page.path, 'index.html');
+            filenames.push(page.relative_filename);
+
             archive.pages.push(page);
-        })
+        });
     };
 
     grunt.verbose.writeln('Gathering post archives data.');
@@ -138,5 +142,3 @@ module.exports = function (grunt, options, posts, callback) {
         }
     );
 };
-
-

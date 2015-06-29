@@ -21,8 +21,10 @@ module.exports = function (grunt, callback) {
         pages: null,
         posts: null,
         archives: null,
-        search: null
+        search: null,
+        filenames: []
     };
+    var filenames = [];
 
     grunt.verbose.subhead('Gathering data...');
 
@@ -31,21 +33,21 @@ module.exports = function (grunt, callback) {
 
 
             function(callback){
-                get_data_index(grunt, options, function(err, result){
+                get_data_index(grunt, options, filenames, function(err, result){
                     data.index = result.index;
                     callback(err);
                 });
             },
 
             function(callback){
-                get_data_pages(grunt, options, function(err, result){
+                get_data_pages(grunt, options, filenames, function(err, result){
                     data.pages = result.pages;
                     callback(err);
                 });
             },
 
             function(callback){
-                get_data_posts(grunt, options, function(err, result){
+                get_data_posts(grunt, options, filenames, function(err, result){
                     data.posts = result.posts;
                     data.archives = result.archives;
                     callback(err);
@@ -57,14 +59,29 @@ module.exports = function (grunt, callback) {
                     data.search = result;
                     callback(err);
                 });
+            },
+            function(callback){
+                var assets = grunt.file.expand(['_assets/**/*.*']);
+                var assets_copy_to_subdir = grunt.config('nog.assets_copy_to_subdir');
+                var prefix = '';
+                if (assets_copy_to_subdir !== false){
+                  if (_.isString(assets_copy_to_subdir)){
+                      prefix = copy_to_site_root.trim() + '/';
+                  } else if (assets_copy_to_subdir === true) {
+                      prefix = 'assets/';
+                  }
+                }
+                _.each(assets, function (p) {
+                    filenames.push(p.replace(/^_assets\//, prefix));
+                });
+                data.filenames = filenames;
+                callback();
             }
         ],
         function(err){
-
+            filenames.push('search.json');
             callback(err, data);
         }
     );
 
 };
-
-

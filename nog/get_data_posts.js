@@ -1,5 +1,5 @@
 /* jshint node: true */
-module.exports = function (grunt, options, callback) {
+module.exports = function (grunt, options, filenames, callback) {
     'use strict';
     var async = require('async');
     var fs = require('fs');
@@ -46,7 +46,7 @@ module.exports = function (grunt, options, callback) {
             },
 
             function (callback) {
-                get_data_post_archives(grunt, options, posts, function(err, result){
+                get_data_post_archives(grunt, options, posts, filenames, function(err, result){
                     archives = result;
                     callback(err);
                 })
@@ -56,6 +56,8 @@ module.exports = function (grunt, options, callback) {
                 _.each(posts, function(post, id){
                     grunt.verbose.writeln('Normalizing the path for %s...', id);
                     post.path = options.atomic_path(post, id);
+                    post.relative_filename = path.join(post.path, 'index.html');
+                    filenames.push(post.relative_filename);
                 });
                 callback(null);
             }

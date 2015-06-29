@@ -7,33 +7,39 @@ excerpt: Nog is a Grunt-based site manager for GitHub Pages.
 # Nog
 Nog is a [Grunt](http://gruntjs.com)-based site manager for GitHub Pages. It strives to be
 
- - simple to learn and operate,
- - unopinionated,
- - adaptable to different build flows.
-
-
+ - **simple** to learn and operate,
+ - **unopinionated** about templating engines, css pre-processors, and the like,
+ - **adaptable** to different build flows.
 
 ### Quick Start
 
 First, [fork your own Nog](https://github.com/nowzoo/nog#fork-destination-box).
 
-This will all have to be changed. A lot. Or a bit. **See** if it works.
-
-
-
 ```
 # clone your fork (replace YOUR_USER)...
 $ git clone git@github.com:YOUR_USER/nog.git
+
 $ cd nog
+
 # install the dependencies...
 $ npm install
-# build the site...
-$ grunt build
-# serve the site locally...
-$ grunt serve
+
+# then...
+$ grunt nog
+
 ```
 
-At this point you can see your site at <http://localhost:3000/nog/>.
+Then...
+
+- Visit your site at <http://localhost:3000/nog/>.
+- Make changes in the \_content, \_data, \_assets and \_templates directories.
+- The changes you make will automatically show up on the local site (as long as you've got livereload enabled in the browser.)
+
+When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...
+
+```
+$ grunt nog:push
+```
 
 ### Directory Structure
 

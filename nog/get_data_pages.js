@@ -1,5 +1,5 @@
 /* jshint node: true */
-module.exports = function (grunt, options, callback) {
+module.exports = function (grunt, options, filenames, callback) {
     'use strict';
     var async = require('async');
     var fs = require('fs');
@@ -91,6 +91,8 @@ module.exports = function (grunt, options, callback) {
                 _.each(pages, function(page, id){
                     grunt.verbose.writeln('Normalizing the path for %s...', id);
                     page.path = options.atomic_path(page, id);
+                    page.relative_filename = path.join(page.path, 'index.html');
+                    filenames.push(page.relative_filename);
                 });
                 callback(null);
             }

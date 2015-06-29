@@ -1,5 +1,5 @@
 /* jshint node: true */
-module.exports = function (grunt, options, callback) {
+module.exports = function (grunt, options, filepaths, callback) {
     'use strict';
     var async = require('async');
     var fs = require('fs');
@@ -59,11 +59,13 @@ module.exports = function (grunt, options, callback) {
 
 
             },
-            
+
 
             //Set the path...
             function (callback) {
                 index.path = '';
+                index.relative_filename = 'index.html';
+                filepaths.push(index.relative_filename);
                 callback(null);
             }
         ],

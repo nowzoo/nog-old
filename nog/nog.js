@@ -134,8 +134,18 @@ module.exports.start = function (grunt, callback) {
             if (err) {
                 grunt.log.error(err);
                 return callback(err);
-
             }
+            grunt.log.subhead('Nog is alive. ^C to stop.');
+            grunt.log.writeln('Reload server started on port %s at %s.', reload_server_info.port, reload_server_info.url);
+            grunt.log.writeln('In order for livereload to work you must enable it in the browser. More info: https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html');
+            grunt.log.writeln('');
+            grunt.log.writeln('Local web server started on port %s at %s.', server_info.port, server_info.url);
+            grunt.log.writeln('The local site will be rebuilt when you make changes.');
+            grunt.log.writeln('');
+            grunt.log.writeln('To push changes to GitHub:');
+            grunt.log.writeln('\t> open a new terminal tab');
+            grunt.log.writeln('\t> grunt nog:push');
+
         }
     )
 };
