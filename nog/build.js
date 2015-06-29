@@ -15,7 +15,6 @@ module.exports = function (grunt, target_dir, callback) {
 
 
 
-    grunt.verbose.subhead('Building site...');
 
     var orig_dir = process.cwd();
     var old_files;
@@ -113,7 +112,6 @@ module.exports = function (grunt, target_dir, callback) {
                 var src = path.join(process.cwd(), '_assets' );
                 var dst = target_dir;
                 var assets_copy_to_subdir = grunt.config('nog.assets_copy_to_subdir');
-                console.log(assets_copy_to_subdir);
                 if (assets_copy_to_subdir !== false){
                   if (_.isString(assets_copy_to_subdir)){
                     dst = path.join(dst, copy_to_site_root.trim());

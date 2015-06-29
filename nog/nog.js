@@ -51,7 +51,7 @@ module.exports.start = function (grunt, callback) {
                 var site_prefix = grunt.config('nog.site_prefix');
                 var started = false;
                 var app = express();
-                grunt.log.write('Starting an express server... ');
+                grunt.log.write('Starting the localhost web server... ');
                 if (site_prefix.length == 0) site_prefix = '/';
 
                 app.use(site_prefix, express.static(site_serve_directory));
@@ -71,6 +71,7 @@ module.exports.start = function (grunt, callback) {
             function (callback) {
                 //standard LiveReload port
                 var livereload_port = 35729;
+                grunt.log.write('Starting the localhost livereload server... ');
 
                 tinylr().listen(livereload_port, function(err) {
                     var info;
@@ -102,6 +103,25 @@ module.exports.start = function (grunt, callback) {
                             if (! err) grunt.log.ok();
                             else grunt.log.error(err);
                         });
+                    });
+
+                });
+                callback(null);
+            },
+            //watch the site_serve_directory and push changes to lr...
+            function (callback) {
+                var site_prefix = grunt.config('nog.site_prefix');
+                if (site_prefix.length == 0) site_prefix = '/';
+                gaze([site_serve_directory + '/**/*'], function(err, watcher) {
+                    this.on('all', function(event, filepath) {
+                        var livereload_port = 35729;
+                        var rel = path.join(site_prefix, path.relative(site_serve_directory, filepath));
+                        var cmd = sprintf('curl http://localhost:%s/changed?files=%s', livereload_port, rel);
+                        grunt.verbose.writeln('%s: %s', event, rel);
+                        child_process.exec(cmd, function (err) {
+                            if(err) grunt.log.error(err);
+                        });
+
                     });
 
                 });

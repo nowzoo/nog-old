@@ -17,7 +17,8 @@ Nog is a [Grunt](http://gruntjs.com)-based site manager for GitHub Pages. It str
 
 First, [fork your own Nog](https://github.com/nowzoo/nog#fork-destination-box).
 
-This will all have to be changed. A lot.
+This will all have to be changed. A lot. Or a bit. **See** if it works.
+
 
 
 ```
