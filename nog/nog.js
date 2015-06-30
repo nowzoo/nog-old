@@ -1,5 +1,5 @@
 /* jshint node: true */
-module.exports.start = function (grunt, callback) {
+module.exports = function (grunt, callback) {
     'use strict';
 
     var path = require('path');

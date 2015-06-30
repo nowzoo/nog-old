@@ -1,0 +1,9 @@
+Nog Tasks
+
+    grunt nog [port=3000]
+
+    grunt nog:build <dir=non/existent/folder>
+        Build the site into the specified directory. The directory must not exist, and must not be in the present working directory.
+
+    grunt nog:help
+        Display this help.

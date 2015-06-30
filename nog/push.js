@@ -51,39 +51,35 @@ module.exports = function(grunt, callback){
                 });
             },
 
-            // switch to temp directory...
-            function(callback){
-                process.chdir(temp_dir);
-                grunt.verbose.writeln('Changed working directory to %s', orig_dir);
-                callback();
-            },
+
+
 
             //git init
             function(callback){
                 var cmd = 'git init';
                 grunt.log.writeln('Initializing git: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             },
 
             //add origin
             function(callback){
                 var cmd = sprintf('git remote add origin %s', origin);
                 grunt.log.writeln('Adding remote: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             },
 
             // Create gh-pages branch
             function(callback){
                 var cmd = 'git checkout --orphan gh-pages';
                 grunt.log.writeln('Creating fresh gh-pages branch: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             },
 
             // Pull origin gh-pages...
             function(callback){
                 var cmd = 'git pull origin gh-pages';
                 grunt.log.writeln('Pulling: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             },
 
             //get the old files...
@@ -91,7 +87,6 @@ module.exports = function(grunt, callback){
                 grunt.verbose.writeln('Reading old files...');
                 fs.readdir(temp_dir, function(err, result){
                     file_list = result;
-
                     callback(null);
                 });
             },
@@ -110,35 +105,22 @@ module.exports = function(grunt, callback){
                 }, callback);
             },
 
-            //read the new files...
-            function(callback){
-                grunt.verbose.writeln('Reading new files...');
-                fs.readdir(_site_dir, function(err, result){
-                    file_list = result;
-
-                    callback(null);
+            // build into the temp directory...
+            function (callback) {
+                grunt.log.write('Building the site... ');
+                build(grunt, temp_dir, function (err) {
+                    if (! err) grunt.log.ok();
+                    callback(err);
                 });
             },
 
-            //copy the new files...
-            function(callback){
-                var keep = ['.gitignore', '.git'];
-                grunt.verbose.writeln('Copying new files...');
-                async.each(file_list, function(name, callback){
-                    var src = path.join(_site_dir, name);
-                    var dst = path.join(temp_dir, name);
-                    if (_.indexOf(keep, name) !== -1) return callback();
-                    if (name.indexOf('.') === 0) return callback();
-                    grunt.verbose.writeln('Copying: %s', name);
-                    ncp(src, dst, callback);
-                }, callback);
-            },
+
 
             // Add all the changes...
             function(callback){
                 var cmd = 'git add -A';
                 grunt.verbose.writeln('Adding changes: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             },
 
 
@@ -146,21 +128,19 @@ module.exports = function(grunt, callback){
             function(callback){
                 var cmd = sprintf('git commit -m \'Automated nog commit to gh-pages on %s\'', moment().toISOString());
                 grunt.verbose.writeln('Commit changes: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             },
 
             // Push the changes...
             function(callback){
                 var cmd = 'git push origin gh-pages';
                 grunt.verbose.writeln('Push changes: %s', cmd);
-                exec(cmd, callback);
+                exec(cmd, {cwd: temp_dir}, callback);
             }
 
 
         ],
         function(err){
-            process.chdir(orig_dir);
-            grunt.verbose.writeln('Changed working directory to %s', orig_dir);
             callback(err);
         }
     )
