@@ -7,7 +7,7 @@ excerpt: Nog is a Grunt-based site manager for GitHub Pages.
 # Nog
 Nog is a [Grunt](http://gruntjs.com)-based site manager for GitHub Pages. It strives to be
 
- - **simple** to learn and operate,
+ - **simple** to set up,
  - **unopinionated** about templating engines, css pre-processors, and the like,
  - **adaptable** to different build flows.
 

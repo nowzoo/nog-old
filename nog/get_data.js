@@ -13,7 +13,6 @@ module.exports = function (grunt, callback) {
 
 
     var options = grunt.config.get('nog');
-    console.log('options', options);
 
 
     var data = {
