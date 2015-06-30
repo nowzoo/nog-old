@@ -9,32 +9,20 @@ module.exports = function (grunt) {
 
 
     grunt.initConfig({
-      nog: {
-          //include your site configuration here
-      }
+      //in order to configure nog, edit _cfg/nog_config.js
+      nog: require('./_cfg/nog_config'),
 
-    });
-
-
-
-    require('./nog/config')(grunt);
-    require('./nog/watches')(grunt);
-    require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
-    require('./nog/tasks')(grunt);
-
-    grunt.config.merge({
+      //your other grunt stuff here, for example... (change the following at will)
       less: {
         compile: {
           files: {
             '_assets/assets/theme/css/style.css': '_assets/assets/theme/less/style.less',
           }
-
         }
       },
       postcss: {
         options: {
           map: true, // inline sourcemaps
-
           processors: [
             require('pixrem')(), // add fallbacks for rem units
             require('autoprefixer-core')({browsers: 'last 2 versions'}), // add vendor prefixes
@@ -45,20 +33,24 @@ module.exports = function (grunt) {
           src: '_assets/assets/theme/css/*.css'
         }
       },
-
       watch: {
         less: {
           files: ['_assets/assets/theme/less/**/*.less'],
           tasks: ['theme_css']
         }
       }
+
     });
 
-    
 
+    //load nog default config and tasks...
+    require('./nog/config')(grunt);
+    require('./nog/tasks')(grunt);
+
+
+    //change the following at will
+    require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
     grunt.registerTask('theme_css', ['less', 'postcss', 'build']);
-
-
     grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and _assets/README.md', function(){
         var src = './_content/index/index.md';
         var dst = './README.md';
@@ -68,7 +60,6 @@ module.exports = function (grunt) {
         dst = './_assets/README.md';
         grunt.file.write(dst, data.__content);
     });
-
 
     // Default task. Feel free to change this.
     grunt.registerTask('default', function(){

@@ -88,6 +88,7 @@ module.exports = function (grunt, options, filenames, callback) {
 
             //get the path...
             function (callback) {
+                console.log('options', options);
                 _.each(pages, function(page, id){
                     grunt.verbose.writeln('Normalizing the path for %s...', id);
                     page.path = options.atomic_path(page, id);

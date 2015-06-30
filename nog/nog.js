@@ -106,6 +106,17 @@ module.exports.start = function (grunt, callback) {
                     });
 
                 });
+                gaze('_cfg/nog_config.js', function (err, watcher) {
+                    this.on('all', function(event, filepath) {
+                        require('./config')(grunt);
+                        grunt.log.write('Building the site... ');
+                        build(grunt, site_serve_directory, function (err) {
+                            if (! err) grunt.log.ok();
+                            else grunt.log.error(err);
+                        });
+                    });
+
+                });
                 callback(null);
             },
             //watch the site_serve_directory and push changes to lr...

@@ -32,7 +32,7 @@ $ grunt nog
 Then...
 
 - Visit your site at <http://localhost:3000/nog/>.
-- Make changes in the \_content, \_data, \_assets and \_templates directories.
+- Make changes in the `\_content`, `\_cfg`, `\_assets` and `\_templates` directories.
 - The changes you make will automatically show up on the local site (as long as you've got livereload enabled in the browser.)
 
 When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...

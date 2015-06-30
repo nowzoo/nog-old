@@ -13,6 +13,7 @@ module.exports = function (grunt, callback) {
 
 
     var options = grunt.config.get('nog');
+    console.log('options', options);
 
 
     var data = {
@@ -31,6 +32,12 @@ module.exports = function (grunt, callback) {
     async.series(
         [
 
+            function(callback){
+                get_data_index(grunt, options, filenames, function(err, result){
+                    data.index = result.index;
+                    callback(err);
+                });
+            },
 
             function(callback){
                 get_data_index(grunt, options, filenames, function(err, result){
