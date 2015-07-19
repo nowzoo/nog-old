@@ -14,12 +14,13 @@ module.exports = function (grunt) {
     var push = require('./push');
     var get_data = require('./get_data');
 
-    var nog = require('./nog')
+    var nog = require('./nog');
+    var lint = require('./nog-lint');
 
 
     grunt.registerTask('nog', function (subtask) {
         var done = this.async();
-        var rgh = 'Run grunt nog:help for assistance.'
+        var rgh = 'Run grunt nog:help for assistance.';
         subtask = subtask || 'nog';
         switch (subtask) {
             case 'nog':
@@ -27,6 +28,9 @@ module.exports = function (grunt) {
                 break;
             case 'push':
                 push.call(this, grunt, done);
+                break;
+            case 'lint':
+                lint.call(this, grunt, done);
                 break;
             case 'help':
                 var help = grunt.file.read(path.join(process.cwd(), 'nog', 'messages', 'help.txt'));
@@ -59,26 +63,9 @@ module.exports = function (grunt) {
 
         }
 
-        //grunt.file.write(p, JSON.stringify(o));
     });
 
 
-
-
-
-
-
-    grunt.registerTask('show', 'Show site data.', function(what) {
-        var done = this.async();
-        if(grunt.option('timer')) require('time-grunt')(grunt);
-        what = Array.prototype.slice.call(arguments);
-        get_data(grunt, function(err, data){
-            if (err) return done(err);
-            show.call(this, grunt, what, data);
-            done(err);
-        });
-
-    });
 
 
 };

@@ -44,7 +44,6 @@ module.exports = function (grunt) {
 
 
     //load nog default config and tasks...
-    require('./nog/config')(grunt);
     require('./nog/tasks')(grunt);
 
 
