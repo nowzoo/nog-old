@@ -24,17 +24,17 @@
       "title": "My First Post",
       "excerpt": "Wow"
     },
-    "/posts/my-second-post/": {
-      "relative_url": "/posts/my-second-post/",
-      "absolute_url": "http://nowzoo.com/posts/my-second-post/",
-      "title": "My Second Post",
-      "excerpt": "Wow"
-    },
     "/site-configuration/": {
       "relative_url": "/site-configuration/",
       "absolute_url": "http://nowzoo.com/site-configuration/",
       "title": "Site configuration",
       "excerpt": "To edit your site&#39;s configuration, edit site.json file in the _cfg directory. Out of the box, th"
+    },
+    "/posts/my-second-post/": {
+      "relative_url": "/posts/my-second-post/",
+      "absolute_url": "http://nowzoo.com/posts/my-second-post/",
+      "title": "My Second Post",
+      "excerpt": "Wow"
     }
   },
   "index": {
