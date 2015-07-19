@@ -18,12 +18,6 @@
       "title": "Home",
       "excerpt": "Nog\nNog is a Grunt-based site manager for GitHub Pages.\nIt strives to be brutally simple.\nQuick Star"
     },
-    "/posts/my-second-post/": {
-      "relative_url": "/posts/my-second-post/",
-      "absolute_url": "http://nowzoo.com/posts/my-second-post/",
-      "title": "My Second Post",
-      "excerpt": "Wow"
-    },
     "/posts/my-first-post/": {
       "relative_url": "/posts/my-first-post/",
       "absolute_url": "http://nowzoo.com/posts/my-first-post/",
@@ -35,6 +29,12 @@
       "absolute_url": "http://nowzoo.com/site-configuration/",
       "title": "Site configuration",
       "excerpt": "To edit your site&#39;s configuration, edit site.json file in the _cfg directory. Out of the box, th"
+    },
+    "/posts/my-second-post/": {
+      "relative_url": "/posts/my-second-post/",
+      "absolute_url": "http://nowzoo.com/posts/my-second-post/",
+      "title": "My Second Post",
+      "excerpt": "Wow"
     }
   },
   "index": {
@@ -227,15 +227,15 @@
       "/content-files/",
       "/meta/",
       "/",
-      "/posts/my-second-post/",
-      "/posts/my-first-post/"
+      "/posts/my-first-post/",
+      "/posts/my-second-post/"
     ],
     "bar": [
       "/content-files/",
       "/meta/",
       "/",
-      "/posts/my-second-post/",
-      "/posts/my-first-post/"
+      "/posts/my-first-post/",
+      "/posts/my-second-post/"
     ],
     "extension": [
       "/content-files/",
@@ -354,8 +354,8 @@
     "post": [
       "/meta/",
       "/",
-      "/posts/my-second-post/",
-      "/posts/my-first-post/"
+      "/posts/my-first-post/",
+      "/posts/my-second-post/"
     ],
     "existing": [
       "/meta/",
@@ -1304,8 +1304,8 @@
       "/"
     ],
     "wow": [
-      "/posts/my-second-post/",
-      "/posts/my-first-post/"
+      "/posts/my-first-post/",
+      "/posts/my-second-post/"
     ],
     "box": [
       "/site-configuration/"
