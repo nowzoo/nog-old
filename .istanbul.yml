@@ -2,4 +2,4 @@ reporting:
     print: summary
     reports:
         - lcov
-    dir: ./nog/test/coverage
+    dir: ./nog-src/test/coverage
