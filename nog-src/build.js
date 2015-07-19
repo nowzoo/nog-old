@@ -277,8 +277,13 @@ var remove_old_files = function(output_directory, callback){
             function(callback){
                 async.each(files, function(file, callback){
                     var abs = path.resolve(output_directory, file);
-                     log.verbose('\t\t', colors.gray(sprintf('Removing %s',file)), '\n');
-                    fs.remove(abs, callback);
+                    if ('.git' === file) {
+                        callback(null);
+                    } else {
+                        log.verbose('\t\t', colors.gray(sprintf('Removing %s',file)), '\n');
+                        fs.remove(abs, callback);
+                    }
+
                 }, callback);
             }
         ],

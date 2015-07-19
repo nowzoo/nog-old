@@ -16,7 +16,9 @@ module.exports = function(){
     var temp_dir;
     var git_get_origin = require('./git_get_origin');
     var origin;
-    var file_list;
+    var output_directory;
+    var start = moment();
+
 
     log(colors.blue.bold('\nPushing...\n'));
 
@@ -29,116 +31,129 @@ module.exports = function(){
 
             //get the origin...
             function(callback){
-                log(colors.gray('\nGetting origin...\n'));
+                var start = moment();
+                log(colors.gray.bold('\nGetting origin...\n'));
                 git_get_origin(function(err, result){
                     origin = result;
                     if (! err){
                         log(colors.green('\tOK: '), colors.gray(origin), '\n');
+                        log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
                     }
                     callback(err)
                 });
             },
 
-            //// get a temp directory...
-            //function(callback){
-            //    grunt.verbose.write('Creating temporary directory...');
-            //    temp.mkdir('nog-push', function(err, result){
-            //        temp_dir = result;
-            //        grunt.log.writeln(temp_dir);
-            //        callback(err)
-            //    });
-            //},
-            //
-            //
-            //
-            //
-            ////git init
-            //function(callback){
-            //    var cmd = 'git init';
-            //    grunt.log.writeln('Initializing git: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //},
-            //
-            ////add origin
-            //function(callback){
-            //    var cmd = sprintf('git remote add origin %s', origin);
-            //    grunt.log.writeln('Adding remote: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //},
-            //
-            //// Create gh-pages branch
-            //function(callback){
-            //    var cmd = 'git checkout --orphan gh-pages';
-            //    grunt.log.writeln('Creating fresh gh-pages branch: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //},
-            //
-            //// Pull origin gh-pages...
-            //function(callback){
-            //    var cmd = 'git pull origin gh-pages';
-            //    grunt.log.writeln('Pulling: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //},
-            //
-            ////get the old files...
-            //function(callback){
-            //    grunt.verbose.writeln('Reading old files...');
-            //    fs.readdir(temp_dir, function(err, result){
-            //        file_list = result;
-            //        callback(null);
-            //    });
-            //},
-            //
-            //
-            ////remove the old files...
-            //function(callback){
-            //    var keep = ['.gitignore', '.git'];
-            //    grunt.verbose.writeln('Deleting old files...');
-            //    async.each(file_list, function(name, callback){
-            //        var p = path.join(temp_dir, name);
-            //        if (_.indexOf(keep, name) !== -1) return callback();
-            //        if (name.indexOf('.') === 0) return callback();
-            //        grunt.verbose.writeln('Deleting: %s', name);
-            //        rimraf(p, callback);
-            //    }, callback);
-            //},
-            //
-            //// build into the temp directory...
-            //function (callback) {
-            //    grunt.log.write('Building the site... ');
-            //    build(grunt, temp_dir, function (err) {
-            //        if (! err) grunt.log.ok();
-            //        callback(err);
-            //    });
-            //},
-            //
-            //
-            //
-            //// Add all the changes...
-            //function(callback){
-            //    var cmd = 'git add -A';
-            //    grunt.verbose.writeln('Adding changes: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //},
-            //
-            //
-            //// Commit the changes...
-            //function(callback){
-            //    var cmd = sprintf('git commit -m \'Automated nog commit to gh-pages on %s\'', moment().toISOString());
-            //    grunt.verbose.writeln('Commit changes: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //},
-            //
-            //// Push the changes...
-            //function(callback){
-            //    var cmd = 'git push origin gh-pages';
-            //    grunt.verbose.writeln('Push changes: %s', cmd);
-            //    exec(cmd, {cwd: temp_dir}, callback);
-            //}
+            function (callback) {
+                var start = moment();
+                log(colors.gray.bold('\nCreating a temporary directory...\n'));
+                temp.mkdir('nog-', function(err, result){
+                    output_directory = result.toString();
+                    log('\t', colors.gray(output_directory), '\n');
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err)
+                });
+            },
+
+            //git init
+            function(callback){
+                var cmd = 'git init';
+                var start = moment();
+                log(colors.gray.bold('\nInitializing git...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            },
+
+            //git add origin
+            function(callback){
+
+                var start = moment();
+                var cmd = sprintf('git remote add origin %s', origin);
+                log(colors.gray.bold('\nAdding the origin...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            },
+
+            //Create gh-pages branch
+            function(callback){
+                var start = moment();
+                var cmd = 'git checkout --orphan gh-pages';
+                log(colors.gray.bold('\nCreating gh-pages branch...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            },
+
+            //Pull origin gh-pages branch
+            function(callback){
+                var start = moment();
+                var cmd = 'git pull origin gh-pages';
+                log(colors.gray.bold('\nPulling the gh-pages branch...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            },
+            //build the site...
+            function (callback) {
+                build.build(true, process.cwd(), output_directory, callback);
+            },
+
+            //Add all the changes to git...
+            function(callback){
+                var start = moment();
+                var cmd = 'git add -A';
+                log(colors.gray.bold('\nAdding changes to git...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            },
+
+            //Commit all the changes...
+            function(callback){
+                var start = moment();
+                var cmd = sprintf('git commit -m \'Automated nog commit to gh-pages on %s\'', moment().toISOString());
+                log(colors.gray.bold('\nCommitting changes to git...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            },
+
+            //Push the changes...
+            function(callback){
+                var start = moment();
+                var cmd = 'git push origin gh-pages';
+                log(colors.gray.bold('\nPushing changes to GitHub...\n'));
+                log(colors.gray('\t' + cmd + '\n'));
+                exec(cmd, {cwd: output_directory}, function(err){
+                    log('\t', colors.gray(sprintf('Done in %ss',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    callback(err);
+                });
+            }
 
 
         ],
         function(err){
+            if (! err){
+                log(colors.bold.green(sprintf('\nPushed changes in %ss.\n\n', (moment().valueOf() - start.valueOf())/1000)));
+
+            } else {
+                temp.cleanupSync();
+                log('\n', colors.red.bold(err), '\n');
+                process.exit(1);
+            }
         }
     )
 };
