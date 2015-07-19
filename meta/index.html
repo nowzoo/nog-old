@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> | </title>
+    <title>Page Metadata | Page Metadata</title>
 
     <link href="/assets/theme/css/style.css" rel="stylesheet">
 
@@ -79,37 +79,13 @@
 
 
     
-    <div class="row">
-        <div class="col-sm-8">
-            <article>
-                <div>
-                    <h1 id="nog">Nog</h1>
-<p>Nog is a <a href="http://gruntjs.com">Grunt</a>-based site manager for GitHub Pages.
-It strives to be brutally simple.</p>
-<h2 id="quick-start">Quick Start</h2>
-<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
-<pre><code># clone your fork (replace YOUR_USER)...
-$ git clone git@github.com:YOUR_USER/nog.git
-
-$ cd nog
-
-# install the dependencies...
-$ npm install
-
-# then...
-$ ./nog
-</code></pre><p>Then...</p>
-<ul>
-<li>Visit your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</li>
-<li>Make changes in the <code>\_content</code>, <code>\_cfg</code>, <code>\_assets</code> and <code>\_templates</code> directories.</li>
-<li>The changes you make will automatically show up on the local site (as long as you&#39;ve got livereload enabled in the browser.)</li>
-</ul>
-<p>When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...</p>
-<pre><code>$ grunt nog:push
-</code></pre><p>To see what your site currently contains, and diagnose any problems:</p>
-<pre><code>$ grunt nog:lint
-</code></pre><h2 id="managing-content">Managing Content</h2>
-<h3 id="the-_content-directory">The _content Directory</h3>
+    <article>
+        <header class="page-header">
+            <h1>Page Metadata</h1>
+        </header>
+        <div>
+            <h3 id="managing-pages-and-posts">Managing Pages and Posts</h3>
+<h4 id="the-_content-directory">The _content Directory</h4>
 <p>Any <code>.md</code> or <code>.html</code> file in the <code>_content</code> directory will be turned into a page on the site. Where a content file is found inside this directory determines several things:</p>
 <ul>
 <li>the <code>id</code> of the page</li>
@@ -205,7 +181,7 @@ $ ./nog
 <li>HTML files take precedence over Markdown files: <code>help/advanced.html</code> is used instead of <code>help/advanced.md</code></li>
 <li>If a directory has a file named <code>archive.md</code>, the other files in the directory will be treated as blog posts, ordered by date, and a variety of date- and tag-based archive URLs will be generated.</li>
 </ul>
-<h3 id="content-metadata">Content Metadata</h3>
+<h4 id="atomic-content-metadata">Atomic Content Metadata</h4>
 <p>Page metadata, such as the title, is defined by inserting an optional YAML front matter section at the top of your content  files. The front matter section consists of:</p>
 <ul>
 <li>three dashes <code>---</code> and a line break</li>
@@ -238,7 +214,7 @@ some_complex_yaml: Some complex data structure which will bring about the destru
 <p>If missing, assumed to be <code>page.twig</code> if the content is a plain page, <code>post.twig</code> if it&#39;s a blog post or <code>archive.twig</code> if it&#39;s an archive of blog posts. This value should always be relative to the <code>_templates</code> directory.</p>
 </li>
 </ul>
-<h3 id="post-archives">Post Archives</h3>
+<h4 id="post-archives">Post Archives</h4>
 <p>When Nog encounters an <code>directory-name/archive.md</code> file the other contents of  <code>directory-name</code> are treated as blog posts, and a variety of archive URLs are automatically generated. If you have a directory named <code>posts</code> containing an <code>archive.md</code> file and 12 other content files all dated July 4, 2015 and all tagged &quot;News Flash&quot;, the following URLs will be generated:</p>
 <table>
 <thead>
@@ -316,121 +292,9 @@ some_complex_yaml: Some complex data structure which will bring about the destru
 <pre><code>---
 generate_tags: false
 ---
-</code></pre><h3 id="directory-structure">Directory Structure</h3>
-<p>After running <code>grunt build</code> for the first time, your directory will look like this:</p>
-<ul>
-<li>_site/</li>
-<li>node_modules/</li>
-<li>nog/</li>
-<li>_assets/</li>
-<li>_content/</li>
-<li>_templates/</li>
-<li>.gitignore</li>
-<li>Gruntfile.js</li>
-<li>LICENSE</li>
-<li>package.json</li>
-<li>README.md</li>
-</ul>
-<p>The <strong>_site/</strong> directory is where Nog places the generated site content. <strong>These files should not be edited</strong>: the entire directory is overwritten each time the site is built.</p>
-<p>The <strong>_assets/</strong> directory contains &quot;static&quot; assets such as images and stylesheets. Anything you place here,either by hand or via a build process is copied wholesale to the site root on build.</p>
-<p>The <strong>_content/</strong> directory is where you create and edit posts and pages.</p>
-<p>The <strong>_templates/</strong> directory contains the template files for your site.</p>
-<p><strong>Gruntfile.js</strong> contains a <code>nog</code> config which you should edit to change your site; also contains some build processes for the stylesheet of the default site. See the Configuration section below.</p>
-<h3 id="repo-structure-and-pushing-changes">Repo Structure and Pushing Changes</h3>
-<p>GitHub Pages sites rely special branch called <code>gh-pages</code>. Nog doesn&#39;t maintain this branch in the local repository. Instead, when you run the <code>grunt push</code> task, Nog creates a temporary directory to pull the current <code>gh-pages</code> branch from GitHub and push your changes back up.</p>
-<p>Nog&#39;s <code>grunt push</code> task only pushes the <code>gh-pages</code> branch, leaving it up to you to pull and push changes on other branches (e.g.<code>master</code>) in the normal way via git.</p>
-<h3 id="tasks">Tasks</h3>
-<h4 id="grunt-build">grunt build</h4>
-<pre><code>$ grunt build
-</code></pre><p>Builds the site in the <strong>_site</strong> directory, creating HTML files and copying over the contents of the <strong>_assets</strong> directory.</p>
-<h4 id="grunt-push">grunt push</h4>
-<pre><code>$ grunt push
-</code></pre><p>Pushes the site content to the gh-pages branch on GitHub.</p>
-<h4 id="grunt-serve-port-3000-">grunt serve &lt;--port=3000&gt;</h4>
-<pre><code>$ grunt serve
-</code></pre><p>Serve the site on your local machine. Optionally supply a port for the server:</p>
-<pre><code>$ grunt serve --port=3002
-</code></pre><h4 id="grunt-show-what-">grunt show[:what]</h4>
-<pre><code>$ grunt show # all the data
-$ grunt show:site # site options
-$ grunt show:index # about the home page
-$ grunt show:pages # about the pages
-$ grunt show:posts # about the posts
-$ grunt show:archives # about the main and date-based archives
-$ grunt show:tags # about the tag archives
-$ grunt show:search #search words data
-# show more than one thing...
-$ grunt show:posts:tags
-</code></pre><p>Log data about the site as it would currently be built to the console.</p>
-<h3 id="watches">Watches</h3>
-<h4 id="grunt-watch">grunt watch</h4>
-<pre><code>$ grunt watch
-</code></pre><p>Runs all the watches described below, plus any that you&#39;ve defined.</p>
-<h4 id="grunt-watch-build">grunt watch:build</h4>
-<pre><code>$ grunt watch:build
-</code></pre><p>Watches the _assets, _content, and _templates directories, and runs the build task when changes occur.</p>
-<h4 id="grunt-watch-livereload">grunt watch:livereload</h4>
-<pre><code>$ grunt watch:livereload
-</code></pre><p>Enables a live reload server, watching the _site directory for changes. You&#39;ll have to <a href="https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html">enable livereload with a script or browser extension</a>.</p>
-<h3 id="nog-site-configuration">Nog Site Configuration</h3>
-<h4 id="assets_copy_to_subdir">assets_copy_to_subdir</h4>
-<p>string|boolean</p>
-<p>Default: <code>false</code></p>
-<p>By default, Nog copies the contents of the <code>_assets/</code> directory to the site&#39;s root. For example, if you have a favicon at <code>_assets/favicon.ico</code> that file will exist at <a href="http://your-site/favicon.ico">http://your-site/favicon.ico</a>.</p>
-<p>You can tell Nog to place the assets in a subfolder. Setting the config option to <code>true</code> will place the assets in a folder called <code>assets</code>. Setting it to a <code>&#39;path&#39;</code> will place the assets in a folder called <code>path</code>.</p>
-<pre><code>{
-        title: &#39;Nog&#39;,
-        tagline: &#39;A Grunt-based site manager for GitHub Pages.&#39;,
-        site_url: &#39;&#39;,
-        site_prefix: &#39;/nog&#39;,
-        posts_per_page: 10,
-        assets_copy_to_subdir:  false,
-        atomic_path: function (post, id) {
-            var slugs;
-            var type = post.type;
-            if (type === &#39;post&#39;) {
-                return path.join(&#39;posts&#39;, id);
-            }
-            slugs = post.parents ? _.clone(post.parents) : [];
-            slugs.push(id);
-            return slugs.join(&#39;/&#39;);
-        },
-        archive_path: function (archive, page) {
-            var type = archive.type;
-            var p;
-            page = page || 0;
-
-            switch (type) {
-                case &#39;main&#39;:
-                    p = &#39;posts&#39;;
-                    break;
-                case &#39;year&#39;:
-                case &#39;month&#39;:
-                case &#39;day&#39;:
-                    p = path.join(&#39;posts&#39;, archive.slug);
-                    break;
-                case &#39;tag&#39;:
-                    p = path.join(&#39;tags&#39;, archive.slug);
-                    break;
-                default:
-                    throw(new Error(&#39;Unknown archive type&#39;));
-                    break;
-            }
-            if (page &gt; 0) {
-                p = path.join(p, &#39;page&#39;, page.toString());
-            }
-            return p;
-        },
-        search_path: function () {
-            return &#39;search&#39;;
-        }
-    }
 </code></pre>
-                </div>
-            </article>
         </div>
-    </div>
-
+    </article>
 
 </div>
 

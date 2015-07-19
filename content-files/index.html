@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daily Archive: June 20, 2015 | </title>
+    <title>content-files | content-files</title>
 
     <link href="/assets/theme/css/style.css" rel="stylesheet">
 
@@ -79,44 +79,53 @@
 
 
     
-    <header class="page-header">
-        <h1>Daily Archive: June 20, 2015</h1>
-    </header>
-
-    <div class="list">
-        <nav>
-            <ul class="pager">
-                <li>
-                    
-                        <span>Previous</span>
-                    
-                </li>
-                <li>
-                    
-                        <span>Next</span>
-                    
-                </li>
-            </ul>
-        </nav>
-
-
-        <ul class="list-unstyled">
-            
-                
-               <li>
-                   <article>
-                       <header>
-                           <h3>
-                               <a href=""></a>
-                           </h3>
-                       </header>
-                   </article>
-               </li>
-            
-        </ul>
-
-    </div>
-
+    <article>
+        <header class="page-header">
+            <h1>content-files</h1>
+        </header>
+        <div>
+            <h3 id="content-file-rules">Content File Rules</h3>
+<h4 id="valid-extensions">Valid Extensions</h4>
+<p>Nog will only process files with the extensions found in <code>config.build.content_extensions</code>.  The default values are:</p>
+<pre><code>// site config...
+{
+  ...
+  &quot;build&quot;: {
+    ...
+    &quot;content_extensions&quot;: [&quot;.md&quot;, &quot;.markdown&quot;, &quot;.html&quot;, &quot;.htm&quot;]
+    ...
+  }
+}
+</code></pre><p>You can change these recognized extensions in <code>_cfg/site.json</code>.</p>
+<h4 id="file-conflicts">File Conflicts</h4>
+<p>If two files with different extensions but the same basename exist in the same directory, like this...</p>
+<ul>
+<li>_content/<ul>
+<li>foo/<ul>
+<li>bar.html</li>
+<li>bar.markdown</li>
+<li>bar.md</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>... the file with the extension appearing first in <code>config.build.content_extensions</code> wins. In this case, with the default config, the winner would be <code>bar.md</code>.</p>
+<p>If a file named <code>index.*</code> or <code>archive.*</code> exists in a directory <code>dirname</code>, that file wins over a file one level up named <code>dirname.*</code>. For example, in the following case...</p>
+<ul>
+<li>_content/<ul>
+<li>foo/<ul>
+<li>index.md</li>
+</ul>
+</li>
+<li>foo.md  </li>
+</ul>
+</li>
+</ul>
+<p>... the file <code>_content/foo/index.md</code> will be used, and <code>_content/foo.md</code> will be ignored.</p>
+<p>Finally, <code>archive.*</code> files win out over <code>index.*</code> files in the same directory.</p>
+        </div>
+    </article>
 
 </div>
 

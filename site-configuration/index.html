@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My First Post | My First Post</title>
+    <title>Site configuration | Site configuration</title>
 
     <link href="/assets/theme/css/style.css" rel="stylesheet">
 
@@ -81,10 +81,59 @@
     
     <article>
         <header class="page-header">
-            <h1>My First Post</h1>
+            <h1>Site configuration</h1>
         </header>
         <div>
-            &lt;p&gt;Wow&lt;/p&gt;
+            <p>To edit your site&#39;s configuration, edit <code>site.json</code> file in the <code>_cfg</code> directory. Out of the box, the defaults are:</p>
+<pre><code>{
+    &quot;title&quot;: &quot;Nog&quot;,
+    &quot;tagline&quot;: &quot;A site manager for GitHub Pages.&quot;,
+    &quot;url&quot;: &quot;http://nowzoo.github.io&quot;,
+    &quot;prefix&quot;: &quot;nog&quot;,
+    &quot;archives&quot;: {
+        &quot;title&quot;: &quot;Posts&quot;,
+        &quot;posts_per_page&quot;: 10,
+        &quot;generate_dates&quot;: true,
+        &quot;generate_tags&quot;: true,
+        &quot;tag_slug&quot;: &quot;tag&quot;,
+        &quot;page_slug&quot;: &quot;p&quot;,
+    },
+    &quot;build&quot;: {
+        &quot;assets_copy_to_subdir&quot;:  false,
+        &quot;template_engine&quot;: &quot;swig&quot;,
+        &quot;markdown_engine&quot;: &quot;marked&quot;
+    }
+}
+</code></pre><p>Your <code>_cfg/site.json</code> will be recursively merged with these defaults. To check the validity of the resulting config:</p>
+<pre><code>$ grunt nog:lint:config
+</code></pre><h2 id="title">title</h2>
+<p>The name of your site.</p>
+<h2 id="tagline">tagline</h2>
+<p>The tagline.</p>
+<h2 id="url">url</h2>
+<p>The url of your live site, for example, <a href="http://nowzoo.github.io">http://nowzoo.github.io</a> or <a href="http://my-custom-domain">http://my-custom-domain</a></p>
+<h2 id="prefix">prefix</h2>
+<p>For &quot;project&quot; sites existing on a *.github.io URL, the path of the project, e.g. <code>&quot;nog&quot;</code>. For &quot;organization&quot; sites or sites with a custom domain, this should be blank.</p>
+<h2 id="archives">archives</h2>
+<p>This object contains settings for the automatic generation of archives. These settings will only take effect if you have created one or more archives. These options can also be set on an archive-by-archive basis by editing the YAML front matter in an <code>archive.md</code> file.</p>
+<h3 id="archives-title">archives.title</h3>
+<p>Default: <code>&quot;posts&quot;</code></p>
+<p>The title of the main archives.</p>
+<h3 id="archives-posts_per_page">archives.posts_per_page</h3>
+<p>Default: <code>10</code></p>
+<p>How many posts do display on a page.  If you set this to <code>0</code>, no pagination will occur.</p>
+<h3 id="archives-generate_dates">archives.generate_dates</h3>
+<p>Default: <code>true</code></p>
+<p>Whether to generate date based archives, e.g. <code>posts/2015/07</code>. Setting it to <code>false</code> means that no date archives will be created.</p>
+<h3 id="archives-generate_tags">archives.generate_tags</h3>
+<p>Default: <code>true</code></p>
+<p>Whether to generate tag based archives, e.g. <code>posts/tag/news-flash</code>. This will only take effect if tags are found among the archive&#39;s posts. Setting it to <code>false</code> means that no tag archives will be created.</p>
+<h3 id="archives-tag_slug">archives.tag_slug</h3>
+<p>Default: <code>tag</code></p>
+<p>The slug to insert before the individual tag slug, for example : posts/<strong>tag</strong>/news-flash</p>
+<h3 id="archives-page_slug">archives.page_slug</h3>
+<p>Default: <code>p</code></p>
+<p>The slug to insert before the page number for paged archives, for example : posts/<strong>p</strong>/2</p>
         </div>
     </article>
 
