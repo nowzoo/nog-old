@@ -84,8 +84,8 @@
             <article>
                 <div>
                     <h1 id="nog">Nog</h1>
-<p>Nog is a <a href="http://gruntjs.com">Grunt</a>-based site manager for GitHub Pages.
-It strives to be brutally simple.</p>
+<p>Nog is a command-line site manager for GitHub Pages.</p>
+<p>It strives to be brutally simple.</p>
 <h2 id="quick-start">Quick Start</h2>
 <p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
 <pre><code># clone your fork (replace YOUR_USER)...
@@ -96,117 +96,34 @@ $ cd nog
 # install the dependencies...
 $ npm install
 
-# then...
-$ ./nog
-</code></pre><p>Then...</p>
-<ul>
+# start nog...
+$ ./nog serve
+</code></pre><ul>
 <li>Visit your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</li>
 <li>Make changes in the <code>\_content</code>, <code>\_cfg</code>, <code>\_assets</code> and <code>\_templates</code> directories.</li>
 <li>The changes you make will automatically show up on the local site (as long as you&#39;ve got livereload enabled in the browser.)</li>
 </ul>
 <p>When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...</p>
-<pre><code>$ grunt nog:push
-</code></pre><p>To see what your site currently contains, and diagnose any problems:</p>
-<pre><code>$ grunt nog:lint
-</code></pre><h2 id="managing-content">Managing Content</h2>
-<h3 id="the-_content-directory">The _content Directory</h3>
-<p>Any <code>.md</code> or <code>.html</code> file in the <code>_content</code> directory will be turned into a page on the site. Where a content file is found inside this directory determines several things:</p>
+<pre><code>$ ./nog push
+</code></pre><p>To diagnose any problems:</p>
+<pre><code>$ ./nog lint
+</code></pre><h2 id="content">Content</h2>
+<p>There are three types of content:</p>
 <ul>
-<li>the <code>id</code> of the page</li>
-<li>the resulting URL</li>
-<li>the page&#39;s parent and children</li>
-<li>whether the content is treated as:<ul>
-<li>a plain &quot;evergreen&quot; page or</li>
-<li>a blog post, existing in an archive ordered by date</li>
+<li>The home page</li>
+<li>Plain pages</li>
+<li>Blog posts</li>
 </ul>
-</li>
-</ul>
-<p>For example:</p>
-<table>
-<thead>
-<tr>
-<th>Content File Path</th>
-<th>URL</th>
-<th>ID</th>
-<th>Parent</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>index.md</td>
-<td>/</td>
-<td><code>index</code></td>
-<td></td>
-</tr>
-<tr>
-<td>about.md</td>
-<td>/about</td>
-<td><code>about</code></td>
-<td></td>
-</tr>
-<tr>
-<td>help.md</td>
-<td>[ignored]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>help/index.md</td>
-<td>/help</td>
-<td><code>help</code></td>
-<td></td>
-</tr>
-<tr>
-<td>help/advanced.md</td>
-<td>[ignored]</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>help/advanced.html</td>
-<td>/help/advanced</td>
-<td><code>help/advanced</code></td>
-<td><code>help</code></td>
-</tr>
-<tr>
-<td>foo.md</td>
-<td>/foo</td>
-<td><code>foo</code></td>
-<td></td>
-</tr>
-<tr>
-<td>foo/bar.md</td>
-<td>/foo/bar</td>
-<td><code>foo/bar</code></td>
-<td><code>foo</code></td>
-</tr>
-<tr>
-<td>posts/archive.md</td>
-<td>/posts</td>
-<td>`posts&#39;</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>other archive URLs (see below)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>posts/my-first-post.md</td>
-<td>/posts/my-first-post</td>
-<td><code>posts/my-first-post</code></td>
-</tr>
-</tbody>
-</table>
+<p>By default, any Markdown <code>.md</code> or HTML <code>.html</code> file in the <code>_content</code> directory will be turned into one of these three types. A file at <code>_content/index.*</code> will be treated as the home page. Files under the archives directory (by default <code>_content/posts</code>) will be treated as blog posts, and archived by date and tag. All other content files are assumed to be pages.</p>
+<p>Atomic urls are determined by file path.  The content at <code>_content/foo.md</code> will end up having the URL <code>/foo/</code>. If the content file is located at <code>_content/foo/index.html</code>, then the URL will likewise be <code>/foo/</code>.</p>
 <p>Note the following rules:</p>
 <ul>
-<li>Index files take precedence: <code>help/index.md</code> is used instead of <code>help.md</code></li>
-<li>HTML files take precedence over Markdown files: <code>help/advanced.html</code> is used instead of <code>help/advanced.md</code></li>
-<li>If a directory has a file named <code>archive.md</code>, the other files in the directory will be treated as blog posts, ordered by date, and a variety of date- and tag-based archive URLs will be generated.</li>
+<li>Index files take precedence: <code>help/index.md</code> will be used and <code>help.md</code> will be ignored.</li>
+<li>By default Markdown files take precedence over HTML files: <code>help/advanced.md</code> will be used instead of <code>help/advanced.html</code>.</li>
 </ul>
+<p>Both pages and posts are hierarchical. For example, the content at <code>_content/foo/bar.md</code> will be the child of the content at <code>_content/foo/index.md</code>.</p>
 <h3 id="content-metadata">Content Metadata</h3>
-<p>Page metadata, such as the title, is defined by inserting an optional YAML front matter section at the top of your content  files. The front matter section consists of:</p>
+<p>Content metadata, such as the title, is defined by inserting an optional YAML front matter section at the top of your content  files. The front matter section consists of:</p>
 <ul>
 <li>three dashes <code>---</code> and a line break</li>
 <li>some YAML</li>
@@ -216,13 +133,9 @@ $ ./nog
 <pre><code>---
 title: My Valid Page
 excerpt: Who dee woot who dee woo too?
-some_complex_yaml: Some complex data structure which will bring about the destruction of our foes.
+date: &#39;2015/07/19  16:00&#39;
 ---
 # The Actual Content Begins Here
-## My Personal Strong Suits
- - Humanity
- - Peace
- - Speling
 </code></pre><p>By default and design, Nog doesn&#39;t care very much or make assumptions about what a page&#39;s metadata has or doesn&#39;t have. That said, Nog provides the following sensible default values:</p>
 <ul>
 <li><p><code>title</code></p>

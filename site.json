@@ -1,28 +1,28 @@
 {
   "content": {
+    "/": {
+      "relative_url": "/",
+      "absolute_url": "http://nowzoo.com/",
+      "title": "Home",
+      "excerpt": "Nog\nNog is a command-line site manager for GitHub Pages.\nIt strives to be brutally simple.\nQuick Sta"
+    },
     "/content-files/": {
       "relative_url": "/content-files/",
       "absolute_url": "http://nowzoo.com/content-files/",
       "title": "content-files",
       "excerpt": "Content File Rules\nValid Extensions\nNog will only process files with the extensions found in config."
     },
-    "/meta/": {
-      "relative_url": "/meta/",
-      "absolute_url": "http://nowzoo.com/meta/",
-      "title": "Page Metadata",
-      "excerpt": "How to define metadata for Nog pages using YAML front matter."
-    },
-    "/": {
-      "relative_url": "/",
-      "absolute_url": "http://nowzoo.com/",
-      "title": "Home",
-      "excerpt": "Nog\nNog is a Grunt-based site manager for GitHub Pages.\nIt strives to be brutally simple.\nQuick Star"
-    },
     "/posts/my-first-post/": {
       "relative_url": "/posts/my-first-post/",
       "absolute_url": "http://nowzoo.com/posts/my-first-post/",
       "title": "My First Post",
       "excerpt": "Wow"
+    },
+    "/meta/": {
+      "relative_url": "/meta/",
+      "absolute_url": "http://nowzoo.com/meta/",
+      "title": "Page Metadata",
+      "excerpt": "How to define metadata for Nog pages using YAML front matter."
     },
     "/site-configuration/": {
       "relative_url": "/site-configuration/",
@@ -39,48 +39,54 @@
   },
   "index": {
     "0": [
-      "/meta/",
       "/",
+      "/meta/",
       "/site-configuration/"
     ],
     "1": [
-      "/meta/",
-      "/"
+      "/",
+      "/meta/"
     ],
     "2": [
-      "/meta/",
       "/",
+      "/meta/",
       "/site-configuration/"
     ],
     "4": [
-      "/meta/",
-      "/"
+      "/",
+      "/meta/"
     ],
     "10": [
-      "/meta/",
       "/",
+      "/meta/",
       "/site-configuration/"
     ],
     "12": [
-      "/meta/",
-      "/"
+      "/",
+      "/meta/"
     ],
     "14": [
-      "/meta/",
+      "/",
+      "/meta/"
+    ],
+    "16": [
+      "/"
+    ],
+    "19": [
       "/"
     ],
     "39": [
-      "/meta/",
       "/",
+      "/meta/",
       "/site-configuration/"
     ],
     "255": [
-      "/meta/",
-      "/"
+      "/",
+      "/meta/"
     ],
     "2015": [
-      "/meta/",
       "/",
+      "/meta/",
       "/site-configuration/"
     ],
     "3000": [
@@ -89,763 +95,26 @@
     "3002": [
       "/"
     ],
-    "content": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "files": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "file": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "rules": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "valid": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "extensions": [
-      "/content-files/"
-    ],
-    "nog": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "process": [
-      "/content-files/",
-      "/"
-    ],
-    "config": [
-      "/content-files/",
-      "/",
-      "/site-configuration/"
-    ],
-    "build": [
-      "/content-files/",
-      "/",
-      "/site-configuration/"
-    ],
-    "content_extensions": [
-      "/content-files/"
-    ],
-    "default": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "values": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "site": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "quot": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "md": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "markdown": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "html": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "htm": [
-      "/content-files/"
-    ],
-    "change": [
-      "/content-files/",
-      "/"
-    ],
-    "recognized": [
-      "/content-files/"
-    ],
-    "_cfg": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "json": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "conflicts": [
-      "/content-files/"
-    ],
-    "basename": [
-      "/content-files/"
-    ],
-    "exist": [
-      "/content-files/",
-      "/"
-    ],
-    "directory": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "_content": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "foo": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/posts/my-first-post/",
-      "/posts/my-second-post/"
-    ],
-    "bar": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/posts/my-first-post/",
-      "/posts/my-second-post/"
-    ],
-    "extension": [
-      "/content-files/",
-      "/"
-    ],
-    "appearing": [
-      "/content-files/"
-    ],
-    "wins": [
-      "/content-files/"
-    ],
-    "case": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "winner": [
-      "/content-files/"
-    ],
-    "named": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "index": [
-      "/content-files/",
-      "/meta/",
-      "/"
-    ],
-    "archive": [
-      "/content-files/",
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "exists": [
-      "/content-files/"
-    ],
-    "dirname": [
-      "/content-files/"
-    ],
-    "level": [
-      "/content-files/"
-    ],
-    "finally": [
-      "/content-files/"
-    ],
-    "win": [
-      "/content-files/"
-    ],
-    "page": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "metadata": [
-      "/meta/",
-      "/"
-    ],
-    "managing": [
-      "/meta/",
-      "/"
-    ],
-    "pages": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "posts": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "turned": [
-      "/meta/",
-      "/"
-    ],
-    "determines": [
-      "/meta/",
-      "/"
-    ],
-    "resulting": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "url": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "parent": [
-      "/meta/",
-      "/"
-    ],
-    "children": [
-      "/meta/",
-      "/"
-    ],
-    "treated": [
-      "/meta/",
-      "/"
-    ],
-    "plain": [
-      "/meta/",
-      "/"
-    ],
-    "evergreen": [
-      "/meta/",
-      "/"
-    ],
-    "blog": [
-      "/meta/",
-      "/"
-    ],
-    "post": [
-      "/meta/",
-      "/",
-      "/posts/my-first-post/",
-      "/posts/my-second-post/"
-    ],
-    "existing": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "ordered": [
-      "/meta/",
-      "/"
-    ],
-    "date": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "path": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "advanced": [
-      "/meta/",
-      "/"
-    ],
-    "urls": [
-      "/meta/",
-      "/"
-    ],
-    "note": [
-      "/meta/",
-      "/"
-    ],
-    "precedence": [
-      "/meta/",
-      "/"
-    ],
-    "variety": [
-      "/meta/",
-      "/"
-    ],
-    "tag": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "based": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "generated": [
-      "/meta/",
-      "/"
-    ],
-    "atomic": [
-      "/meta/"
-    ],
-    "title": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "defined": [
-      "/meta/",
-      "/"
-    ],
-    "inserting": [
-      "/meta/",
-      "/"
-    ],
-    "optional": [
-      "/meta/",
-      "/"
-    ],
-    "yaml": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "front": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "matter": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "section": [
-      "/meta/",
-      "/"
-    ],
-    "top": [
-      "/meta/",
-      "/"
-    ],
-    "consists": [
-      "/meta/",
-      "/"
-    ],
-    "dashes": [
-      "/meta/",
-      "/"
-    ],
-    "line": [
-      "/meta/",
-      "/"
-    ],
-    "break": [
-      "/meta/",
-      "/"
-    ],
-    "excerpt": [
-      "/meta/",
-      "/"
-    ],
-    "dee": [
-      "/meta/",
-      "/"
-    ],
-    "woot": [
-      "/meta/",
-      "/"
-    ],
-    "woo": [
-      "/meta/",
-      "/"
-    ],
-    "some_complex_yaml": [
-      "/meta/",
-      "/"
-    ],
-    "complex": [
-      "/meta/",
-      "/"
-    ],
-    "data": [
-      "/meta/",
-      "/"
-    ],
-    "structure": [
-      "/meta/",
-      "/"
-    ],
-    "bring": [
-      "/meta/",
-      "/"
-    ],
-    "destruction": [
-      "/meta/",
-      "/"
-    ],
-    "foes": [
-      "/meta/",
-      "/"
-    ],
-    "actual": [
-      "/meta/",
-      "/"
-    ],
-    "begins": [
-      "/meta/",
-      "/"
-    ],
-    "personal": [
-      "/meta/",
-      "/"
-    ],
-    "strong": [
-      "/meta/",
-      "/"
-    ],
-    "suits": [
-      "/meta/",
-      "/"
-    ],
-    "humanity": [
-      "/meta/",
-      "/"
-    ],
-    "peace": [
-      "/meta/",
-      "/"
-    ],
-    "speling": [
-      "/meta/",
-      "/"
-    ],
-    "design": [
-      "/meta/",
-      "/"
-    ],
-    "doesn": [
-      "/meta/",
-      "/"
-    ],
-    "care": [
-      "/meta/",
-      "/"
-    ],
-    "assumptions": [
-      "/meta/",
-      "/"
-    ],
-    "missing": [
-      "/meta/",
-      "/"
-    ],
-    "dasherized": [
-      "/meta/",
-      "/"
-    ],
-    "ucword": [
-      "/meta/",
-      "/"
-    ],
-    "ed": [
-      "/meta/",
-      "/"
-    ],
-    "great": [
-      "/meta/",
-      "/"
-    ],
-    "result": [
-      "/meta/",
-      "/"
-    ],
-    "parsed": [
-      "/meta/",
-      "/"
-    ],
-    "set": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "modified": [
-      "/meta/",
-      "/"
-    ],
-    "time": [
-      "/meta/",
-      "/"
-    ],
-    "parseable": [
-      "/meta/",
-      "/"
-    ],
-    "format": [
-      "/meta/",
-      "/"
-    ],
-    "wrong": [
-      "/meta/",
-      "/"
-    ],
-    "yyyy": [
-      "/meta/",
-      "/"
-    ],
-    "mm": [
-      "/meta/",
-      "/"
-    ],
-    "dd": [
-      "/meta/",
-      "/"
-    ],
-    "hh": [
-      "/meta/",
-      "/"
-    ],
-    "characters": [
-      "/meta/",
-      "/"
-    ],
-    "strip": [
-      "/meta/",
-      "/"
-    ],
-    "tagged": [
-      "/meta/",
-      "/"
-    ],
-    "consecutive": [
-      "/meta/",
-      "/"
-    ],
-    "whitespaces": [
-      "/meta/",
-      "/"
-    ],
-    "converted": [
-      "/meta/",
-      "/"
-    ],
-    "single": [
-      "/meta/",
-      "/"
-    ],
-    "space": [
-      "/meta/",
-      "/"
-    ],
-    "character": [
-      "/meta/",
-      "/"
-    ],
-    "template": [
-      "/meta/",
-      "/"
-    ],
-    "assumed": [
-      "/meta/",
-      "/"
-    ],
-    "twig": [
-      "/meta/",
-      "/"
-    ],
-    "relative": [
-      "/meta/",
-      "/"
-    ],
-    "_templates": [
-      "/meta/",
-      "/"
-    ],
-    "archives": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "encounters": [
-      "/meta/",
-      "/"
-    ],
-    "contents": [
-      "/meta/",
-      "/"
-    ],
-    "automatically": [
-      "/meta/",
-      "/"
-    ],
-    "dated": [
-      "/meta/",
-      "/"
-    ],
-    "july": [
-      "/meta/",
-      "/"
-    ],
-    "news": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "flash": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "07": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "04": [
-      "/meta/",
-      "/"
-    ],
-    "modifying": [
-      "/meta/",
-      "/"
-    ],
-    "defaults": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "modify": [
-      "/meta/",
-      "/"
-    ],
-    "generates": [
-      "/meta/",
-      "/"
-    ],
-    "globally": [
-      "/meta/",
-      "/"
-    ],
-    "basis": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "posts_per_page": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "paging": [
-      "/meta/",
-      "/"
-    ],
-    "occur": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "display": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "matching": [
-      "/meta/",
-      "/"
-    ],
-    "generate_dates": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "true": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "generate": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "generate_tags": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "tag_slug": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "slug": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "insert": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "individual": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "page_slug": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "number": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "gt": [
-      "/meta/",
-      "/"
-    ],
-    "false": [
-      "/meta/",
-      "/",
-      "/site-configuration/"
-    ],
-    "define": [
-      "/meta/"
-    ],
     "home": [
       "/"
     ],
-    "grunt": [
+    "nog": [
       "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "command": [
+      "/"
+    ],
+    "line": [
+      "/",
+      "/meta/"
+    ],
+    "site": [
+      "/",
+      "/content-files/",
+      "/meta/",
       "/site-configuration/"
     ],
     "manager": [
@@ -854,6 +123,11 @@
     ],
     "github": [
       "/",
+      "/site-configuration/"
+    ],
+    "pages": [
+      "/",
+      "/meta/",
       "/site-configuration/"
     ],
     "strives": [
@@ -898,6 +172,9 @@
     "npm": [
       "/"
     ],
+    "serve": [
+      "/"
+    ],
     "visit": [
       "/"
     ],
@@ -908,11 +185,30 @@
     "localhost": [
       "/"
     ],
+    "_content": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "_cfg": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
     "_assets": [
       "/"
     ],
+    "_templates": [
+      "/",
+      "/meta/"
+    ],
     "directories": [
       "/"
+    ],
+    "automatically": [
+      "/",
+      "/meta/"
     ],
     "show": [
       "/"
@@ -963,8 +259,598 @@
       "/",
       "/site-configuration/"
     ],
+    "content": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "types": [
+      "/"
+    ],
+    "page": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "plain": [
+      "/",
+      "/meta/"
+    ],
+    "blog": [
+      "/",
+      "/meta/"
+    ],
+    "posts": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "default": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "markdown": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "md": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "html": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "file": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "directory": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "turned": [
+      "/",
+      "/meta/"
+    ],
+    "index": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "treated": [
+      "/",
+      "/meta/"
+    ],
+    "files": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "archives": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "archived": [
+      "/"
+    ],
+    "date": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "tag": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "assumed": [
+      "/",
+      "/meta/"
+    ],
+    "atomic": [
+      "/",
+      "/meta/"
+    ],
+    "urls": [
+      "/",
+      "/meta/"
+    ],
+    "determined": [
+      "/"
+    ],
+    "path": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "foo": [
+      "/",
+      "/content-files/",
+      "/posts/my-first-post/",
+      "/meta/",
+      "/posts/my-second-post/"
+    ],
+    "url": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "located": [
+      "/"
+    ],
+    "note": [
+      "/",
+      "/meta/"
+    ],
+    "rules": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "precedence": [
+      "/",
+      "/meta/"
+    ],
+    "advanced": [
+      "/",
+      "/meta/"
+    ],
+    "hierarchical": [
+      "/"
+    ],
+    "bar": [
+      "/",
+      "/content-files/",
+      "/posts/my-first-post/",
+      "/meta/",
+      "/posts/my-second-post/"
+    ],
+    "child": [
+      "/"
+    ],
+    "metadata": [
+      "/",
+      "/meta/"
+    ],
+    "title": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "defined": [
+      "/",
+      "/meta/"
+    ],
+    "inserting": [
+      "/",
+      "/meta/"
+    ],
+    "optional": [
+      "/",
+      "/meta/"
+    ],
+    "yaml": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "front": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "matter": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "section": [
+      "/",
+      "/meta/"
+    ],
+    "top": [
+      "/",
+      "/meta/"
+    ],
+    "consists": [
+      "/",
+      "/meta/"
+    ],
+    "dashes": [
+      "/",
+      "/meta/"
+    ],
+    "break": [
+      "/",
+      "/meta/"
+    ],
+    "valid": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "excerpt": [
+      "/",
+      "/meta/"
+    ],
+    "dee": [
+      "/",
+      "/meta/"
+    ],
+    "woot": [
+      "/",
+      "/meta/"
+    ],
+    "woo": [
+      "/",
+      "/meta/"
+    ],
+    "07": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "00": [
+      "/"
+    ],
+    "actual": [
+      "/",
+      "/meta/"
+    ],
+    "begins": [
+      "/",
+      "/meta/"
+    ],
+    "design": [
+      "/",
+      "/meta/"
+    ],
+    "doesn": [
+      "/",
+      "/meta/"
+    ],
+    "care": [
+      "/",
+      "/meta/"
+    ],
+    "assumptions": [
+      "/",
+      "/meta/"
+    ],
+    "values": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "missing": [
+      "/",
+      "/meta/"
+    ],
+    "dasherized": [
+      "/",
+      "/meta/"
+    ],
+    "ucword": [
+      "/",
+      "/meta/"
+    ],
+    "ed": [
+      "/",
+      "/meta/"
+    ],
+    "great": [
+      "/",
+      "/meta/"
+    ],
+    "result": [
+      "/",
+      "/meta/"
+    ],
+    "parsed": [
+      "/",
+      "/meta/"
+    ],
+    "set": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "modified": [
+      "/",
+      "/meta/"
+    ],
+    "time": [
+      "/",
+      "/meta/"
+    ],
+    "parseable": [
+      "/",
+      "/meta/"
+    ],
+    "format": [
+      "/",
+      "/meta/"
+    ],
+    "wrong": [
+      "/",
+      "/meta/"
+    ],
+    "yyyy": [
+      "/",
+      "/meta/"
+    ],
+    "mm": [
+      "/",
+      "/meta/"
+    ],
+    "dd": [
+      "/",
+      "/meta/"
+    ],
+    "hh": [
+      "/",
+      "/meta/"
+    ],
+    "characters": [
+      "/",
+      "/meta/"
+    ],
+    "strip": [
+      "/",
+      "/meta/"
+    ],
+    "tagged": [
+      "/",
+      "/meta/"
+    ],
+    "consecutive": [
+      "/",
+      "/meta/"
+    ],
+    "whitespaces": [
+      "/",
+      "/meta/"
+    ],
+    "converted": [
+      "/",
+      "/meta/"
+    ],
+    "single": [
+      "/",
+      "/meta/"
+    ],
+    "space": [
+      "/",
+      "/meta/"
+    ],
+    "character": [
+      "/",
+      "/meta/"
+    ],
+    "template": [
+      "/",
+      "/meta/"
+    ],
+    "twig": [
+      "/",
+      "/meta/"
+    ],
+    "post": [
+      "/",
+      "/posts/my-first-post/",
+      "/meta/",
+      "/posts/my-second-post/"
+    ],
+    "archive": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "relative": [
+      "/",
+      "/meta/"
+    ],
+    "encounters": [
+      "/",
+      "/meta/"
+    ],
+    "contents": [
+      "/",
+      "/meta/"
+    ],
+    "variety": [
+      "/",
+      "/meta/"
+    ],
+    "generated": [
+      "/",
+      "/meta/"
+    ],
+    "named": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "dated": [
+      "/",
+      "/meta/"
+    ],
+    "july": [
+      "/",
+      "/meta/"
+    ],
+    "quot": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "news": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "flash": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "04": [
+      "/",
+      "/meta/"
+    ],
+    "modifying": [
+      "/",
+      "/meta/"
+    ],
+    "defaults": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "modify": [
+      "/",
+      "/meta/"
+    ],
+    "generates": [
+      "/",
+      "/meta/"
+    ],
+    "globally": [
+      "/",
+      "/meta/"
+    ],
+    "json": [
+      "/",
+      "/content-files/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "case": [
+      "/",
+      "/content-files/",
+      "/meta/"
+    ],
+    "basis": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "posts_per_page": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "paging": [
+      "/",
+      "/meta/"
+    ],
+    "occur": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "display": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "matching": [
+      "/",
+      "/meta/"
+    ],
+    "generate_dates": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "true": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "generate": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "based": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "generate_tags": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "tag_slug": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "slug": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "insert": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "individual": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "page_slug": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "number": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "gt": [
+      "/",
+      "/meta/"
+    ],
+    "false": [
+      "/",
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "structure": [
+      "/",
+      "/meta/"
+    ],
     "running": [
       "/"
+    ],
+    "grunt": [
+      "/",
+      "/site-configuration/"
+    ],
+    "build": [
+      "/",
+      "/content-files/",
+      "/site-configuration/"
     ],
     "_site": [
       "/"
@@ -1023,6 +909,10 @@
     "hand": [
       "/"
     ],
+    "process": [
+      "/",
+      "/content-files/"
+    ],
     "copied": [
       "/"
     ],
@@ -1038,6 +928,15 @@
     "edit": [
       "/",
       "/site-configuration/"
+    ],
+    "config": [
+      "/",
+      "/content-files/",
+      "/site-configuration/"
+    ],
+    "change": [
+      "/",
+      "/content-files/"
     ],
     "processes": [
       "/"
@@ -1125,9 +1024,6 @@
     "copying": [
       "/"
     ],
-    "serve": [
-      "/"
-    ],
     "lt": [
       "/"
     ],
@@ -1145,6 +1041,10 @@
     ],
     "server": [
       "/"
+    ],
+    "data": [
+      "/",
+      "/meta/"
     ],
     "options": [
       "/",
@@ -1201,6 +1101,10 @@
     "script": [
       "/"
     ],
+    "extension": [
+      "/",
+      "/content-files/"
+    ],
     "assets_copy_to_subdir": [
       "/",
       "/site-configuration/"
@@ -1219,6 +1123,10 @@
     ],
     "ico": [
       "/"
+    ],
+    "exist": [
+      "/",
+      "/content-files/"
     ],
     "subfolder": [
       "/"
@@ -1300,12 +1208,116 @@
     "search_path": [
       "/"
     ],
-    "star": [
+    "sta": [
       "/"
+    ],
+    "extensions": [
+      "/content-files/"
+    ],
+    "content_extensions": [
+      "/content-files/"
+    ],
+    "htm": [
+      "/content-files/"
+    ],
+    "recognized": [
+      "/content-files/"
+    ],
+    "conflicts": [
+      "/content-files/"
+    ],
+    "basename": [
+      "/content-files/"
+    ],
+    "appearing": [
+      "/content-files/"
+    ],
+    "wins": [
+      "/content-files/"
+    ],
+    "winner": [
+      "/content-files/"
+    ],
+    "exists": [
+      "/content-files/"
+    ],
+    "dirname": [
+      "/content-files/"
+    ],
+    "level": [
+      "/content-files/"
+    ],
+    "finally": [
+      "/content-files/"
+    ],
+    "win": [
+      "/content-files/"
     ],
     "wow": [
       "/posts/my-first-post/",
       "/posts/my-second-post/"
+    ],
+    "managing": [
+      "/meta/"
+    ],
+    "determines": [
+      "/meta/"
+    ],
+    "resulting": [
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "parent": [
+      "/meta/"
+    ],
+    "children": [
+      "/meta/"
+    ],
+    "evergreen": [
+      "/meta/"
+    ],
+    "existing": [
+      "/meta/",
+      "/site-configuration/"
+    ],
+    "ordered": [
+      "/meta/"
+    ],
+    "some_complex_yaml": [
+      "/meta/"
+    ],
+    "complex": [
+      "/meta/"
+    ],
+    "bring": [
+      "/meta/"
+    ],
+    "destruction": [
+      "/meta/"
+    ],
+    "foes": [
+      "/meta/"
+    ],
+    "personal": [
+      "/meta/"
+    ],
+    "strong": [
+      "/meta/"
+    ],
+    "suits": [
+      "/meta/"
+    ],
+    "humanity": [
+      "/meta/"
+    ],
+    "peace": [
+      "/meta/"
+    ],
+    "speling": [
+      "/meta/"
+    ],
+    "define": [
+      "/meta/"
     ],
     "box": [
       "/site-configuration/"
