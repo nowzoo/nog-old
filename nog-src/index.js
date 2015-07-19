@@ -5,6 +5,7 @@ var program = require('commander');
 
 var serve = require('./serve');
 var lint = require('./lint');
+var push = require('./push');
 
 
 program
@@ -32,6 +33,15 @@ program
     .action(function(){
         process.env.verbose = program.verbose ? true : false;
         lint();
+    });
+
+program
+    .command('push')
+    .description('push the gh-pages branch to github')
+    .option('-v, --verbose', 'verbose output')
+    .action(function(){
+        process.env.verbose = program.verbose ? true : false;
+        push();
     });
 
 
