@@ -14,16 +14,7 @@ var log = require('./log');
 
 module.exports = function(grunt, callback){
 
-
-
-    var git_get_status = require('git-get-status');
-
-
-
-    var orig_dir = process.cwd();
-    var _site_dir = path.join(orig_dir, '_site');
     var temp_dir;
-    var status = false;
     var git_get_origin = require('./git_get_origin');
     var origin;
     var file_list;

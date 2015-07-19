@@ -7,7 +7,7 @@ var fs = require('fs-extra');
 var path = require('path');
 var temp = require('temp').track();
 
-var data = require('../src/data');
+var data = require('../data');
 
 var test_helpers = require('./test_helpers');
 

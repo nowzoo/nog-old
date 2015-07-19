@@ -12,9 +12,9 @@ var yaml = require('js-yaml');
 var S = require('string');
 
 
-var atomic = require('../src/atomic');
-var contents = require('../src/contents');
-var data = require('../src/data');
+var atomic = require('../atomic');
+var contents = require('../contents');
+var data = require('../data');
 
 var test_helpers = require('./test_helpers');
 

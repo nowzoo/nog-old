@@ -10,7 +10,7 @@ var path = require('path');
 var temp = require('temp').track();
 
 var test_helpers = require('./test_helpers');
-var config = require('../src/config');
+var config = require('../config');
 
 describe('config', function(){
 

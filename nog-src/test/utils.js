@@ -1,6 +1,6 @@
 /* jshint expr: true */
 /* jshint node: true */
-var utils = require('../src/utils');
+var utils = require('../utils');
 var expect = require('chai').expect;
 var _ = require('lodash');
 

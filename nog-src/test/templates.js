@@ -7,7 +7,7 @@ var fs = require('fs-extra');
 var path = require('path');
 var temp = require('temp').track();
 
-var templates = require('../src/templates');
+var templates = require('../templates');
 
 var test_helpers = require('./test_helpers');
 
@@ -89,7 +89,7 @@ describe('templates', function() {
             });
         });
         it('should read the defaults/_templates directory correctly', function (done) {
-            templates.read_template_directory(path.join(process.cwd(), 'defaults', '_templates'), function (err, result) {
+            templates.read_template_directory(path.join(process.cwd(), 'nog-src', 'defaults', '_templates'), function (err, result) {
                 expect(result).to.be.an('object');
                 expect(result).to.include.keys(['archive.twig', 'index.twig', 'main.twig', 'page.twig', 'post.twig']);
                 _.each(result, function(p){

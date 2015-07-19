@@ -3,4 +3,4 @@
 /* jshint node: true */
 "use strict";
 
-require('./src/index');
+require('./nog-src/index');

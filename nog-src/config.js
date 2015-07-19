@@ -22,7 +22,7 @@ var read = module.exports.read = function(input_directory, callback){
     async.series(
         [
             function(callback){
-                var config_path = path.join(path.dirname(__dirname), 'defaults', '_cfg', 'site.json');
+                var config_path = path.join(process.cwd(), 'nog-src', 'defaults', '_cfg', 'site.json');
                 log.verbose(colors.gray('\tReading default site.json...'));
                 fs.readJSON(config_path, function(err, result){
                     defaults = result;
