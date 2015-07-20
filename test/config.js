@@ -17,7 +17,7 @@ describe('config', function(){
     describe('#read()', function(){
         var defaults;
         before(function(done){
-            fs.readJSON(path.join(path.dirname(__dirname), 'defaults', '_cfg', 'site.json'), function(err, result){
+            fs.readJSON(path.join(path.dirname(__dirname), '_cfg', 'site.json'), function(err, result){
                 defaults = result;
                 done(err);
             });
@@ -82,7 +82,7 @@ describe('config', function(){
     describe('#merge_config()', function(){
         var defaults;
         before(function(done){
-            fs.readJSON(path.join(path.dirname(__dirname), 'defaults', '_cfg', 'site.json'), function(err, result){
+            fs.readJSON(path.join(path.dirname(__dirname),  '_cfg', 'site.json'), function(err, result){
                 defaults = result;
                 done(err);
             });

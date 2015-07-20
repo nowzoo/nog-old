@@ -33,7 +33,7 @@ var read = module.exports.read = function(input_directory, callback){
                 });
             },
             function(callback){
-                var template_directory = path.join(path.dirname(__dirname), 'defaults', '_templates');
+                var template_directory = path.join(path.dirname(__dirname), '_templates');
                 log.verbose(colors.gray('\tDefault templates...\n'));
                 read_template_directory(template_directory, function(err, result){
                     data.defaults = result;
