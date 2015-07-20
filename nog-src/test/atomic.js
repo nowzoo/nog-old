@@ -752,7 +752,7 @@ describe('atomic', function(){
         it('should return the basename for if title is not set in the meta, with lint', function (done) {
             var absolute_path = path.join(input_directory, '_content', 'no-meta.md');
             atomic.read(build_data, absolute_path, function (err, result) {
-                expect(atomic.get_title(build_data, result)).to.equal('no-meta');
+                expect(atomic.get_title(build_data, result)).to.equal('No meta');
                 expect(result.lint).to.include.keys('title');
                 done();
             });
@@ -760,7 +760,7 @@ describe('atomic', function(){
         it('should return the basename for if title is not set to a string in the meta, with lint', function (done) {
             var absolute_path = path.join(input_directory, '_content', 'bad-meta.md');
             atomic.read(build_data, absolute_path, function (err, result) {
-                expect(atomic.get_title(build_data, result)).to.equal('bad-meta');
+                expect(atomic.get_title(build_data, result)).to.equal('Bad meta');
                 expect(result.lint).to.include.keys('title');
                 done();
             });
@@ -768,7 +768,7 @@ describe('atomic', function(){
         it('should return the basename for if title is set to an empty string in the meta, with lint', function (done) {
             var absolute_path = path.join(input_directory, '_content', 'empty-meta.md');
             atomic.read(build_data, absolute_path, function (err, result) {
-                expect(atomic.get_title(build_data, result)).to.equal('empty-meta');
+                expect(atomic.get_title(build_data, result)).to.equal('Empty meta');
                 expect(result.lint).to.include.keys('title');
                 done();
             });
