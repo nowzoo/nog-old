@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nog | A dead simple site manager for GitHub Pages.</title>
+
+    <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/nog/assets/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/nog/assets/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/nog/assets/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/nog/assets/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/nog/assets/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/nog/assets/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/nog/assets/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/nog/assets/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/nog/assets/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/nog/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="/nog/assets/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="nog/">Nog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="nog/options">Options</a></li>
+        <li><a href="nog/search">Search</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </nav>
+<div class="container">
+
+
+    
+    <div class="row">
+        <div class="col-sm-8">
+            <article>
+                <div>
+                    <h1 id="nog">Nog</h1>
+<p>Nog is a command-line site manager for GitHub Pages.</p>
+<p>It strives to be brutally simple.</p>
+<h3 id="quick-start">Quick Start</h3>
+<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
+<pre><code># clone your fork (replace YOUR_USER)...
+$ git clone git@github.com:YOUR_USER/nog.git
+
+$ cd nog
+
+# install the dependencies...
+$ npm install
+
+# start nog...
+$ ./nog serve
+</code></pre><ul>
+<li>Visit your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</li>
+<li>Make changes in the <code>_content</code>, <code>_cfg</code>, <code>_assets</code> and <code>_templates</code> directories.</li>
+<li>The changes you make will automatically show up on the local site (as long as you&#39;ve got livereload enabled in the browser.)</li>
+</ul>
+<p>When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...</p>
+<pre><code>$ ./nog push
+</code></pre><p>To diagnose any problems:</p>
+<pre><code>$ ./nog lint
+</code></pre><h3 id="content">Content</h3>
+<p>There are three types of content:</p>
+<ul>
+<li>The home page</li>
+<li>Plain pages</li>
+<li>Blog posts</li>
+</ul>
+<p>By default, any Markdown <code>.md</code> or HTML <code>.html</code> file in the <code>_content</code> directory will be turned into one of these three types. A file at <code>_content/index.*</code> will be treated as the home page. Files under the archives directory (by default <code>_content/posts</code>) will be treated as blog posts, and archived by date and tag. All other content files are assumed to be pages.</p>
+<p>Atomic urls are determined by file path.  The content at <code>_content/foo.md</code> will end up having the URL <code>/foo/</code>. If the content file is located at <code>_content/foo/index.html</code>, then the URL will likewise be <code>/foo/</code>.</p>
+<p>Note the following rules:</p>
+<ul>
+<li>Index files take precedence: <code>help/index.md</code> will be used and <code>help.md</code> will be ignored.</li>
+<li>By default Markdown files take precedence over HTML files: <code>help/advanced.md</code> will be used instead of <code>help/advanced.html</code>.</li>
+</ul>
+<p>Both pages and posts are hierarchical. For example, the content at <code>_content/foo/bar.md</code> will be the child of the content at <code>_content/foo/index.md</code>.</p>
+<h4 id="content-metadata">Content Metadata</h4>
+<p>Content metadata, such as the title, is defined by inserting an optional YAML front matter section at the top of your content  files. The front matter section consists of:</p>
+<ul>
+<li>three dashes <code>---</code> and a line break</li>
+<li>some YAML</li>
+<li>three dashes <code>---</code> and a line break</li>
+</ul>
+<p>For example, a valid page file in Markdown might look like this:</p>
+<pre><code>---
+title: My Valid Page
+excerpt: Who dee woot who dee woo too?
+date: &#39;2015/07/19  16:00&#39;
+---
+# The Actual Content Begins Here
+</code></pre><p>By default and design, Nog doesn&#39;t care very much or make assumptions about what a page&#39;s metadata has or doesn&#39;t have. That said, Nog provides the following sensible default values:</p>
+<ul>
+<li><p><code>title</code></p>
+<p>If missing, Nog uses the humanized name of the file. Thus <code>my-great-page</code> will result in a title of My great page.</p>
+</li>
+<li><p><code>date</code></p>
+<p>If missing (or if the value can&#39;t be parsed as a Date) this is set to the modified time of the file. You can use any  format parseable by moment.js, but you can&#39;t go wrong with <code>YYYY/MM/DD HH:mm</code>.</p>
+</li>
+<li><p><code>excerpt</code></p>
+<p>If missing, Nog uses the first 255 characters of the strip-tagged content, with all consecutive whitespaces converted to a single space character.</p>
+</li>
+<li><p><code>template</code></p>
+<p>If missing, assumed to be <code>page.twig</code> if the content is a plain page, <code>post.twig</code> if it&#39;s a blog post or <code>archive.twig</code> if it&#39;s an archive of blog posts. This value should always be relative to the <code>_templates</code> directory.</p>
+</li>
+</ul>
+<h3 id="site-config">Site Config</h3>
+                </div>
+            </article>
+        </div>
+    </div>
+
+
+</div>
+
+  <p>Prefix: nog</p>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
