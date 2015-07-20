@@ -1,5 +1,5 @@
 {% extends 'main.twig' %}
-{% block head_title %}{{ post.title }} | {{ post.title }}{% endblock %}
+{% block head_title %}{{ post.title }} | {{ site.title }}{% endblock %}
 {% block body %}
 
     <h1 class="page-header">
@@ -19,8 +19,15 @@
                 <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
                     <a href="{{ site_root }}site-configuration/">Site Configuration</a>
                 </li>
-                <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}site-configuration/">Site Configuration</a>
+                <li{% if post.uri === 'content' %} class="active"{% endif %}>
+                    <a href="{{ site_root }}content/">Content</a>
+                </li>
+                <li{% if post.uri === 'templates' %} class="active"{% endif %}>
+                    <a href="{{ site_root }}templates/">Templates</a>
+                </li>
+
+                <li{% if post.uri === 'assets' %} class="active"{% endif %}>
+                    <a href="{{ site_root }}assets/">Assets</a>
                 </li>
             </ul>
 

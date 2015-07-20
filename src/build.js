@@ -352,7 +352,7 @@ var write_search_index = function(build_data, output_directory, changed_uris, ca
     var p;
     var slugs = ['search.json'];
     var uri;
-    if (0 < build_data.config.prefix.length){
+    if (0 < build_data.config.prefix.length && ! build_data.is_build_public){
         slugs.unshift(build_data.config.prefix);
     }
     uri = '/' + slugs.join('/');
