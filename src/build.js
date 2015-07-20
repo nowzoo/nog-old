@@ -123,9 +123,7 @@ var write_content = module.exports.write_content = function(build_data, content,
     var rendered;
     var start = moment();
     var slugs = uri.split('/');
-    if (0 < build_data.config.prefix.length){
-        slugs.unshift(build_data.config.prefix);
-    }
+
 
     log.verbose(colors.gray(sprintf('\tProcessing %s... \n', content.relative_path)));
     changed_uris.push(atomic.get_relative_url(build_data, content));
@@ -136,7 +134,7 @@ var write_content = module.exports.write_content = function(build_data, content,
     } else {
         template = atomic.get_template(build_data, content);
         rel_template = path.relative(build_data.input_directory, template);
-        p = path.join(output_directory, slugs.join(path.sep), 'index.html');
+        p = path.join(output_directory, atomic.get_output_path(build_data, content));
         rel_p = path.relative(output_directory, p);
         passed = {
             post: content,
@@ -279,7 +277,7 @@ var copy_assets = function(build_data, input_directory, output_directory, change
                     dst_base_slugs.push(build_data.config.assets_copy_to_subdir);
                 }
                 var dst_base = output_directory;
-                if (0 < dst_base_slugs.length){
+                if (0 < dst_base_slugs.length && ! build_data.is_build_public){
                     dst_base = path.join(dst_base, dst_base_slugs.join(path.sep));
                 }
                 async.eachSeries(

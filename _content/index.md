@@ -1,5 +1,5 @@
 ---
-title: Home Page
+title: Nog
 ---
 
 Nog is a command-line site manager for GitHub Pages.

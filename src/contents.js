@@ -45,8 +45,8 @@ var read = module.exports.read = function(build_data,  callback){
 var init_archives = module.exports.init_archives = function(build_data){
     var archives;
     var slugs = [build_data.config.archives_directory];
-    if (0 < build_data.config.prefix.length){
-        slugs.unshift(build_data.config.prefix)
+    if (0 < build_data.config.prefix.length && ! build_data.is_build_public){
+        slugs.unshift(build_data.config.prefix);
     }
     var relative_url = '/' + slugs.join('/') + '/';
 

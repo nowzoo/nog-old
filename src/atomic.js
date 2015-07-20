@@ -66,6 +66,17 @@ var get_uri = module.exports.get_uri = function(build_data, content){
 
 };
 
+var get_output_path = module.exports.get_output_path = function(build_data, content){
+    var slugs = get_uri(build_data, content).split('/');
+    slugs.push('index.html');
+    if (! build_data.is_build_public){
+        if (0 < build_data.config.prefix.length){
+            slugs.unshift(build_data.config.prefix)
+        }
+    }
+    return slugs.join(path.sep);
+};
+
 
 
 var get_type = module.exports.get_type = function(build_data, content){
@@ -296,6 +307,7 @@ var get_absolute_url = module.exports.get_absolute_url = function(build_data, co
 
 
 
+
 var get_is_ignored_bad_uri = module.exports.get_is_ignored_bad_uri = function(build_data, content){
     var ignored;
     var uri = get_uri(build_data, content);
@@ -450,6 +462,8 @@ var get_children = module.exports.get_children = function(build_data, content){
     });
     return children;
 };
+
+
 
 var populate_data = module.exports.populate_data = function(build_data, content){
     content.title = get_title(build_data, content);
