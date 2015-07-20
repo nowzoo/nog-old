@@ -3,14 +3,8 @@
     "/nog/": {
       "relative_url": "/nog/",
       "absolute_url": "http://nowzoo.github.io/nog/",
-      "title": "Home Page",
+      "title": "Nog",
       "excerpt": "Nog is a command-line site manager for GitHub Pages.\nIt strives to be brutally simple.\nQuick Start\n# install nog globally...\n$ npm install nog\n\n# make a directory and cd into it...\n$ mkdir my-site &amp;&amp; cd my-site\n\n# start the server...\n$ nog serve\n\n"
-    },
-    "/nog/meta/": {
-      "relative_url": "/nog/meta/",
-      "absolute_url": "http://nowzoo.github.io/nog/meta/",
-      "title": "Page Metadata",
-      "excerpt": "How to define metadata for Nog pages using YAML front matter."
     },
     "/nog/content-files/": {
       "relative_url": "/nog/content-files/",
@@ -18,17 +12,23 @@
       "title": "Content files",
       "excerpt": "Content File Rules\nValid Extensions\nNog will only process files with the extensions found in config.build.content_extensions.  The default values are:\n// site config...\n{\n  ...\n  &quot;build&quot;: {\n    ...\n    &quot;content_extensions&quot;: [&quot;.md&"
     },
-    "/nog/posts/my-first-post/": {
-      "relative_url": "/nog/posts/my-first-post/",
-      "absolute_url": "http://nowzoo.github.io/nog/posts/my-first-post/",
-      "title": "My First Post",
-      "excerpt": "Wow"
+    "/nog/meta/": {
+      "relative_url": "/nog/meta/",
+      "absolute_url": "http://nowzoo.github.io/nog/meta/",
+      "title": "Page Metadata",
+      "excerpt": "How to define metadata for Nog pages using YAML front matter."
     },
     "/nog/site-configuration/": {
       "relative_url": "/nog/site-configuration/",
       "absolute_url": "http://nowzoo.github.io/nog/site-configuration/",
       "title": "Site Configuration",
       "excerpt": "Edit your site's configuration by modifying _cfg/site.json."
+    },
+    "/nog/posts/my-first-post/": {
+      "relative_url": "/nog/posts/my-first-post/",
+      "absolute_url": "http://nowzoo.github.io/nog/posts/my-first-post/",
+      "title": "My First Post",
+      "excerpt": "Wow"
     },
     "/nog/posts/my-second-post/": {
       "relative_url": "/nog/posts/my-second-post/",
@@ -84,18 +84,10 @@
     "3000": [
       "/nog/"
     ],
-    "home": [
-      "/nog/"
-    ],
-    "page": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
     "nog": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "command": [
@@ -107,8 +99,8 @@
     ],
     "site": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "manager": [
@@ -149,8 +141,8 @@
     ],
     "directory": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "cd": [
@@ -180,14 +172,14 @@
     ],
     "_content": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "_cfg": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "_assets": [
@@ -256,12 +248,20 @@
     ],
     "content": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "types": [
       "/nog/"
+    ],
+    "home": [
+      "/nog/"
+    ],
+    "page": [
+      "/nog/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
     ],
     "plain": [
       "/nog/",
@@ -279,32 +279,32 @@
     ],
     "default": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "markdown": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "md": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "html": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "file": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "turned": [
@@ -313,8 +313,8 @@
     ],
     "index": [
       "/nog/",
-      "/nog/meta/",
-      "/nog/content-files/"
+      "/nog/content-files/",
+      "/nog/meta/"
     ],
     "treated": [
       "/nog/",
@@ -322,8 +322,8 @@
     ],
     "files": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "archives": [
@@ -366,10 +366,10 @@
     ],
     "foo": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
-      "/nog/posts/my-first-post/",
+      "/nog/meta/",
       "/nog/site-configuration/",
+      "/nog/posts/my-first-post/",
       "/nog/posts/my-second-post/"
     ],
     "url": [
@@ -386,8 +386,8 @@
     ],
     "rules": [
       "/nog/",
-      "/nog/meta/",
-      "/nog/content-files/"
+      "/nog/content-files/",
+      "/nog/meta/"
     ],
     "precedence": [
       "/nog/",
@@ -403,8 +403,8 @@
     ],
     "bar": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/posts/my-first-post/",
       "/nog/posts/my-second-post/"
     ],
@@ -466,8 +466,8 @@
     ],
     "valid": [
       "/nog/",
-      "/nog/meta/",
-      "/nog/content-files/"
+      "/nog/content-files/",
+      "/nog/meta/"
     ],
     "excerpt": [
       "/nog/",
@@ -520,8 +520,8 @@
     ],
     "values": [
       "/nog/",
-      "/nog/meta/",
-      "/nog/content-files/"
+      "/nog/content-files/",
+      "/nog/meta/"
     ],
     "missing": [
       "/nog/",
@@ -645,8 +645,8 @@
     ],
     "archive": [
       "/nog/",
-      "/nog/meta/",
       "/nog/content-files/",
+      "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "relative": [
@@ -655,6 +655,87 @@
     ],
     "config": [
       "/nog/",
+      "/nog/content-files/",
+      "/nog/site-configuration/"
+    ],
+    "extensions": [
+      "/nog/content-files/",
+      "/nog/site-configuration/"
+    ],
+    "process": [
+      "/nog/content-files/"
+    ],
+    "build": [
+      "/nog/content-files/"
+    ],
+    "content_extensions": [
+      "/nog/content-files/",
+      "/nog/site-configuration/"
+    ],
+    "quot": [
+      "/nog/content-files/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "htm": [
+      "/nog/content-files/",
+      "/nog/site-configuration/"
+    ],
+    "change": [
+      "/nog/content-files/"
+    ],
+    "recognized": [
+      "/nog/content-files/"
+    ],
+    "json": [
+      "/nog/content-files/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "conflicts": [
+      "/nog/content-files/"
+    ],
+    "basename": [
+      "/nog/content-files/",
+      "/nog/site-configuration/"
+    ],
+    "exist": [
+      "/nog/content-files/"
+    ],
+    "extension": [
+      "/nog/content-files/"
+    ],
+    "appearing": [
+      "/nog/content-files/"
+    ],
+    "wins": [
+      "/nog/content-files/"
+    ],
+    "case": [
+      "/nog/content-files/",
+      "/nog/meta/"
+    ],
+    "winner": [
+      "/nog/content-files/"
+    ],
+    "named": [
+      "/nog/content-files/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "exists": [
+      "/nog/content-files/"
+    ],
+    "dirname": [
+      "/nog/content-files/"
+    ],
+    "level": [
+      "/nog/content-files/"
+    ],
+    "finally": [
+      "/nog/content-files/"
+    ],
+    "win": [
       "/nog/content-files/",
       "/nog/site-configuration/"
     ],
@@ -675,11 +756,6 @@
     "children": [
       "/nog/meta/"
     ],
-    "quot": [
-      "/nog/meta/",
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
     "evergreen": [
       "/nog/meta/"
     ],
@@ -689,11 +765,6 @@
     ],
     "ordered": [
       "/nog/meta/"
-    ],
-    "named": [
-      "/nog/meta/",
-      "/nog/content-files/",
-      "/nog/site-configuration/"
     ],
     "variety": [
       "/nog/meta/"
@@ -791,15 +862,6 @@
     "generates": [
       "/nog/meta/"
     ],
-    "json": [
-      "/nog/meta/",
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
-    "case": [
-      "/nog/meta/",
-      "/nog/content-files/"
-    ],
     "basis": [
       "/nog/meta/"
     ],
@@ -865,72 +927,6 @@
     ],
     "define": [
       "/nog/meta/"
-    ],
-    "extensions": [
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
-    "process": [
-      "/nog/content-files/"
-    ],
-    "build": [
-      "/nog/content-files/"
-    ],
-    "content_extensions": [
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
-    "htm": [
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
-    "change": [
-      "/nog/content-files/"
-    ],
-    "recognized": [
-      "/nog/content-files/"
-    ],
-    "conflicts": [
-      "/nog/content-files/"
-    ],
-    "basename": [
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
-    "exist": [
-      "/nog/content-files/"
-    ],
-    "extension": [
-      "/nog/content-files/"
-    ],
-    "appearing": [
-      "/nog/content-files/"
-    ],
-    "wins": [
-      "/nog/content-files/"
-    ],
-    "winner": [
-      "/nog/content-files/"
-    ],
-    "exists": [
-      "/nog/content-files/"
-    ],
-    "dirname": [
-      "/nog/content-files/"
-    ],
-    "level": [
-      "/nog/content-files/"
-    ],
-    "finally": [
-      "/nog/content-files/"
-    ],
-    "win": [
-      "/nog/content-files/",
-      "/nog/site-configuration/"
-    ],
-    "wow": [
-      "/nog/posts/my-first-post/",
-      "/nog/posts/my-second-post/"
     ],
     "configuration": [
       "/nog/site-configuration/"
@@ -1114,6 +1110,10 @@
     ],
     "override": [
       "/nog/site-configuration/"
+    ],
+    "wow": [
+      "/nog/posts/my-first-post/",
+      "/nog/posts/my-second-post/"
     ]
   }
 }
