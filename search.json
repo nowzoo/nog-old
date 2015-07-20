@@ -18,17 +18,17 @@
       "title": "Page Metadata",
       "excerpt": "How to define metadata for Nog pages using YAML front matter."
     },
-    "/nog/site-configuration/": {
-      "relative_url": "/nog/site-configuration/",
-      "absolute_url": "http://nowzoo.github.io/nog/site-configuration/",
-      "title": "Site Configuration",
-      "excerpt": "Edit your site's configuration by modifying _cfg/site.json."
-    },
     "/nog/posts/my-first-post/": {
       "relative_url": "/nog/posts/my-first-post/",
       "absolute_url": "http://nowzoo.github.io/nog/posts/my-first-post/",
       "title": "My First Post",
       "excerpt": "Wow"
+    },
+    "/nog/site-configuration/": {
+      "relative_url": "/nog/site-configuration/",
+      "absolute_url": "http://nowzoo.github.io/nog/site-configuration/",
+      "title": "Site Configuration",
+      "excerpt": "Edit your site's configuration by modifying _cfg/site.json."
     },
     "/nog/posts/my-second-post/": {
       "relative_url": "/nog/posts/my-second-post/",
@@ -368,8 +368,8 @@
       "/nog/",
       "/nog/content-files/",
       "/nog/meta/",
-      "/nog/site-configuration/",
       "/nog/posts/my-first-post/",
+      "/nog/site-configuration/",
       "/nog/posts/my-second-post/"
     ],
     "url": [
@@ -928,6 +928,10 @@
     "define": [
       "/nog/meta/"
     ],
+    "wow": [
+      "/nog/posts/my-first-post/",
+      "/nog/posts/my-second-post/"
+    ],
     "configuration": [
       "/nog/site-configuration/"
     ],
@@ -1110,10 +1114,6 @@
     ],
     "override": [
       "/nog/site-configuration/"
-    ],
-    "wow": [
-      "/nog/posts/my-first-post/",
-      "/nog/posts/my-second-post/"
     ]
   }
 }
