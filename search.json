@@ -6,6 +6,12 @@
       "title": "Content files",
       "excerpt": "Content File Rules\nValid Extensions\nNog will only process files with the extensions found in config.build.content_extensions.  The default values are:\n// site config...\n{\n  ...\n  &quot;build&quot;: {\n    ...\n    &quot;content_extensions&quot;: [&quot;.md&"
     },
+    "/nog/content/": {
+      "relative_url": "/nog/content/",
+      "absolute_url": "http://nowzoo.github.io/nog/content/",
+      "title": "Content",
+      "excerpt": "There are three types of content:\n\nThe home page\nPlain pages\nBlog posts\n\nBy default, any Markdown .md or HTML .html file in the _content directory will be turned into one of these three types. A file at _content/index.* will be treated as the home page. F"
+    },
     "/nog/": {
       "relative_url": "/nog/",
       "absolute_url": "http://nowzoo.github.io/nog/",
@@ -62,22 +68,23 @@
       "/nog/meta/"
     ],
     "16": [
-      "/nog/"
+      "/nog/content/"
     ],
     "19": [
-      "/nog/"
+      "/nog/content/"
     ],
     "39": [
+      "/nog/content/",
       "/nog/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "255": [
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/"
     ],
     "2015": [
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
@@ -86,30 +93,31 @@
     ],
     "content": [
       "/nog/content-files/",
+      "/nog/content/",
       "/nog/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "files": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "file": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "rules": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/"
     ],
     "valid": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/"
     ],
     "extensions": [
@@ -118,6 +126,7 @@
     ],
     "nog": [
       "/nog/content-files/",
+      "/nog/content/",
       "/nog/",
       "/nog/meta/",
       "/nog/site-configuration/"
@@ -139,13 +148,13 @@
     ],
     "default": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "values": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/"
     ],
     "site": [
@@ -161,19 +170,19 @@
     ],
     "md": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "markdown": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "html": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
@@ -210,19 +219,21 @@
     ],
     "directory": [
       "/nog/content-files/",
+      "/nog/content/",
       "/nog/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "_content": [
       "/nog/content-files/",
+      "/nog/content/",
       "/nog/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
     "foo": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/posts/my-first-post/",
       "/nog/posts/my-second-post/",
@@ -230,7 +241,7 @@
     ],
     "bar": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/posts/my-first-post/",
       "/nog/posts/my-second-post/"
@@ -258,12 +269,12 @@
     ],
     "index": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/"
     ],
     "archive": [
       "/nog/content-files/",
-      "/nog/",
+      "/nog/content/",
       "/nog/meta/",
       "/nog/site-configuration/"
     ],
@@ -283,12 +294,347 @@
       "/nog/content-files/",
       "/nog/site-configuration/"
     ],
-    "command": [
-      "/nog/"
+    "types": [
+      "/nog/content/"
     ],
-    "line": [
+    "home": [
+      "/nog/content/"
+    ],
+    "page": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "plain": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "pages": [
+      "/nog/content/",
       "/nog/",
       "/nog/meta/"
+    ],
+    "blog": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "posts": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "turned": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "treated": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "archives": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "archived": [
+      "/nog/content/"
+    ],
+    "date": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "tag": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "assumed": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "atomic": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "urls": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "determined": [
+      "/nog/content/"
+    ],
+    "path": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "url": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "located": [
+      "/nog/content/"
+    ],
+    "note": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "precedence": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "advanced": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "hierarchical": [
+      "/nog/content/"
+    ],
+    "child": [
+      "/nog/content/"
+    ],
+    "metadata": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "title": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "defined": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "inserting": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "optional": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "yaml": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "front": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "matter": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "section": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "top": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "consists": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "dashes": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "line": [
+      "/nog/content/",
+      "/nog/",
+      "/nog/meta/"
+    ],
+    "break": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "excerpt": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "dee": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "woot": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "woo": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "07": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "00": [
+      "/nog/content/"
+    ],
+    "actual": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "begins": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "design": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "doesn": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "care": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "assumptions": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "missing": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "humanized": [
+      "/nog/content/"
+    ],
+    "great": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "result": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "parsed": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "set": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "modified": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "time": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "format": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "parseable": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "moment": [
+      "/nog/content/",
+      "/nog/site-configuration/"
+    ],
+    "js": [
+      "/nog/content/",
+      "/nog/site-configuration/"
+    ],
+    "wrong": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "yyyy": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/site-configuration/"
+    ],
+    "mm": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "dd": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "hh": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "characters": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "strip": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "tagged": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "consecutive": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "whitespaces": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "converted": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "single": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "space": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "character": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "template": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "twig": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "post": [
+      "/nog/content/",
+      "/nog/meta/",
+      "/nog/posts/my-first-post/",
+      "/nog/posts/my-second-post/"
+    ],
+    "relative": [
+      "/nog/content/",
+      "/nog/meta/"
+    ],
+    "_templates": [
+      "/nog/content/",
+      "/nog/",
+      "/nog/meta/"
+    ],
+    "command": [
+      "/nog/"
     ],
     "manager": [
       "/nog/"
@@ -296,10 +642,6 @@
     "github": [
       "/nog/",
       "/nog/site-configuration/"
-    ],
-    "pages": [
-      "/nog/",
-      "/nog/meta/"
     ],
     "strives": [
       "/nog/"
@@ -354,10 +696,6 @@
     "_assets": [
       "/nog/",
       "/nog/site-configuration/"
-    ],
-    "_templates": [
-      "/nog/",
-      "/nog/meta/"
     ],
     "directories": [
       "/nog/"
@@ -414,330 +752,6 @@
     "lint": [
       "/nog/",
       "/nog/site-configuration/"
-    ],
-    "types": [
-      "/nog/"
-    ],
-    "home": [
-      "/nog/"
-    ],
-    "page": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "plain": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "blog": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "posts": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "turned": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "treated": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "archives": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "archived": [
-      "/nog/"
-    ],
-    "date": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "tag": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "assumed": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "atomic": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "urls": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "determined": [
-      "/nog/"
-    ],
-    "path": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "url": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "located": [
-      "/nog/"
-    ],
-    "note": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "precedence": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "advanced": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "hierarchical": [
-      "/nog/"
-    ],
-    "child": [
-      "/nog/"
-    ],
-    "metadata": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "title": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "defined": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "inserting": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "optional": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "yaml": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "front": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "matter": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "section": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "top": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "consists": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "dashes": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "break": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "excerpt": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "dee": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "woot": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "woo": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "07": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "00": [
-      "/nog/"
-    ],
-    "actual": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "begins": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "design": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "doesn": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "care": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "assumptions": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "missing": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "humanized": [
-      "/nog/"
-    ],
-    "great": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "result": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "parsed": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "set": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "modified": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "time": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "format": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "parseable": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "moment": [
-      "/nog/",
-      "/nog/site-configuration/"
-    ],
-    "js": [
-      "/nog/",
-      "/nog/site-configuration/"
-    ],
-    "wrong": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "yyyy": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/site-configuration/"
-    ],
-    "mm": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "dd": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "hh": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "characters": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "strip": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "tagged": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "consecutive": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "whitespaces": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "converted": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "single": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "space": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "character": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "template": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "twig": [
-      "/nog/",
-      "/nog/meta/"
-    ],
-    "post": [
-      "/nog/",
-      "/nog/meta/",
-      "/nog/posts/my-first-post/",
-      "/nog/posts/my-second-post/"
-    ],
-    "relative": [
-      "/nog/",
-      "/nog/meta/"
     ],
     "managing": [
       "/nog/meta/"
