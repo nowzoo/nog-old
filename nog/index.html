@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nog | A dead simple site manager for GitHub Pages.</title>
+    <title>Nog | A site manager for GitHub Pages.</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
 
@@ -13,7 +13,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/nog/assets/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/nog/assets/favicons/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/nog/assets/favicons/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/nog/assets/favicons/apple-touch-icon-76x76.png">
@@ -44,7 +44,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="nog/">Nog</a>
+      <a class="navbar-brand" href="/nog/">Nog</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -79,25 +79,25 @@
 
 
     
+
+    <h1 class="page-header">
+        Home Page
+    </h1>
     <div class="row">
         <div class="col-sm-8">
             <article>
                 <div>
-                    <h1 id="nog">Nog</h1>
-<p>Nog is a command-line site manager for GitHub Pages.</p>
+                    <p>Nog is a command-line site manager for GitHub Pages.</p>
 <p>It strives to be brutally simple.</p>
 <h3 id="quick-start">Quick Start</h3>
-<p>First, <a href="https://github.com/nowzoo/nog#fork-destination-box">fork your own Nog</a>.</p>
-<pre><code># clone your fork (replace YOUR_USER)...
-$ git clone git@github.com:YOUR_USER/nog.git
+<pre><code># install nog globally...
+$ npm install nog
 
-$ cd nog
+# make a directory and cd into it...
+$ mkdir my-site &amp;&amp; cd my-site
 
-# install the dependencies...
-$ npm install
-
-# start nog...
-$ ./nog serve
+# start the server...
+$ nog serve
 </code></pre><ul>
 <li>Visit your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</li>
 <li>Make changes in the <code>_content</code>, <code>_cfg</code>, <code>_assets</code> and <code>_templates</code> directories.</li>
@@ -155,12 +155,22 @@ date: &#39;2015/07/19  16:00&#39;
                 </div>
             </article>
         </div>
+        <div class="col-sm-4">
+
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a href="/nog/site-configuration/">Site Configuration</a>
+                </li>
+                <li>
+                    <a href="/nog/site-configuration/">Site Configuration</a>
+                </li>
+            </ul>
+
+        </div>
     </div>
 
 
 </div>
-
-  <p>Prefix: nog</p>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
