@@ -1,8 +1,8 @@
 {
   "title": "Nog",
   "tagline": "A site manager for GitHub Pages.",
-  "url": "http://nowzoo.com",
-  "prefix": "",
+  "url": "http://nowzoo.github.io",
+  "prefix": "nog",
   "excerpt_length": 255,
   "archives_title": "Posts",
   "archives_directory": "posts",

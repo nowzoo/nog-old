@@ -140,7 +140,8 @@ var write_content = module.exports.write_content = function(build_data, content,
         rel_p = path.relative(output_directory, p);
         passed = {
             post: content,
-            site: build_data.config
+            site: build_data.config,
+            site_root: 0 < build_data.config.prefix.length ? '/' + build_data.config.prefix + '/' : '/'
         };
         async.series(
             [
@@ -221,7 +222,9 @@ var write_archive = module.exports.write_archive = function(build_data, archive,
         passed = {
             archive: archive,
             page: page,
-            site: build_data.config
+            site: build_data.config,
+            site_root: 0 < build_data.config.prefix.length ? '/' + build_data.config.prefix + '/' : '/'
+
         };
         p = path.join(output_directory, page.slugs.join(path.sep), 'index.html');
         async.series(

@@ -18,35 +18,43 @@ module.exports = function (options) {
     var ncp = require('ncp').ncp;
 
 
-
+    var log = require('./log');
 
 
     var start = moment();
 
     var dirs = ['_assets', '_cfg', '_content', '_templates'];
 
-    log( colors.bold.blue('Initializing Nog...\n'));
+    log(colors.bold.blue('\nInitializing Nog...\n'));
 
 
-    async.eachSeries(
+    async.series(
 
         [
             function (callback) {
 
                 var extant = [];
-                async.eachSeries(dirs, function(d, callback){
-                    var p = path.join(process.cwd(), d);
-                    fs.exists(p, function(exists){
-                        if (exists) extant.push(d);
-                        callback(null);
-                    });
-                }, function(){
-                    var err = null;
-                    if(0 < extant.length){
-                        err = new Error('Sorry. Cannot do that. Existing directories would be overwritten: ' + extant.join(', ') + '. Delete these direcories by hand if you mean to overwrite them.');
+                async.eachSeries(
+                    dirs,
+                    function(d, callback){
+                        var p = path.join(process.cwd(), d);
+                        fs.exists(p, function(exists){
+                            if (exists) extant.push(d);
+                            callback(null);
+                        });
+                    },
+                    function(){
+                        var err = null;
+                        if(0 < extant.length){
+                            err = new Error(
+                                'Sorry. Cannot do that. Existing directories would be overwritten: ' +
+                                extant.join(', ') +
+                                '. Delete these directories by hand if you really mean to overwrite them.'
+                            );
+                        }
+                        callback(err);
                     }
-                    callback(err);
-                });
+                );
             },
 
             function (callback) {
@@ -62,15 +70,11 @@ module.exports = function (options) {
 
         function(err){
             if (! err){
-                log('\n', colors.bold.blue(sprintf('Nog initialized in %ss. ^C to stop.\n\n', (moment().valueOf() - start.valueOf())/1000)), '\n');
-
+                log('\n', colors.bold.blue(sprintf('Nog initialized in %ss.\n\n', (moment().valueOf() - start.valueOf())/1000)), '\n');
 
             } else {
-                log('\n', colors.red.bold(err), '\n');
-                process.exit(1);
+                log('\n', colors.red.bold(err), '\n\n');
             }
-
-
         }
     )
 };
