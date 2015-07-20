@@ -1,12 +1,30 @@
 {% extends 'main.twig' %}
 {% block head_title %}{{ post.title }} | {{ post.title }}{% endblock %}
 {% block body %}
-    <article>
-        <header class="page-header">
-            <h1>{{ post.title }}</h1>
-        </header>
-        <div>
-            {% autoescape false %}{{ post.content }}{% endautoescape %}
+
+    <h1 class="page-header">
+        {{ post.title }}
+    </h1>
+    <div class="row">
+        <div class="col-sm-8">
+            <article>
+                <div>
+                    {% autoescape false %}{{ post.content }}{% endautoescape %}
+                </div>
+            </article>
         </div>
-    </article>
+        <div class="col-sm-4">
+
+            <ul class="nav nav-pills nav-stacked">
+                <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
+                    <a href="{{ site_root }}site-configuration/">Site Configuration</a>
+                </li>
+                <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
+                    <a href="{{ site_root }}site-configuration/">Site Configuration</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,14 +1,3 @@
-{% extends 'main.twig' %}
+{% extends 'page.twig' %}
 {% block head_title %}{{ site.title }} | {{ site.tagline }}{% endblock %}
-{% block body %}
-    <div class="row">
-        <div class="col-sm-8">
-            <article>
-                <div>
-                    {% autoescape false %}{{ post.content }}{% endautoescape %}
-                </div>
-            </article>
-        </div>
-    </div>
 
-{% endblock %}

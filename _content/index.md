@@ -2,7 +2,6 @@
 title: Home Page
 ---
 
-# Nog
 Nog is a command-line site manager for GitHub Pages.
 
 It strives to be brutally simple.
@@ -10,22 +9,17 @@ It strives to be brutally simple.
 
 ### Quick Start
 
-First, [fork your own Nog](https://github.com/nowzoo/nog#fork-destination-box).
 
 ```
-# clone your fork (replace YOUR_USER)...
-$ git clone git@github.com:YOUR_USER/nog.git
+# install nog globally...
+$ npm install nog
 
-$ cd nog
+# make a directory and cd into it...
+$ mkdir my-site && cd my-site
 
-# install the dependencies...
-$ npm install
-
-# start nog...
-$ ./nog serve
-
+# start the server...
+$ nog serve
 ```
-
 - Visit your site at <http://localhost:3000/nog/>.
 - Make changes in the `_content`, `_cfg`, `_assets` and `_templates` directories.
 - The changes you make will automatically show up on the local site (as long as you've got livereload enabled in the browser.)
