@@ -25,6 +25,7 @@ var build = module.exports.build = function(is_build_public, input_directory, ou
     var files;
     var build_data;
     var start = moment();
+    var changed_uris = [];
 
     log.verbose(colors.gray.bold(sprintf('\nBuilding the site...\n')));
     log.verbose(colors.gray(sprintf('\tPublic build: %s\n', is_build_public)));
@@ -49,10 +50,7 @@ var build = module.exports.build = function(is_build_public, input_directory, ou
                 });
             },
 
-            //delete the existing files...
-            function(callback){
-                remove_old_files(output_directory, callback);
-            },
+
 
             //get the data...
             function(callback){
@@ -61,40 +59,51 @@ var build = module.exports.build = function(is_build_public, input_directory, ou
                     callback(err);
                 });
             },
+
+            //delete the existing files...
+            function(callback){
+                remove_old_files(build_data, output_directory, changed_uris, callback);
+            },
+
             //write the atomic contents...
             function(callback){
-                write_contents(build_data, output_directory, callback);
+                write_contents(build_data, output_directory, changed_uris, callback);
             },
             //write the archives...
             function(callback){
 
-                write_archives(build_data, output_directory, callback);
+                write_archives(build_data, output_directory, changed_uris, callback);
             },
 
             //copy _assets...
             function(callback){
-                copy_assets(build_data, input_directory, output_directory, callback);
+                copy_assets(build_data, input_directory, output_directory, changed_uris, callback);
             },
 
             //write search index...
             function(callback){
-                write_search_index(build_data, output_directory, callback);
+                write_search_index(build_data, output_directory, changed_uris, callback);
+            },
+
+            //write the .built.json file...
+            function(callback){
+                write_built(build_data, output_directory, callback);
             }
         ],
         function (err) {
             if (! err){
                 log.verbose(colors.gray.bold(sprintf('\nSite built in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
             }
-            callback(err);
+            callback(err, changed_uris);
         }
     );
 };
 
-var write_contents = module.exports.write_contents = function(build_data, output_directory, callback){
+var write_contents = module.exports.write_contents = function(build_data, output_directory, changed_uris, callback){
     var start = moment();
     log.verbose(colors.gray.bold('\nWriting atomic content... \n'));
     async.eachSeries(build_data.contents, function(content, callback){
-        write_content(build_data, content, output_directory, callback);
+        write_content(build_data, content, output_directory, changed_uris, callback);
     }, function(err){
         if (! err){
             log.verbose('\t', colors.gray(sprintf('Done writing atomic content in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
@@ -103,17 +112,23 @@ var write_contents = module.exports.write_contents = function(build_data, output
     });
 };
 
-var write_content = module.exports.write_content = function(build_data, content, output_directory, callback){
+var write_content = module.exports.write_content = function(build_data, content, output_directory, changed_uris, callback){
     var rel_p;
     var p;
-    var uri;
+    var uri = atomic.get_uri(build_data, content);
     var template;
     var rel_template;
     var passed;
     var ignored;
     var rendered;
     var start = moment();
+    var slugs = uri.split('/');
+    if (0 < build_data.config.prefix.length){
+        slugs.unshift(build_data.config.prefix);
+    }
+
     log.verbose(colors.gray(sprintf('\tProcessing %s... \n', content.relative_path)));
+    changed_uris.push(atomic.get_relative_url(build_data, content));
     ignored = content_is_ignored(build_data, content);
     if (ignored){
         log.verbose(colors.gray(sprintf('\t\tIgnoring %s: %s\n', content.relative_path, ignored)));
@@ -121,16 +136,16 @@ var write_content = module.exports.write_content = function(build_data, content,
     } else {
         template = atomic.get_template(build_data, content);
         rel_template = path.relative(build_data.input_directory, template);
-        uri = atomic.get_uri(build_data, content);
-        p = path.join(output_directory, uri.split('/').join(path.sep), 'index.html');
+        p = path.join(output_directory, slugs.join(path.sep), 'index.html');
         rel_p = path.relative(output_directory, p);
         passed = {
             post: content,
-            site: build_data
+            site: build_data.config
         };
         async.series(
             [
                 function(callback){
+                    swig.setDefaults({ cache: false });
                     log.verbose(colors.gray(sprintf('\t\tRendering %s with template %s...\n', content.relative_path, rel_template)));
                     swig.renderFile(template, passed, function(err, result){
                         rendered = result;
@@ -155,7 +170,7 @@ var write_content = module.exports.write_content = function(build_data, content,
 
 };
 
-var write_archives = module.exports.write_archives = function(build_data, output_directory, callback){
+var write_archives = module.exports.write_archives = function(build_data, output_directory, changed_uris, callback){
     var archives = [];
     var start = moment();
     var logs = [];
@@ -175,8 +190,8 @@ var write_archives = module.exports.write_archives = function(build_data, output
     } else {
         logs.push('Post archives are disabled.');
     }
-    async.each(archives, function(archive, callback){
-        write_archive(build_data, archive, output_directory, callback);
+    async.eachSeries(archives, function(archive, callback){
+        write_archive(build_data, archive, output_directory, changed_uris, callback);
     }, function(err){
         if (! err){
             _.each(logs, function(log){
@@ -188,7 +203,7 @@ var write_archives = module.exports.write_archives = function(build_data, output
     });
 };
 
-var write_archive = module.exports.write_archive = function(build_data, archive, output_directory, callback){
+var write_archive = module.exports.write_archive = function(build_data, archive, output_directory, changed_uris, callback){
     var p;
     var uri;
     var template;
@@ -200,17 +215,30 @@ var write_archive = module.exports.write_archive = function(build_data, archive,
     log.verbose(colors.gray(sprintf('\tProcessing the %s archive "%s"... \n', archive.type, archive.title)));
 
     async.eachSeries(archive.pages, function(page, callback){
+        var out;
         log.verbose(colors.gray(sprintf('\t\tProcessing page %s of %s... \n', page.page + 1, archive.page_count)));
-
+        changed_uris.push(page.relative_url);
         passed = {
             archive: archive,
             page: page,
-            site: build_data
+            site: build_data.config
         };
         p = path.join(output_directory, page.slugs.join(path.sep), 'index.html');
-        swig.renderFile(template, passed, function(err, result){
-            fs.outputFile(p, result, callback);
-        });
+        async.series(
+            [
+                function (callback) {
+                    swig.setDefaults({ cache: false });
+                    swig.renderFile(template, passed, function(err, result){
+                        out = result;
+                        callback(err);
+                    });
+                },
+                function(callback) {
+                    fs.outputFile(p, out, callback);
+                }
+            ], callback
+        )
+
     }, callback);
 };
 
@@ -224,29 +252,44 @@ var content_is_ignored = function(build_data, content){
     return false;
 };
 
-var copy_assets = function(build_data, input_directory, output_directory, callback){
+var copy_assets = function(build_data, input_directory, output_directory, changed_uris, callback){
     var start = moment();
     var files;
+    var src_assets_path = path.join(input_directory, '_assets');
     log.verbose(colors.gray.bold('\nCopying _assets... \n'));
     async.series(
         [
             function(callback){
-                var p = path.join(build_data.input_directory, '_assets');
+                var p = path.join(src_assets_path, '**', '*.*');
                 log.verbose('\t', colors.gray(sprintf('Reading files....')), '\n');
-                fs.readdir(p, function (err, result) {
+                glob(p, function (err, result) {
                     files = result;
                     callback(err);
                 });
             },
             function(callback){
-                var dst_base = build_data.config.assets_copy_to_subdir ? path.join(output_directory, build_data.config.assets_copy_to_subdir) : output_directory;
-                async.each(
+                var dst_base_slugs = [];
+                if (0 < build_data.config.prefix.length){
+                    dst_base_slugs.push(build_data.config.prefix);
+                }
+                if (build_data.config.assets_copy_to_subdir){
+                    dst_base_slugs.push(build_data.config.assets_copy_to_subdir);
+                }
+                var dst_base = output_directory;
+                if (0 < dst_base_slugs.length){
+                    dst_base = path.join(dst_base, dst_base_slugs.join(path.sep));
+                }
+                async.eachSeries(
                     files,
                     function(file, callback){
-                        var src = path.join(input_directory, '_assets', file);
-                        var dst = path.join(dst_base, file);
-                        log.verbose('\t\t', colors.gray(sprintf('Copying %s',file)), '\n');
-                        ncp(src, dst, callback);
+                        var rel = path.relative(src_assets_path, file);
+                        var src = path.join(src_assets_path, rel);
+                        var dst = path.join(dst_base, rel);
+                        var slugs = dst_base_slugs.concat(rel.split(path.sep));
+                        var uri = '/' + slugs.join('/');
+                        changed_uris.push(uri);
+                        log.verbose('\t\t', colors.gray(sprintf('Copying %s. URI: %s',rel, uri)), '\n');
+                        fs.copy(src, dst, callback);
                     },
                     callback);
             }
@@ -261,23 +304,30 @@ var copy_assets = function(build_data, input_directory, output_directory, callba
     );
 };
 
-var remove_old_files = function(output_directory, callback){
+var remove_old_files = function(build_data, output_directory, changed_uris, callback){
     var start = moment();
     var files;
     log.verbose(colors.gray.bold('\nRemoving old files... \n'));
     async.series(
         [
+
             function(callback){
                 log.verbose('\t', colors.gray(sprintf('Reading files....')), '\n');
-                fs.readdir(output_directory, function (err, result) {
+                var p = path.join(output_directory, '**', '*.*');
+                glob(p, function (err, result) {
                     files = result;
+                    _.each(files, function(file){
+                        var rel = path.relative(output_directory, file);
+                        var slugs = rel.split(path.sep);
+                        changed_uris.push('/' + slugs.join('/'));
+                    });
                     callback(err);
                 });
             },
             function(callback){
                 async.each(files, function(file, callback){
                     var abs = path.resolve(output_directory, file);
-                    if ('.git' === file) {
+                    if ('.git' === file || '.built.json' === file) {
                         callback(null);
                     } else {
                         log.verbose('\t\t', colors.gray(sprintf('Removing %s',file)), '\n');
@@ -296,13 +346,42 @@ var remove_old_files = function(output_directory, callback){
     );
 };
 
-var write_search_index = function(build_data, output_directory, callback){
+var write_search_index = function(build_data, output_directory, changed_uris, callback){
     var start = moment();
-    var p = path.join(output_directory, 'site.json');
+    var p;
+    var slugs = ['search.json'];
+    var uri;
+    if (0 < build_data.config.prefix.length){
+        slugs.unshift(build_data.config.prefix);
+    }
+    uri = '/' + slugs.join('/');
+    changed_uris.push(uri);
     log.verbose(colors.gray.bold('\nWriting search.json... \n'));
+
+    p =  path.join(output_directory, slugs.join(path.sep));
     fs.writeJSON(p, build_data.search_index, function(err){
         if (! err){
-            log.verbose('\t', colors.gray(sprintf('Done writing search.json in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
+            log.verbose('\t', colors.gray(sprintf(
+                'Done writing search.json in %ss. URI: %s',
+                (moment().valueOf() - start.valueOf())/1000,
+                        uri
+                    )
+
+                ), '\n'
+            );
+        }
+        callback(err);
+    });
+
+};
+
+var write_built = function(build_data, output_directory, callback){
+    var start = moment();
+    var p = path.join(output_directory, '.built.json');
+    log.verbose(colors.gray.bold('\nWriting .built.json... \n'));
+    fs.writeJSON(p, {built: moment(), prefix: build_data.config.prefix}, function(err){
+        if (! err){
+            log.verbose('\t', colors.gray(sprintf('Done writing .built.json in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
         }
         callback(err);
     });

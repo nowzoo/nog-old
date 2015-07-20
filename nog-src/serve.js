@@ -12,6 +12,10 @@ module.exports = function (options) {
     var gaze = require('gaze');
     var express = require('express');
     var tinylr = require('tiny-lr');
+    var glob = require('glob');
+    var fs = require('fs-extra');
+    var _ = require('lodash');
+
 
 
 
@@ -75,7 +79,7 @@ module.exports = function (options) {
                 var app = express();
                 var prefix = '/' + cfg.prefix;
                 log.verbose(colors.gray.bold(sprintf('\nStarting the web server on port %s...\n', options.port)));
-                app.use(prefix, express.static(site_serve_directory));
+                app.use( express.static(site_serve_directory));
 
                 app.listen(options.port, function (err) {
                     server_info = {
@@ -121,39 +125,28 @@ module.exports = function (options) {
                         log.verbose('\t', colors.gray(sprintf('Watch set. Done in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
                     }
                     this.on('all', function(event, filepath) {
-                        build.build(false, process.cwd(), site_serve_directory, function (err) {
+                        build.build(false, process.cwd(), site_serve_directory, function (err, changed_uris) {
+                            var start = moment();
+                            var notify = {files: _.uniq(changed_uris)};
+                            log(colors.gray.bold('\nPushing changes to live reload... '), '\n');
+                            async.eachSeries(changed_uris, function(uri, callback){
+
+                                var cmd = sprintf('curl http://localhost:35729/changed?files=%s',uri);
+                                child_process.exec(cmd, function (err) {
+                                    if (err) log('\n', colors.red.bold(err), '\n\n');
+                                    callback(null);
+                                });
+                            }, function(err){
+                                log('\t', colors.gray(sprintf('Done in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                            });
 
                         });
                     });
                     callback(null);
                 });
 
-            },
-
-
-            //watch the site_serve_directory and push changes to lr...
-            function (callback) {
-                var start = moment();
-                log.verbose(colors.gray.bold(sprintf('\nStarting to watch for changes in the output directory to notify the live reload server...\n')));
-
-                gaze([site_serve_directory + '/**/*'], function(err, watcher) {
-                    if (! err){
-                        log.verbose('\t', colors.gray(sprintf('Watch set. Done in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
-                    }
-                    this.on('all', function(event, filepath) {
-                        var livereload_port = 35729;
-                        var rel = path.join(cfg.prefix, path.relative(site_serve_directory, filepath));
-                        var cmd = sprintf('curl http://localhost:%s/changed?files=%s', livereload_port, rel);
-
-                        child_process.exec(cmd, function (err) {
-
-                        });
-
-                    });
-                    callback(null);
-
-                });
             }
+
 
         ],
 

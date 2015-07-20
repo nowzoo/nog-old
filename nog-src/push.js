@@ -13,7 +13,6 @@ var log = require('./log');
 
 module.exports = function(){
 
-    var temp_dir;
     var git_get_origin = require('./git_get_origin');
     var origin;
     var output_directory;

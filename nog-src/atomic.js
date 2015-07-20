@@ -114,10 +114,12 @@ var get_published = module.exports.get_published = function(build_data, content)
 
 var get_title = module.exports.get_title = function(build_data, content){
     var basename;
+    var default_title;
     if (!_.has(content.meta, 'title') || !_.isString(content.meta.title) || 0 === content.meta.title.trim().length){
         basename = get_basename(build_data, content);
-        content.lint.title = sprintf('The title is missing or invalid in %s. Setting title to "%s".', content.relative_path, basename);
-        return basename;
+        default_title = S(basename).humanize().s;
+        content.lint.title = sprintf('The title is missing or invalid in %s. Setting title to "%s".', content.relative_path, default_title);
+        return default_title;
     } else {
         return content.meta.title.trim();
     }

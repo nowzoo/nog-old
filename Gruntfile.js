@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         less: {
             compile: {
                 files: {
-                    '_assets/assets/theme/css/style.css': '_assets/assets/theme/less/style.less',
+                    '_assets/assets/theme/css/style.css': '_assets/assets/theme/less/style.less'
                 }
             }
         },
@@ -42,7 +42,7 @@ module.exports = function (grunt) {
 
 
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
-    grunt.registerTask('theme_css', ['less', 'postcss', 'build']);
+    grunt.registerTask('theme_css', ['less', 'postcss']);
     grunt.registerTask('update_readmes', 'Copies the home page md to ./README.md and _assets/README.md', function(){
         var src = './_content/index/index.md';
         var dst = './README.md';
