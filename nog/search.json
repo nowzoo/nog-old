@@ -6,12 +6,6 @@
       "title": "Home Page",
       "excerpt": "Nog is a command-line site manager for GitHub Pages.\nIt strives to be brutally simple.\nQuick Start\n# install nog globally...\n$ npm install nog\n\n# make a directory and cd into it...\n$ mkdir my-site &amp;&amp; cd my-site\n\n# start the server...\n$ nog serve\n\n"
     },
-    "/nog/posts/my-first-post/": {
-      "relative_url": "/nog/posts/my-first-post/",
-      "absolute_url": "http://nowzoo.github.io/nog/posts/my-first-post/",
-      "title": "My First Post",
-      "excerpt": "Wow"
-    },
     "/nog/meta/": {
       "relative_url": "/nog/meta/",
       "absolute_url": "http://nowzoo.github.io/nog/meta/",
@@ -23,6 +17,12 @@
       "absolute_url": "http://nowzoo.github.io/nog/content-files/",
       "title": "Content files",
       "excerpt": "Content File Rules\nValid Extensions\nNog will only process files with the extensions found in config.build.content_extensions.  The default values are:\n// site config...\n{\n  ...\n  &quot;build&quot;: {\n    ...\n    &quot;content_extensions&quot;: [&quot;.md&"
+    },
+    "/nog/posts/my-first-post/": {
+      "relative_url": "/nog/posts/my-first-post/",
+      "absolute_url": "http://nowzoo.github.io/nog/posts/my-first-post/",
+      "title": "My First Post",
+      "excerpt": "Wow"
     },
     "/nog/site-configuration/": {
       "relative_url": "/nog/site-configuration/",
@@ -366,9 +366,9 @@
     ],
     "foo": [
       "/nog/",
-      "/nog/posts/my-first-post/",
       "/nog/meta/",
       "/nog/content-files/",
+      "/nog/posts/my-first-post/",
       "/nog/site-configuration/",
       "/nog/posts/my-second-post/"
     ],
@@ -403,9 +403,9 @@
     ],
     "bar": [
       "/nog/",
-      "/nog/posts/my-first-post/",
       "/nog/meta/",
       "/nog/content-files/",
+      "/nog/posts/my-first-post/",
       "/nog/posts/my-second-post/"
     ],
     "child": [
@@ -639,8 +639,8 @@
     ],
     "post": [
       "/nog/",
-      "/nog/posts/my-first-post/",
       "/nog/meta/",
+      "/nog/posts/my-first-post/",
       "/nog/posts/my-second-post/"
     ],
     "archive": [
@@ -657,10 +657,6 @@
       "/nog/",
       "/nog/content-files/",
       "/nog/site-configuration/"
-    ],
-    "wow": [
-      "/nog/posts/my-first-post/",
-      "/nog/posts/my-second-post/"
     ],
     "managing": [
       "/nog/meta/"
@@ -931,6 +927,10 @@
     "win": [
       "/nog/content-files/",
       "/nog/site-configuration/"
+    ],
+    "wow": [
+      "/nog/posts/my-first-post/",
+      "/nog/posts/my-second-post/"
     ],
     "configuration": [
       "/nog/site-configuration/"
