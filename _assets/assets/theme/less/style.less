@@ -2,12 +2,47 @@
 
 @font-size-base: 16px;
 
+@font-size-h1: 36px;
+@font-size-h2: 30px;
+@font-size-h3: 24px;
+@font-size-h4: 20px;
+@font-size-h5: 16px;
+@font-size-h6: 14px;
 
-body{
-  padding-top: 70px;
+h1, h2, h3, h4, h5, h6{
+  margin: 1.5em 0 .5em 0;
 }
-
 #site-footer{
   font-size: 12px;
   margin-bottom: 60px;
+}
+.page-header{
+  margin-top: 0;
+}
+.sidebar{
+  h5{
+    margin-top: 0;
+  }
+}
+
+#site-header{
+  background-color: @navbar-inverse-bg;
+  color: #fff;
+  margin-bottom: 36px;
+  h1{
+    margin: 0;
+    font-size: 40px;
+    line-height: 72px;
+    a{
+      color: inherit;
+      text-decoration: none;
+      display: inline-block;
+      padding-left: 72px;
+      line-height: 72px;
+      background-image: url(../img/nog.png);
+      background-repeat: no-repeat;
+      background-size: 72px 72px;
+    }
+  }
+
 }

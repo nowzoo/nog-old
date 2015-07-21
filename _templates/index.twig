@@ -6,20 +6,13 @@
         {{ site.title }}
         <small>{{ site.tagline }}</small>
     </h1>
-    <div class="row">
-        <div class="col-sm-7">
-            <article>
-                <div>
-                    {% autoescape false %}{{ post.content }}{% endautoescape %}
-                </div>
-            </article>
+
+
+
+    <article>
+        <div>
+            {% autoescape false %}{{ post.content }}{% endautoescape %}
         </div>
-        <div class="col-sm-4 col-sm-push-1">
-
-
-            {% include 'side.twig' %}
-
-        </div>
-    </div>
+    </article>
 
 {% endblock %}

@@ -6,7 +6,14 @@ date: 2015/07/20
 Initializes a site in the current working directory with the default content and configuration.
 
 ```
-$ nog init
+Usage: init [options]
+
+initialize the site with default content and config
+
+Options:
+
+  -h, --help     output usage information
+  -v, --verbose  verbose output
 ```
 
 You should only have to use this command once per site &mdash; all it does is copy the default `_assets`, `_cfg`, `_content` and `_templates` directories to your working directory.
