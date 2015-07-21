@@ -6,49 +6,15 @@
         {{ post.title }}
     </h1>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-7">
             <article>
                 <div>
                     {% autoescape false %}{{ post.content }}{% endautoescape %}
                 </div>
             </article>
         </div>
-        <div class="col-sm-4">
-
-
-
-            <ul class="nav nav-pills nav-stacked">
-                <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}site-configuration/">Site Configuration</a>
-                </li>
-                <li{% if post.uri === 'content' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}content/">Managing Content</a>
-                </li>
-                <li{% if post.uri === 'templates' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}templates/">Templates</a>
-                </li>
-
-                <li{% if post.uri === 'asset-files' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}asset-files/">Assets</a>
-                </li>
-            </ul>
-
-            <h4>Commands</h4>
-            <ul class="nav nav-pills nav-stacked">
-                <li{% if post.uri === 'nog-init' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}nog-init/">nog init</a>
-                </li>
-                <li{% if post.uri === 'nog-serve' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}nog-serve/">nog serve</a>
-                </li>
-                <li{% if post.uri === 'nog-push' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}nog-push/">nog push</a>
-                </li>
-                <li{% if post.uri === 'nog-lint' %} class="active"{% endif %}>
-                    <a href="{{ site_root }}nog-lint/">nog lint</a>
-                </li>
-            </ul>
-
+        <div class="col-sm-4 col-sm-push-1">
+            {% include 'side.twig' %}
         </div>
     </div>
 

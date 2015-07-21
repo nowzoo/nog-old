@@ -1,3 +1,25 @@
-{% extends 'page.twig' %}
-{% block head_title %}{{ site.title }} | {{ site.tagline }}{% endblock %}
+{% extends 'main.twig' %}
+{% block head_title %}{{ post.title }} | {{ site.title }}{% endblock %}
+{% block body %}
 
+    <h1 class="page-header">
+        {{ site.title }}
+        <small>{{ site.tagline }}</small>
+    </h1>
+    <div class="row">
+        <div class="col-sm-7">
+            <article>
+                <div>
+                    {% autoescape false %}{{ post.content }}{% endautoescape %}
+                </div>
+            </article>
+        </div>
+        <div class="col-sm-4 col-sm-push-1">
+
+
+            {% include 'side.twig' %}
+
+        </div>
+    </div>
+
+{% endblock %}

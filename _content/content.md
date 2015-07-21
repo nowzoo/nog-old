@@ -1,5 +1,5 @@
 ---
-title: Content
+title: Managing Content
 date: 2015/07/20
 ---
 

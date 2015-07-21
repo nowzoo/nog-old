@@ -85,6 +85,11 @@ var build = module.exports.build = function(is_build_public, input_directory, ou
                 write_search_index(build_data, output_directory, changed_uris, callback);
             },
 
+            //write search index...
+            function(callback){
+                write_search(build_data, output_directory, changed_uris, callback);
+            },
+
             //write the .built.json file...
             function(callback){
                 write_built(build_data, output_directory, callback);
@@ -373,6 +378,47 @@ var write_search_index = function(build_data, output_directory, changed_uris, ca
         }
         callback(err);
     });
+
+};
+
+var write_search = function(build_data, output_directory, changed_uris, callback){
+    var start = moment();
+    var p;
+    var slugs = ['search', 'index.html'];
+    var uri;
+    var out;
+    var template = path.join(build_data.input_directory, '_templates', 'search.twig');
+    if (0 < build_data.config.prefix.length && ! build_data.is_build_public){
+        slugs.unshift(build_data.config.prefix);
+    }
+    uri = '/' + slugs.join('/');
+    changed_uris.push(uri);
+    changed_uris.push('/search/');
+    log.verbose(colors.gray.bold('\nWriting search/index.html... \n'));
+
+    p =  path.join(output_directory, slugs.join(path.sep));
+
+    var passed = {
+        site: build_data.config,
+        site_root: 0 < build_data.config.prefix.length ? '/' + build_data.config.prefix + '/' : '/',
+        search_index: build_data.search_index
+    };
+
+    async.series(
+        [
+            function (callback) {
+                swig.setDefaults({ cache: false });
+                swig.renderFile(template, passed, function(err, result){
+                    out = result;
+                    callback(err);
+                });
+            },
+            function(callback) {
+                fs.outputFile(p, out, callback);
+            }
+        ], callback
+    );
+
 
 };
 

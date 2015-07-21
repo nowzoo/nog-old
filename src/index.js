@@ -11,9 +11,7 @@ var init = require('./init');
 
 program
     .version('1.0.0')
-    .option('-v, --verbose', 'verbose output')
-    .option('-p, --port <port>', 'port for the local webserver');
-
+    .option('-v, --verbose', 'verbose output');
 program
     .command('init')
     .description('initialize the site with default content and config')
@@ -26,23 +24,25 @@ program
 program
     .command('serve')
     .description('serve the site locally, rebuilding when changes are made')
-    .option('-v, --verbose', 'verbose output')
+    .option('-P, --published', 'suppress content that has been marked as unpublished')
     .option('-p, --port <port>', 'port for the local webserver')
+    .option('-v, --verbose', 'verbose output')
     .action(function(){
         process.env.verbose = program.verbose ? true : false;
         var options = {
+            published: program.published || false,
             port: program.port || 3000
         };
         serve(options);
     });
 
 program
-    .command('lint')
+    .command('lint [what...]')
     .description('show problems with your content and config')
     .option('-v, --verbose', 'verbose output')
-    .action(function(){
+    .action(function(what){
         process.env.verbose = program.verbose ? true : false;
-        lint();
+        lint(what);
     });
 
 program

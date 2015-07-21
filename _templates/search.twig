@@ -1,0 +1,42 @@
+{% extends 'main.twig' %}
+{% block head_title %}Search | {{ site.title }}{% endblock %}
+{% block body %}
+
+    <h1 class="page-header">
+        Search
+    </h1>
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="form-group-lg">
+                <label for="search-box" class="sr-only">Search</label>
+                <input id="search-box" class="form-control" placeholder="Search...">
+            </div>
+            <div id="search-results-list">
+                {% for content in search_index.content  %}
+                    <article style="display: none;" data-uri="{{ content.relative_url }}">
+                        <h4>
+                            <a href="{{ content.relative_url }}">{{ content.title }}</a>
+                        </h4>
+                        <p>{{ content.excerpt }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-4 col-sm-push-1">
+
+            {% include 'side.twig' %}
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer_scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script>
+        var search_index = {{ JSON.stringify(search_index.index) }};
+    </script>
+    <script src="{{ site_root }}assets/js/search.js"></script>
+{% endblock %}
+

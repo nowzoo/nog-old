@@ -5,10 +5,8 @@ var _ = require('lodash');
 var moment = require('moment');
 var glob = require('glob');
 var fs = require('fs');
-//var utils = require('./utils');
 var S = require('string');
 var marked = require('marked');
-var yamlFront = require('yaml-front-matter');
 var sprintf = require('sprintf-js').sprintf;
 
 var utils = require('./utils');
@@ -32,7 +30,7 @@ var read = module.exports.read = function(build_data,  callback){
                         callback(err);
                     });
                 }, callback);
-            },
+            }
 
         ],
         function(err){

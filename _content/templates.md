@@ -3,7 +3,7 @@ title: Templates
 date: 2015/07/20
 ---
 
-Nog uses [Swig](http://paularmstrong.github.io/swig/) templates. Out of the box, it comes with the following (in `_templates`):
+Nog uses [Swig](http://paularmstrong.github.io/swig/) templates. Out of the box, it comes with the following (in the `_templates` directory):
 
 - `main.twig` The base layout template. The other templates all inherit from this one.
 - `index.twig` The layout for the home page.

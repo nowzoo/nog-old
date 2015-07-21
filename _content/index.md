@@ -1,5 +1,6 @@
 ---
 title: Nog
+date: 2015/07/20
 ---
 
 Nog is a command-line site manager for GitHub Pages.
@@ -12,10 +13,13 @@ It strives to be brutally simple.
 
 ```
 # install nog globally...
-$ npm install nog
+$ npm install -g nog
 
 # make a directory and cd into it...
 $ mkdir my-site && cd my-site
+
+# initialize nog...
+$ nog init
 
 # start the server...
 $ nog serve
@@ -35,11 +39,3 @@ To diagnose any problems:
 ```
 $ ./nog lint
 ```
-
-### Content
-
-
-
-
-
-### Site Config
