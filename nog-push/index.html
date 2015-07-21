@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Managing Content | Nog</title>
+    <title>nog push | Nog</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
 
@@ -57,7 +57,7 @@
     <li>
         <a href="/nog/site-configuration/">Site Configuration</a>
     </li>
-    <li class="active">
+    <li>
         <a href="/nog/content/">Managing Content</a>
     </li>
     <li>
@@ -77,7 +77,7 @@
     <li>
         <a href="/nog/nog-serve/">nog serve</a>
     </li>
-    <li>
+    <li class="active">
         <a href="/nog/nog-push/">nog push</a>
     </li>
     <li>
@@ -90,54 +90,28 @@
         <div class="col-sm-9">
             
         <h1 class="page-header">
-            Managing Content
+            nog push
         </h1>
     <article>
         <div>
-            <p>There are three types of content:</p>
+            <p>Builds the site and pushes it to the <code>gh-pages</code> branch of your GitHub repository.</p>
+<pre><code>Usage: $ nog push [options]
+
+push the gh-pages branch to github
+
+Options:
+
+  -h, --help     output usage information
+  -v, --verbose  verbose output
+</code></pre><h4 id="notes">Notes</h4>
+<p>This command is only concerned with pushing the <code>gh-pages</code> branch &mdash; that is, the special branch GitHub Pages use to serve your site. <code>nog push</code> creates a temporary directory to create a fresh repository, pull the <code>gh-pages</code> branch, build the site and push the changes.  Therefore...</p>
 <ul>
-<li>The home page</li>
-<li>Plain pages</li>
-<li>Blog posts</li>
+<li>the built site will not show up in your project directory, and</li>
+<li>your repository will not have its own <code>gh-pages</code> branch.</li>
 </ul>
-<p>By default, any Markdown <code>.md</code> or HTML <code>.html</code> file in the <code>_content</code> directory will be turned into one of these three types. A file at <code>_content/index.*</code> will be treated as the home page. Files under the archives directory (by default <code>_content/posts</code>) will be treated as blog posts, and archived by date and tag. All other content files are assumed to be pages.</p>
-<p>Atomic urls are determined by file path.  The content at <code>_content/foo.md</code> will end up having the URL <code>/foo/</code>. If the content file is located at <code>_content/foo/index.html</code>, then the URL will likewise be <code>/foo/</code>.</p>
-<h4 id="conflicting-content-files">Conflicting Content Files</h4>
-<p>Note the following rules:</p>
-<ul>
-<li>Index files take precedence: <code>help/index.md</code> will be used and <code>help.md</code> will be ignored.</li>
-<li>By default Markdown files take precedence over HTML files: <code>help/advanced.md</code> will be used instead of <code>help/advanced.html</code>.</li>
-</ul>
-<p>Both pages and posts are hierarchical. For example, the content at <code>_content/foo/bar.md</code> will be the child of the content at <code>_content/foo/index.md</code>.</p>
-<h4 id="content-metadata">Content Metadata</h4>
-<p>Content metadata, such as the title, is defined by inserting an optional YAML front matter section at the top of your content  files. The front matter section consists of:</p>
-<ul>
-<li>three dashes <code>---</code> and a line break</li>
-<li>some YAML</li>
-<li>three dashes <code>---</code> and a line break</li>
-</ul>
-<p>For example, a valid page file in Markdown might look like this:</p>
-<pre><code>---
-title: My Valid Page
-excerpt: Who dee woot who dee woo too?
-date: &#39;2015/07/19  16:00&#39;
----
-# The Actual Content Begins Here
-</code></pre><p>By default and design, Nog doesn&#39;t care very much or make assumptions about what a page&#39;s metadata has or doesn&#39;t have. That said, Nog provides the following sensible default values:</p>
-<ul>
-<li><p><code>title</code></p>
-<p>If missing, Nog uses the humanized name of the file. Thus <code>my-great-page</code> will result in a title of My great page.</p>
-</li>
-<li><p><code>date</code></p>
-<p>If missing (or if the value can&#39;t be parsed as a Date) this is set to the modified time of the file. You can use any  format parseable by moment.js, but you can&#39;t go wrong with <code>YYYY/MM/DD HH:mm</code>.</p>
-</li>
-<li><p><code>excerpt</code></p>
-<p>If missing, Nog uses the first 255 characters of the strip-tagged content, with all consecutive whitespaces converted to a single space character.</p>
-</li>
-<li><p><code>template</code></p>
-<p>If missing, assumed to be <code>page.twig</code> if the content is a plain page, <code>post.twig</code> if it&#39;s a blog post or <code>archive.twig</code> if it&#39;s an archive of blog posts. This value should always be relative to the <code>_templates</code> directory.</p>
-</li>
-</ul>
+<p>You should manage the other branches (e.g. <code>master</code>) in the usual way via <code>git</code>.</p>
+<p>The command will always build using the contents of currently checked-out branch.</p>
+<p>The command will fail if you have not added a remote named <code>origin</code>. If you create a repo on GitHub and clone it this remote will already exist; otherwise you will have to do <code>git remote add</code>.</p>
         </div>
     </article>
 
