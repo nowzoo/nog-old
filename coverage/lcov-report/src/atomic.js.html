@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/atomic.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/atomic.js</span></h1>
+    <h2>
+        Statements: <span class="metric">29.82% <small>(17 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">30.91% <small>(17 / 55)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; atomic.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+var async = require('async');
+var path = require('path');
+var _ = require('lodash');
+var moment = require('moment');
+var glob = require('glob');
+var fs = require('fs');
+//var utils = require('./utils');
+var S = require('string');
+var marked = require('marked');
+var yamlFront = require('yaml-front-matter');
+var sprintf = require('sprintf-js').sprintf;
+&nbsp;
+var utils = require('./utils');
+&nbsp;
+var date_formats = module.exports.date_formats = [ 'YYYY/MM/DD', 'YYYY/MM/DD HH:mm', 'YYYY/MM/DD H:mm'];
+var excerpt_regex = module.exports.excerpt_regex = /&lt;!--(\s+)?excerpt(\s+)?--&gt;/g;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+module.exports.get_search_words = <span class="fstat-no" title="function not covered" >function(build, content){</span>
+<span class="cstat-no" title="statement not covered" >    var val = '';</span>
+<span class="cstat-no" title="statement not covered" >    var tags;</span>
+<span class="cstat-no" title="statement not covered" >    var stopwords = require('stopwords').english;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    val += ' ' + get_title(content);</span>
+<span class="cstat-no" title="statement not covered" >    val += ' ' + get_content(build, content);</span>
+<span class="cstat-no" title="statement not covered" >    val += ' ' + get_excerpt(build, content);</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    tags = _.map(get_tags(build_data, content), <span class="fstat-no" title="function not covered" >function(val){<span class="cstat-no" title="statement not covered" ></span>return S(val).trim().toLowerCase().s}</span>);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    val = S(val).stripTags().toLowerCase().split(/\W+/);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    val  = _.difference(val, stopwords);</span>
+    //add the tags...
+<span class="cstat-no" title="statement not covered" >    val = val.concat(tags);</span>
+<span class="cstat-no" title="statement not covered" >    val = _.filter(val, <span class="fstat-no" title="function not covered" >function(val) {<span class="cstat-no" title="statement not covered" ></span>return 0 &lt; val.length;}</span>);</span>
+<span class="cstat-no" title="statement not covered" >    val = _.uniq(val);</span>
+<span class="cstat-no" title="statement not covered" >    return val;</span>
+};
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+var get_relative_url = module.exports.get_relative_url = <span class="fstat-no" title="function not covered" >function(build_data, content){</span>
+<span class="cstat-no" title="statement not covered" >    var uri = get_uri(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    var url = 0 === uri.length ? '/' : '/' + uri + '/';</span>
+<span class="cstat-no" title="statement not covered" >    if (0 &lt; build_data.config.prefix.length){</span>
+<span class="cstat-no" title="statement not covered" >        url = '/' + build_data.config.prefix + url;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return url;</span>
+&nbsp;
+};
+&nbsp;
+var get_absolute_url = module.exports.get_absolute_url = <span class="fstat-no" title="function not covered" >function(build_data, content){</span>
+<span class="cstat-no" title="statement not covered" >    return build_data.config.url + get_relative_url(build_data, content);</span>
+};
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+var populate_data = module.exports.populate_data = <span class="fstat-no" title="function not covered" >function(build_data, content){</span>
+<span class="cstat-no" title="statement not covered" >    content.title = get_title(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.content = get_content(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.excerpt = get_excerpt(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.basename = get_basename(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.uri = get_uri(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.published = get_published(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.date = get_date(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.tags = get_tags(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.search_words = get_search_words(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.template = get_template(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.relative_url = get_relative_url(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.absolute_url = get_absolute_url(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.is_ignored_bad_uri = get_is_ignored_bad_uri(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.is_ignored_extension = get_is_ignored_extension(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.is_ignored_conflicts_with_archive = get_is_ignored_conflicts_with_archive(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.is_ignored_overridden_by_sibling = get_is_ignored_overridden_by_sibling(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.is_ignored_overridden_by_index = get_is_ignored_overridden_by_index(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.parent = get_parent(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >    content.children = get_children(build_data, content);</span>
+};</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 24 2015 13:56:52 GMT-0500 (CDT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

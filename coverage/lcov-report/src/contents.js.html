@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/contents.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/contents.js</span></h1>
+    <h2>
+        Statements: <span class="metric">13.07% <small>(20 / 153)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 50)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">14.6% <small>(20 / 137)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; contents.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+var async = require('async');
+var path = require('path');
+var _ = require('lodash');
+var moment = require('moment');
+var glob = require('glob');
+var fs = require('fs');
+var S = require('string');
+var marked = require('marked');
+var sprintf = require('sprintf-js').sprintf;
+&nbsp;
+var utils = require('./utils');
+var atomic = require('./atomic');
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+var read = module.exports.read = <span class="fstat-no" title="function not covered" >function(build_data,  callback){</span>
+<span class="cstat-no" title="statement not covered" >    var contents = {};</span>
+<span class="cstat-no" title="statement not covered" >    async.waterfall(</span>
+        [
+<span class="fstat-no" title="function not covered" >            function (callback) {</span>
+<span class="cstat-no" title="statement not covered" >                var p = path.join(build_data.content_directory, '**', '*.*');</span>
+<span class="cstat-no" title="statement not covered" >                glob(p, callback);</span>
+            },
+<span class="fstat-no" title="function not covered" >            function(files, callback){</span>
+<span class="cstat-no" title="statement not covered" >                async.each(files, <span class="fstat-no" title="function not covered" >function(absolute_path, callback){</span></span>
+<span class="cstat-no" title="statement not covered" >                    atomic.read(build_data, absolute_path,  <span class="fstat-no" title="function not covered" >function(err, result){</span></span>
+<span class="cstat-no" title="statement not covered" >                        contents[result.relative_path] = result;</span>
+<span class="cstat-no" title="statement not covered" >                        callback(err);</span>
+                    });
+                }, callback);
+            }
+&nbsp;
+        ],
+<span class="fstat-no" title="function not covered" >        function(err){</span>
+<span class="cstat-no" title="statement not covered" >            callback(err, contents);</span>
+        }
+    )
+&nbsp;
+};
+&nbsp;
+var init_archives = module.exports.init_archives = <span class="fstat-no" title="function not covered" >function(build_data){</span>
+<span class="cstat-no" title="statement not covered" >    var archives;</span>
+<span class="cstat-no" title="statement not covered" >    var slugs = [build_data.config.archives_directory];</span>
+<span class="cstat-no" title="statement not covered" >    if (0 &lt; build_data.config.prefix.length &amp;&amp; ! build_data.is_build_public){</span>
+<span class="cstat-no" title="statement not covered" >        slugs.unshift(build_data.config.prefix);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var relative_url = '/' + slugs.join('/') + '/';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    archives = {</span>
+        main: {
+            type: 'main',
+            title: build_data.config.archives_title,
+            posts: [],
+            slugs: slugs,
+            relative_url: relative_url,
+            absolute_url: build_data.config.url + relative_url
+        },
+        tags: {},
+        dates: {},
+&nbsp;
+    };
+<span class="cstat-no" title="statement not covered" >    return archives;</span>
+};
+&nbsp;
+var get_posts = module.exports.get_posts = <span class="fstat-no" title="function not covered" >function(build_data){</span>
+<span class="cstat-no" title="statement not covered" >    var posts = [];</span>
+<span class="cstat-no" title="statement not covered" >    _.each(build_data.contents, <span class="fstat-no" title="function not covered" >function(content){</span></span>
+<span class="cstat-no" title="statement not covered" >        if ('post' !== atomic.get_type(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_bad_uri(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_extension(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_overridden_by_sibling(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_overridden_by_index(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (! atomic.get_published(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        posts.push(content);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    return posts;</span>
+};
+&nbsp;
+var sort_posts = module.exports.sort_posts = <span class="fstat-no" title="function not covered" >function(build_data, posts){</span>
+<span class="cstat-no" title="statement not covered" >    posts.sort(<span class="fstat-no" title="function not covered" >function(a, b){</span></span>
+<span class="cstat-no" title="statement not covered" >        var a_date = atomic.get_date(build_data, a);</span>
+<span class="cstat-no" title="statement not covered" >        var b_date = atomic.get_date(build_data, b);</span>
+<span class="cstat-no" title="statement not covered" >        var a_title = atomic.get_title(build_data, a).toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >        var b_title = atomic.get_title(build_data, b).toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >        if (a_date.isBefore(b_date)) <span class="cstat-no" title="statement not covered" >return 1;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a_date.isAfter(b_date)) <span class="cstat-no" title="statement not covered" >return -1;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a_title &lt; b_title) <span class="cstat-no" title="statement not covered" >return -1;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (a_title &gt; b_title) <span class="cstat-no" title="statement not covered" >return 1;</span></span>
+<span class="cstat-no" title="statement not covered" >        return 0;</span>
+    })
+&nbsp;
+};
+&nbsp;
+var add_post_to_tag = module.exports.add_post_to_tag = <span class="fstat-no" title="function not covered" >function(build_data, archives, content, tag_string){</span>
+<span class="cstat-no" title="statement not covered" >    var slug = S(tag_string).trim().slugify().s;</span>
+<span class="cstat-no" title="statement not covered" >    var relative_url;</span>
+<span class="cstat-no" title="statement not covered" >    var slugs;</span>
+<span class="cstat-no" title="statement not covered" >    tag_string = tag_string.trim();</span>
+<span class="cstat-no" title="statement not covered" >    if (!_.has(archives.tags, slug)){</span>
+<span class="cstat-no" title="statement not covered" >        slugs = archives.main.slugs.concat([build_data.config.archives_tag_slug, slug]);</span>
+<span class="cstat-no" title="statement not covered" >        relative_url = '/' + slugs.join('/') + '/';</span>
+<span class="cstat-no" title="statement not covered" >        archives.tags[slug] = {</span>
+            type: 'tag',
+            name: tag_string,
+            title: sprintf(build_data.config.archives_tag_title_format, tag_string),
+            posts: [],
+            slugs: slugs,
+            relative_url: relative_url,
+            absolute_url: build_data.config.url + relative_url
+        };
+    }
+<span class="cstat-no" title="statement not covered" >    archives.tags[slug].posts.push(content);</span>
+&nbsp;
+};
+&nbsp;
+var add_post_to_date_archives = module.exports.add_post_to_date_archives = <span class="fstat-no" title="function not covered" >function(build_data, archives, content){</span>
+<span class="cstat-no" title="statement not covered" >    _.each(['year', 'month', 'day'], <span class="fstat-no" title="function not covered" >function(type){</span></span>
+<span class="cstat-no" title="statement not covered" >        var relative_url;</span>
+<span class="cstat-no" title="statement not covered" >        var title_format = build_data.config['archives_' + type + '_title_format'];</span>
+<span class="cstat-no" title="statement not covered" >        var name_format = build_data.config['archives_' + type + '_name_format'];</span>
+<span class="cstat-no" title="statement not covered" >        var date = moment(atomic.get_date(build_data, content));</span>
+<span class="cstat-no" title="statement not covered" >        var slug;</span>
+<span class="cstat-no" title="statement not covered" >        var slugs;</span>
+<span class="cstat-no" title="statement not covered" >        var date_slugs = [date.format('YYYY')];</span>
+<span class="cstat-no" title="statement not covered" >        if ('year' !== type){</span>
+<span class="cstat-no" title="statement not covered" >            date_slugs.push(date.format('MM'));</span>
+<span class="cstat-no" title="statement not covered" >            if ('month' !== type){</span>
+<span class="cstat-no" title="statement not covered" >                date_slugs.push(date.format('DD'))</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        slugs = archives.main.slugs.concat(date_slugs);</span>
+<span class="cstat-no" title="statement not covered" >        slug = date_slugs.join('/');</span>
+<span class="cstat-no" title="statement not covered" >        relative_url = '/' + slugs.join('/') + '/';</span>
+<span class="cstat-no" title="statement not covered" >        if (!_.has(archives.dates, slug)){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            archives.dates[slug] = {</span>
+                type: type,
+                name: date.format(name_format),
+                title: sprintf(title_format, date.format(name_format)),
+                posts: [],
+                slugs: slugs,
+                relative_url: relative_url,
+                absolute_url: build_data.config.url + relative_url
+            };
+        }
+<span class="cstat-no" title="statement not covered" >        archives.dates[slug].posts.push(content);</span>
+    });
+&nbsp;
+};
+&nbsp;
+var paginate_archive = module.exports.paginate_archive = <span class="fstat-no" title="function not covered" >function(build_data, archive){</span>
+<span class="cstat-no" title="statement not covered" >    var relative_url;</span>
+<span class="cstat-no" title="statement not covered" >    var pages;</span>
+<span class="cstat-no" title="statement not covered" >    sort_posts(build_data, archive.posts);</span>
+<span class="cstat-no" title="statement not covered" >    archive.post_count = archive.posts.length;</span>
+<span class="cstat-no" title="statement not covered" >    if (0 &lt; build_data.config.archives_posts_per_page){</span>
+<span class="cstat-no" title="statement not covered" >        archive.page_count = Math.ceil(archive.posts.length / build_data.config.archives_posts_per_page);</span>
+<span class="cstat-no" title="statement not covered" >        pages = _.chunk(archive.posts, build_data.config.archives_posts_per_page);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        archive.page_count = 1;</span>
+<span class="cstat-no" title="statement not covered" >        pages = [archive.posts];</span>
+    }
+<span class="cstat-no" title="statement not covered" >    archive.is_paged = 1 &lt; archive.page_count;</span>
+<span class="cstat-no" title="statement not covered" >    archive.pages = [];</span>
+<span class="cstat-no" title="statement not covered" >    _.each(pages, <span class="fstat-no" title="function not covered" >function(posts, i){</span></span>
+<span class="cstat-no" title="statement not covered" >        var page;</span>
+<span class="cstat-no" title="statement not covered" >        var slugs = archive.slugs.concat([]);</span>
+<span class="cstat-no" title="statement not covered" >        var relative_url;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (0 &lt; i){</span>
+<span class="cstat-no" title="statement not covered" >            slugs.push(build_data.config.archives_page_slug);</span>
+<span class="cstat-no" title="statement not covered" >            slugs.push((i + 1).toString());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        relative_url = '/' + slugs.join('/') + '/';</span>
+<span class="cstat-no" title="statement not covered" >        archive.pages.push({</span>
+            posts: posts,
+            post_count: posts.length,
+            page: i,
+            slugs: slugs,
+            relative_url: relative_url,
+            absolute_url: build_data.config.url + relative_url
+        })
+&nbsp;
+    });
+};
+&nbsp;
+var get_archives = module.exports.get_archives = <span class="fstat-no" title="function not covered" >function(build_data){</span>
+<span class="cstat-no" title="statement not covered" >    var archives = init_archives(build_data);</span>
+<span class="cstat-no" title="statement not covered" >    var posts = get_posts(build_data);</span>
+<span class="cstat-no" title="statement not covered" >    sort_posts(build_data, posts);</span>
+<span class="cstat-no" title="statement not covered" >    _.each(posts, <span class="fstat-no" title="function not covered" >function(content) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var tags;</span>
+<span class="cstat-no" title="statement not covered" >        archives.main.posts.push(content);</span>
+<span class="cstat-no" title="statement not covered" >        tags = atomic.get_tags(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >        _.each(tags, <span class="fstat-no" title="function not covered" >function (tag) {</span></span>
+<span class="cstat-no" title="statement not covered" >            add_post_to_tag(build_data, archives, content, tag);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        add_post_to_date_archives(build_data, archives, content);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    _.each([archives.main].concat(_.values(archives.tags), _.values(archives.dates)), <span class="fstat-no" title="function not covered" >function(archive){</span></span>
+<span class="cstat-no" title="statement not covered" >       paginate_archive(build_data, archive);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    return archives;</span>
+};
+&nbsp;
+var get_search_index = module.exports.get_search_index = <span class="fstat-no" title="function not covered" >function (build_data) {</span>
+<span class="cstat-no" title="statement not covered" >    var search_index = {};</span>
+<span class="cstat-no" title="statement not covered" >    var published = {};</span>
+<span class="cstat-no" title="statement not covered" >    var relative_url;</span>
+<span class="cstat-no" title="statement not covered" >    _.each(build_data.contents, <span class="fstat-no" title="function not covered" >function(content){</span></span>
+<span class="cstat-no" title="statement not covered" >        var published_object;</span>
+<span class="cstat-no" title="statement not covered" >        var search_words;</span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_bad_uri(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_extension(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_conflicts_with_archive(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_overridden_by_sibling(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (atomic.get_is_ignored_overridden_by_index(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (! atomic.get_published(build_data, content)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        relative_url = atomic.get_relative_url(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >        search_words = atomic.get_search_words(build_data, content);</span>
+<span class="cstat-no" title="statement not covered" >        published[relative_url] = {</span>
+            relative_url: relative_url,
+            absolute_url: atomic.get_absolute_url(build_data, content),
+            title: atomic.get_title(build_data, content),
+            excerpt: atomic.get_excerpt(build_data, content)
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _.each(search_words, <span class="fstat-no" title="function not covered" >function(word){</span></span>
+<span class="cstat-no" title="statement not covered" >            word = word.trim().toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >            if (!_.has(search_index, word)){</span>
+<span class="cstat-no" title="statement not covered" >                search_index[word] = [];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            search_index[word].push(relative_url);</span>
+        });
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        content: published,
+        index: search_index
+    };
+};
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jul 24 2015 13:56:52 GMT-0500 (CDT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

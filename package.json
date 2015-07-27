@@ -56,5 +56,8 @@
     "pixrem": "^1.2.4",
     "time-grunt": "^1.2.1"
   },
-  "bin": "nog"
+  "bin": "nog",
+  "dependencies": {
+    "highlight.js": "^8.6.0"
+  }
 }

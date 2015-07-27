@@ -3,10 +3,10 @@
 
 var program = require('commander');
 
-var serve = require('./serve');
-var lint = require('./lint');
-var push = require('./push');
-var init = require('./init');
+var serve = require('./cmd/serve');
+var lint = require('./cmd/lint');
+var push = require('./cmd/push');
+var init = require('./cmd/init');
 
 
 program

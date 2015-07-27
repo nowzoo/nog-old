@@ -1,4 +1,4 @@
-<h5>How To</h5>
+<h5>Basics</h5>
 <ul class="nav nav-pills nav-stacked">
     <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
         <a href="{{ site_root }}site-configuration/">Site Configuration</a>
@@ -13,6 +13,8 @@
     <li{% if post.uri === 'asset-files' %} class="active"{% endif %}>
         <a href="{{ site_root }}asset-files/">Assets</a>
     </li>
+
+
 </ul>
 
 <h5>Commands</h5>
@@ -28,5 +30,16 @@
     </li>
     <li{% if post.uri === 'nog-lint' %} class="active"{% endif %}>
         <a href="{{ site_root }}nog-lint/">nog lint</a>
+    </li>
+</ul>
+
+<h5>Advanced</h5>
+
+<ul class="nav nav-pills nav-stacked">
+    <li{% if post.uri === 'change-how-nog-renders-markdown' %} class="active"{% endif %}>
+        <a href="{{ site_root }}change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
+    </li>
+    <li{% if post.uri === 'enable-jade-templates' %} class="active"{% endif %}>
+        <a href="{{ site_root }}enable-jade-templates/">Enable Jade Templates</a>
     </li>
 </ul>

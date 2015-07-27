@@ -7,6 +7,7 @@
     <title>{% block head_title %}{{ site.title }} | {{ site.tagline }}{% endblock %}</title>
 
     <link href="{{ site_root }}assets/theme/css/style.css" rel="stylesheet">
+    <link href="{{ site_root }}assets/theme/css/default.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -41,19 +42,11 @@
     </h1>
         </div>
 </header>
-
-
 <div class="container">
-
-
-
 
     <div class="row">
         <div class="col-sm-3 sidebar">
-
-
-                {% include 'side.twig' %}
-
+            {% include 'side.twig' %}
         </div>
         <div class="col-sm-9">
             {% block body %}
@@ -66,9 +59,14 @@
 <footer id="site-footer">
     <div class="container">
         <hr>
-        <p class="text-muted">Powered by Nog, a NowZoo thing | Nog and this content are licensed under MIT</p>
+        <p class="text-muted">
+            Powered by Nog, a NowZoo thing |
+            Nog and this content are
+            <a href="https://raw.githubusercontent.com/nowzoo/nog/master/LICENSE">licensed under MIT</a>
+            |
+            Copyright &copy; 2015 NowZoo
+        </p>
     </div>
-
 </footer>
 
 

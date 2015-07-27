@@ -68,7 +68,7 @@ var set_templates = module.exports.set_templates = function(directory, files, ca
     );
 };
 
-var set_config = module.exports.set_config = function(directory, cfg, callback){
+var set_config = module.exports.set_config = function(directory, cfg, callback, raw){
     var _cfg_path = path.join(directory, '_cfg');
     async.series(
         [
@@ -76,8 +76,30 @@ var set_config = module.exports.set_config = function(directory, cfg, callback){
                 fs.remove(_cfg_path, callback);
             },
             function(callback){
-                fs.outputJSON(path.join(_cfg_path, 'site.json'), cfg, callback)
+                if (raw){
+                    fs.outputFile(path.join(_cfg_path, 'site.json'), cfg, callback)
+                } else {
+                    fs.outputJSON(path.join(_cfg_path, 'site.json'), cfg, callback)
+                }
+
             },
+
+        ], callback
+    );
+};
+
+var set_assets = module.exports.set_assets = function(directory, files, callback){
+    var assets_path = path.join(directory, '_assets');
+    async.series(
+        [
+            function(callback){
+                fs.remove(assets_path, callback);
+            },
+            function(callback){
+                async.each(files, function(slugs, callback){
+                    fs.ensureFile(path.join(assets_path, slugs.join(path.sep)), callback);
+                }, callback)
+            }
 
         ], callback
     );
