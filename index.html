@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nog | Nog</title>
+    <title>Nog | A site manager for GitHub Pages.</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
+    <link href="/nog/assets/theme/css/default.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -41,18 +42,12 @@
     </h1>
         </div>
 </header>
-
-
 <div class="container">
-
-
-
 
     <div class="row">
         <div class="col-sm-3 sidebar">
-
-
-                <h5>How To</h5>
+            
+<h5>Basics</h5>
 <ul class="nav nav-pills nav-stacked">
     <li>
         <a href="/nog/site-configuration/">Site Configuration</a>
@@ -67,6 +62,8 @@
     <li>
         <a href="/nog/asset-files/">Assets</a>
     </li>
+
+
 </ul>
 
 <h5>Commands</h5>
@@ -85,6 +82,16 @@
     </li>
 </ul>
 
+<h5>Advanced</h5>
+
+<ul class="nav nav-pills nav-stacked">
+    <li>
+        <a href="/nog/change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
+    </li>
+    <li>
+        <a href="/nog/enable-jade-templates/">Enable Jade Templates</a>
+    </li>
+</ul>
 
         </div>
         <div class="col-sm-9">
@@ -99,29 +106,44 @@
 
     <article>
         <div>
-            <p>Nog is a command-line site manager for GitHub Pages.</p>
-<p>It strives to be brutally simple.</p>
-<h3 id="quick-start">Quick Start</h3>
-<pre><code># install nog globally...
-$ npm install -g nog
+            <p>Nog is a command-line site manager for GitHub Pages running on Node.js.</p>
+<p>It strives to be brutally simple and unopinionated.</p>
+<h4 id="what-nog-does">What Nog Does</h4>
+<ul>
+<li>It parses a set of Markdown and/or HTML files into static website that you can preview locally.</li>
+<li>It makes it easy to publish that website to GitHub Pages.</li>
+</ul>
+<h4 id="what-nog-does-by-default">What Nog Does By Default</h4>
+<ul>
+<li>It uses <a href="https://github.com/chjj/marked">marked</a> to render Markdown.</li>
+<li>It uses <a href="http://paularmstrong.github.io/swig/">Swig</a> as its default templating engine.</li>
+</ul>
+<p>These behaviors are only sensible defaults. If you prefer Jade over Swig as your template engine, for example, it&#39;s an easy change.</p>
+<h4 id="what-nog-doesn-t-do">What Nog Doesn&#39;t Do</h4>
+<ul>
+<li>It doesn&#39;t care how you compile CSS or other parts of your build process.</li>
+</ul>
+<h4 id="quick-start">Quick Start</h4>
+<pre><code><span class="hljs-comment"># install nog globally...</span>
+<span class="hljs-variable">$ </span>npm install -g nog
 
-# make a directory and cd into it...
-$ mkdir my-site &amp;&amp; cd my-site
+<span class="hljs-comment"># make a directory and cd into it...</span>
+<span class="hljs-variable">$ </span>mkdir my-site &amp;&amp; cd my-site
 
-# initialize nog...
-$ nog init
+<span class="hljs-comment"># initialize nog...</span>
+<span class="hljs-variable">$ </span>nog init
 
-# start the server...
-$ nog serve
+<span class="hljs-comment"># start the server...</span>
+<span class="hljs-variable">$ </span>nog serve
 </code></pre><ul>
 <li>Visit your site at <a href="http://localhost:3000/nog/">http://localhost:3000/nog/</a>.</li>
 <li>Make changes in the <code>_content</code>, <code>_cfg</code>, <code>_assets</code> and <code>_templates</code> directories.</li>
 <li>The changes you make will automatically show up on the local site (as long as you&#39;ve got livereload enabled in the browser.)</li>
 </ul>
 <p>When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...</p>
-<pre><code>$ ./nog push
+<pre><code>$ nog <span class="hljs-keyword">push</span>
 </code></pre><p>To diagnose any problems:</p>
-<pre><code>$ ./nog lint
+<pre><code><span class="hljs-variable">$ </span>nog lint
 </code></pre>
         </div>
     </article>
@@ -134,9 +156,14 @@ $ nog serve
 <footer id="site-footer">
     <div class="container">
         <hr>
-        <p class="text-muted">Powered by Nog, a NowZoo thing | Nog and this content are licensed under MIT</p>
+        <p class="text-muted">
+            Powered by Nog, a NowZoo thing |
+            Nog and this content are
+            <a href="https://raw.githubusercontent.com/nowzoo/nog/master/LICENSE">licensed under MIT</a>
+            |
+            Copyright &copy; 2015 NowZoo
+        </p>
     </div>
-
 </footer>
 
 

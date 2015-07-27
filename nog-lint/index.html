@@ -7,6 +7,7 @@
     <title>nog lint | Nog</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
+    <link href="/nog/assets/theme/css/default.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -41,18 +42,12 @@
     </h1>
         </div>
 </header>
-
-
 <div class="container">
-
-
-
 
     <div class="row">
         <div class="col-sm-3 sidebar">
-
-
-                <h5>How To</h5>
+            
+<h5>Basics</h5>
 <ul class="nav nav-pills nav-stacked">
     <li>
         <a href="/nog/site-configuration/">Site Configuration</a>
@@ -67,6 +62,8 @@
     <li>
         <a href="/nog/asset-files/">Assets</a>
     </li>
+
+
 </ul>
 
 <h5>Commands</h5>
@@ -85,6 +82,16 @@
     </li>
 </ul>
 
+<h5>Advanced</h5>
+
+<ul class="nav nav-pills nav-stacked">
+    <li>
+        <a href="/nog/change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
+    </li>
+    <li>
+        <a href="/nog/enable-jade-templates/">Enable Jade Templates</a>
+    </li>
+</ul>
 
         </div>
         <div class="col-sm-9">
@@ -95,36 +102,36 @@
     <article>
         <div>
             <p>Displays potential errors in your config and content.</p>
-<pre><code>Usage: $ nog lint [options] [what...]
+<pre><code><span class="hljs-attribute">Usage</span>: <span class="hljs-string">$ nog lint [options] [what...]</span>
 
-show problems with your content and config
+<span class="sql"><span class="hljs-operator"><span class="hljs-keyword">show</span> problems <span class="hljs-keyword">with</span> your content <span class="hljs-keyword">and</span> config
 
 Options:
 
-  -h, --help     output usage information
-  -v, --verbose  verbose output
+  -h, <span class="hljs-comment">--help     output usage information</span>
+  -v, <span class="hljs-comment">--verbose  verbose output</span></span></span>
 </code></pre><h3 id="examples">Examples</h3>
 <p>Lint everything...</p>
-<pre><code>$ nog lint
+<pre><code><span class="hljs-variable">$ </span>nog lint
 </code></pre><p>Lint only the config...</p>
 <pre><code>$ nog lint config
 
-Linting config...
+<span class="hljs-variable">Linting</span> config...
 
-    Site Config
-        Everything ok.
+    <span class="hljs-variable">Site</span> <span class="hljs-variable">Config</span>
+        <span class="hljs-variable">Everything</span> ok.
 </code></pre><p>Lint only the content...</p>
-<pre><code>$ nog lint content
+<pre><code><span class="hljs-variable">$ </span>nog lint content
 </code></pre><p>Pass a path to lint a single piece of content...</p>
-<pre><code>$ nog lint _content/index.md
+<pre><code>$ nog lint _content/index<span class="hljs-class">.md</span>
 
-Linting _content/index.md...
-    index.md
-        The content at index.md does not have a defined excerpt. Using the first 255 chars.
-        The date is missing in index.md. Setting date to the file modified date &quot;Monday, July 20, 2015 4:55 PM&quot;.
+Linting _content/index<span class="hljs-class">.md</span>...
+    index<span class="hljs-class">.md</span>
+        The <span class="hljs-attribute">content</span> at index<span class="hljs-class">.md</span> does not have <span class="hljs-tag">a</span> defined excerpt. Using the first <span class="hljs-number">255</span> chars.
+        The date is missing <span class="hljs-keyword">in</span> index<span class="hljs-class">.md</span>. Setting date to the file modified date <span class="hljs-string">"Monday, July 20, 2015 4:55 PM"</span>.
 </code></pre><h4 id="options">Options</h4>
 <p>Use <code>--verbose</code> or <code>-v</code>  for verbose output.</p>
-<pre><code>$ nog push -v
+<pre><code>$ nog <span class="hljs-keyword">push </span>-v
 </code></pre>
         </div>
     </article>
@@ -136,9 +143,14 @@ Linting _content/index.md...
 <footer id="site-footer">
     <div class="container">
         <hr>
-        <p class="text-muted">Powered by Nog, a NowZoo thing | Nog and this content are licensed under MIT</p>
+        <p class="text-muted">
+            Powered by Nog, a NowZoo thing |
+            Nog and this content are
+            <a href="https://raw.githubusercontent.com/nowzoo/nog/master/LICENSE">licensed under MIT</a>
+            |
+            Copyright &copy; 2015 NowZoo
+        </p>
     </div>
-
 </footer>
 
 

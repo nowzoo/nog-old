@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>nog init | Nog</title>
+    <title>Change How Nog Renders Markdown | Nog</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
     <link href="/nog/assets/theme/css/default.css" rel="stylesheet">
@@ -68,7 +68,7 @@
 
 <h5>Commands</h5>
 <ul class="nav nav-pills nav-stacked">
-    <li class="active">
+    <li>
         <a href="/nog/nog-init/">nog init</a>
     </li>
     <li>
@@ -85,7 +85,7 @@
 <h5>Advanced</h5>
 
 <ul class="nav nav-pills nav-stacked">
-    <li>
+    <li class="active">
         <a href="/nog/change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
     </li>
     <li>
@@ -97,30 +97,40 @@
         <div class="col-sm-9">
             
         <h1 class="page-header">
-            nog init
+            Change How Nog Renders Markdown
         </h1>
     <article>
         <div>
-            <p>Initializes a site in the current working directory with the default content and configuration.</p>
-<pre><code><span class="hljs-attribute">Usage</span>: <span class="hljs-string">$ nog init [options]</span>
+            <p>By default Nog uses <a href="https://github.com/chjj/marked">marked</a> and <a href="https://highlightjs.org/">highlight.js</a> to render Markdown.</p>
+<p>You can change this behavior by providing Nog a custom <code>markdown_render(markdown_string, callback)</code> function that calls back with an error (if the rendering somehow fails) and the rendered HTML.</p>
+<p>Create a file called <code>_cfg/markdown_render.js</code>...</p>
+<pre><code><span class="hljs-comment">/* jshint node: true */</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">markdown_string, callback</span>)</span>{
+<span class="hljs-pi">    "use strict"</span>;
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">async</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'async'</span>);
+    <span class="hljs-keyword">var</span> rendered;
+    <span class="hljs-keyword">async</span>.series(
+        [
+            <span class="hljs-comment">//do your stuff...</span>
+            <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>)</span>{
+                rendered = <span class="hljs-string">'The quick brown fox.'</span>;
+                callback(<span class="hljs-literal">null</span>);
+            }
+        ],
+        <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+            callback(err, rendered);
+        }
+    );
+};
+</code></pre><p>In <code>_cfg/nog.js</code>...</p>
+<pre><code><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nog, callback</span>)</span>{
+<span class="hljs-pi">    "use strict"</span>;
+    <span class="hljs-comment">// other config...</span>
 
-<span class="livecodeserver">initialize <span class="hljs-operator">the</span> site <span class="hljs-operator">with</span> default content <span class="hljs-operator">and</span> config
+    nog.markdown_render = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./markdown_render'</span>);
 
-Options:
-
-  -h, <span class="hljs-comment">--help     output usage information</span>
-  -v, <span class="hljs-comment">--verbose  verbose output</span></span>
-</code></pre><p>You should only have to use this command once per site &mdash; all it does is copy the default <code>_assets</code>, <code>_cfg</code>, <code>_content</code> and <code>_templates</code> directories to your working directory.</p>
-<p>Importantly, if the current directory already contains one or more of those subdirectories, <code>nog init</code> will refuse to do anything. If you need to reinitialize the current directory, delete the subdirectories by hand first.</p>
-<h4 id="example">Example</h4>
-<pre><code><span class="hljs-comment"># install nog if you haven't already...</span>
-<span class="hljs-variable">$ </span>npm install -g nog
-
-<span class="hljs-comment"># make a new directory and cd into it...</span>
-<span class="hljs-variable">$ </span>mkdir my-site &amp;&amp; cd my-site
-
-<span class="hljs-comment"># initialize the site...</span>
-<span class="hljs-variable">$ </span>nog init
+    callback(<span class="hljs-literal">null</span>, nog);
+};
 </code></pre>
         </div>
     </article>

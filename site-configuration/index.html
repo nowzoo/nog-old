@@ -7,6 +7,7 @@
     <title>Site Configuration | Nog</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
+    <link href="/nog/assets/theme/css/default.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -41,18 +42,12 @@
     </h1>
         </div>
 </header>
-
-
 <div class="container">
-
-
-
 
     <div class="row">
         <div class="col-sm-3 sidebar">
-
-
-                <h5>How To</h5>
+            
+<h5>Basics</h5>
 <ul class="nav nav-pills nav-stacked">
     <li class="active">
         <a href="/nog/site-configuration/">Site Configuration</a>
@@ -67,6 +62,8 @@
     <li>
         <a href="/nog/asset-files/">Assets</a>
     </li>
+
+
 </ul>
 
 <h5>Commands</h5>
@@ -85,6 +82,16 @@
     </li>
 </ul>
 
+<h5>Advanced</h5>
+
+<ul class="nav nav-pills nav-stacked">
+    <li>
+        <a href="/nog/change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
+    </li>
+    <li>
+        <a href="/nog/enable-jade-templates/">Enable Jade Templates</a>
+    </li>
+</ul>
 
         </div>
         <div class="col-sm-9">
@@ -134,6 +141,7 @@
 <p>Default: <code>false</code>. Whether or not to copy the contents of the <code>_assets</code> directory to a subdirectory. By default the files are copied directly to the site root. If specify a string, then the assets will be copied to a subdirectory of that name in the site root.</p>
 <h4 id="content_extensions">content_extensions</h4>
 <p>Default: <code>[&quot;.md&quot;, &quot;.markdown&quot;, &quot;.html&quot;, &quot;.htm&quot;]</code>. This setting determines the extensions that will be processed as content within the <code>_content</code> directory. It also determines the precedence of files with the same basename: Extensions that come first in the array win. Thus, by default, a file named <code>foo.md</code> will override a file named <code>foo.html</code>.</p>
+
         </div>
     </article>
 
@@ -144,9 +152,14 @@
 <footer id="site-footer">
     <div class="container">
         <hr>
-        <p class="text-muted">Powered by Nog, a NowZoo thing | Nog and this content are licensed under MIT</p>
+        <p class="text-muted">
+            Powered by Nog, a NowZoo thing |
+            Nog and this content are
+            <a href="https://raw.githubusercontent.com/nowzoo/nog/master/LICENSE">licensed under MIT</a>
+            |
+            Copyright &copy; 2015 NowZoo
+        </p>
     </div>
-
 </footer>
 
 

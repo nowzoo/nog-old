@@ -7,6 +7,7 @@
     <title>nog push | Nog</title>
 
     <link href="/nog/assets/theme/css/style.css" rel="stylesheet">
+    <link href="/nog/assets/theme/css/default.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -41,18 +42,12 @@
     </h1>
         </div>
 </header>
-
-
 <div class="container">
-
-
-
 
     <div class="row">
         <div class="col-sm-3 sidebar">
-
-
-                <h5>How To</h5>
+            
+<h5>Basics</h5>
 <ul class="nav nav-pills nav-stacked">
     <li>
         <a href="/nog/site-configuration/">Site Configuration</a>
@@ -67,6 +62,8 @@
     <li>
         <a href="/nog/asset-files/">Assets</a>
     </li>
+
+
 </ul>
 
 <h5>Commands</h5>
@@ -85,6 +82,16 @@
     </li>
 </ul>
 
+<h5>Advanced</h5>
+
+<ul class="nav nav-pills nav-stacked">
+    <li>
+        <a href="/nog/change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
+    </li>
+    <li>
+        <a href="/nog/enable-jade-templates/">Enable Jade Templates</a>
+    </li>
+</ul>
 
         </div>
         <div class="col-sm-9">
@@ -95,14 +102,14 @@
     <article>
         <div>
             <p>Builds the site and pushes it to the <code>gh-pages</code> branch of your GitHub repository.</p>
-<pre><code>Usage: $ nog push [options]
+<pre><code><span class="hljs-attribute">Usage</span>: <span class="hljs-string">$ nog push [options]</span>
 
-push the gh-pages branch to github
+<span class="vim">push the gh-pages branch <span class="hljs-keyword">to</span> github
 
-Options:
+Option<span class="hljs-variable">s:</span>
 
-  -h, --help     output usage information
-  -v, --verbose  verbose output
+  -<span class="hljs-keyword">h</span>, --<span class="hljs-keyword">help</span>     output usage information
+  -<span class="hljs-keyword">v</span>, --<span class="hljs-keyword">verbose</span>  <span class="hljs-keyword">verbose</span> output</span>
 </code></pre><h4 id="notes">Notes</h4>
 <p>This command is only concerned with pushing the <code>gh-pages</code> branch &mdash; that is, the special branch GitHub Pages use to serve your site. <code>nog push</code> creates a temporary directory to create a fresh repository, pull the <code>gh-pages</code> branch, build the site and push the changes.  Therefore...</p>
 <ul>
@@ -112,6 +119,7 @@ Options:
 <p>You should manage the other branches (e.g. <code>master</code>) in the usual way via <code>git</code>.</p>
 <p>The command will always build using the contents of currently checked-out branch.</p>
 <p>The command will fail if you have not added a remote named <code>origin</code>. If you create a repo on GitHub and clone it this remote will already exist; otherwise you will have to do <code>git remote add</code>.</p>
+
         </div>
     </article>
 
@@ -122,9 +130,14 @@ Options:
 <footer id="site-footer">
     <div class="container">
         <hr>
-        <p class="text-muted">Powered by Nog, a NowZoo thing | Nog and this content are licensed under MIT</p>
+        <p class="text-muted">
+            Powered by Nog, a NowZoo thing |
+            Nog and this content are
+            <a href="https://raw.githubusercontent.com/nowzoo/nog/master/LICENSE">licensed under MIT</a>
+            |
+            Copyright &copy; 2015 NowZoo
+        </p>
     </div>
-
 </footer>
 
 
