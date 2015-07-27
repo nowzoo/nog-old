@@ -11,7 +11,7 @@ var get_base_template_data = require('./get_base_template_data');
 var get_output_path = require('../content/get_output_path');
 var log = require('../utils/log');
 
-module.exports = function(build, site, archive, changed_uris, callback){
+module.exports = function(build, site, archive, written_files, callback){
 
     var passed;
     var start = moment();
@@ -22,7 +22,7 @@ module.exports = function(build, site, archive, changed_uris, callback){
 
     async.eachSeries(archive.pages, function(page, callback){
         log.verbose(colors.gray(sprintf('\t\tProcessing page %s of %s... \n', page.page + 1, archive.page_count)));
-        changed_uris.push(page.relative_url);
+
         passed = _.extend(get_base_template_data(build, site), {
             archive: archive,
             page: page
@@ -45,6 +45,7 @@ module.exports = function(build, site, archive, changed_uris, callback){
                     var output_path = get_output_path(site, build, page.uri);
                     var relative_output_path = path.relative(build.output_directory, output_path);
                     log.verbose(colors.gray(sprintf('\t\tWriting file %s\n', relative_output_path)));
+                    written_files.push(output_path);
                     fs.outputFile(output_path, rendered, function(err){
                         if (err){
                             log(colors.yellow(sprintf('\t\tError writing %s: %s\n', relative_output_path, err.message)));

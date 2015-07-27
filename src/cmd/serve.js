@@ -118,26 +118,40 @@ module.exports = function (options) {
                         log.verbose('\t', colors.gray(sprintf('Watch set. Done in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
                     }
                     this.on('all', function(event, filepath) {
-                        build.build(false, published_only, process.cwd(), output_directory, function(err, changed_uris) {
-                            var start = moment();
-                            var notify = {files: _.uniq(changed_uris)};
-                            log(colors.gray.bold('\nPushing changes to live reload... '), '\n');
-                            async.eachSeries(changed_uris, function(uri, callback){
-                                var cmd = sprintf('curl http://localhost:35729/changed?files=%s',uri);
-                                child_process.exec(cmd, function (err) {
-                                    if (err) log('\n', colors.red.bold(err), '\n\n');
-                                    callback(null);
-                                });
-                            }, function(err){
-                                log('\t', colors.gray(sprintf('Done in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
-                            });
+                        build.build(false, published_only, process.cwd(), output_directory, function(err, changed_uris) {});
+                    });
+                    callback(null);
+                });
 
-                        });
+            },
+
+            //create the watch on the output directory...
+            function (callback) {
+                var start = moment();
+                log.verbose(colors.gray.bold(sprintf('\nStarting to watch for changes in the site directory.\n')));
+                var p = path.join(output_directory, '**', '*.*');
+                gaze([p], function(err, watcher) {
+                    if (! err){
+                        log.verbose('\t', colors.gray(sprintf('Watch set. Done in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
+                    }
+                    this.on('all', function(event, filepath) {
+                        var p = filepath;
+                        var is_index = false;
+                        p = path.relative(output_directory, p);
+                        if ('index.html' === path.basename(p)){
+                            p = path.dirname(p);
+                            is_index = true;
+                        }
+                        var url = '/' + p.split(path.sep).join('/');
+                        if (is_index) url += '/';
+                        var cmd = sprintf('curl http://localhost:35729/changed?files=%s', url);
+                        child_process.exec(cmd);
                     });
                     callback(null);
                 });
 
             }
+
 
 
         ],

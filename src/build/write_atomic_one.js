@@ -10,11 +10,11 @@ var sprintf = require('sprintf-js').sprintf;
 var get_base_template_data = require('./get_base_template_data');
 var get_output_path = require('../content/get_output_path');
 var log = require('../utils/log');
-module.exports = function(build, site, content, changed_uris, callback){
+var get_relative_url = require('../content/get_relative_url');
+module.exports = function(build, site, content, written_files, callback){
     var passed;
     var rendered;
     var start = moment();
-    changed_uris.push(content.uri);
     log.verbose(colors.gray(sprintf('\tProcessing %s... \n', content.relative_path)));
 
     if (content.ignored){
@@ -36,7 +36,6 @@ module.exports = function(build, site, content, changed_uris, callback){
             function(callback){
                 var templates_path = path.join(build.input_directory, '_templates');
                 var abs = path.join(templates_path, content.template);
-                console.log(content.template);
                 log.verbose(colors.gray(sprintf('\t\tRendering file %s with template %s...\n', content.relative_path, content.template)));
                 build.render_template(abs, passed, function(err, result){
                     rendered = result || '';
@@ -48,9 +47,9 @@ module.exports = function(build, site, content, changed_uris, callback){
             },
             function(callback){
                 var output_path = path.join(build.output_directory, get_output_path(site, build, content.uri));
-                console.log(output_path);
                 var relative_output_path = path.relative(build.output_directory, output_path);
                 log.verbose(colors.gray(sprintf('\t\tWriting file %s\n', relative_output_path)));
+                written_files.push(output_path);
                 fs.outputFile(output_path, rendered, function(err){
                     if (err){
                         log(colors.yellow(sprintf('\t\tError writing %s: %s\n', relative_output_path, err.message)));

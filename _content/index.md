@@ -46,11 +46,11 @@ $ nog serve
 When you want to publish your changes to your GitHub Pages site, open up a separate terminal tab and...
 
 ```
-$ ./nog push
+$ nog push
 ```
 
 To diagnose any problems:
 
 ```
-$ ./nog lint
+$ nog lint
 ```

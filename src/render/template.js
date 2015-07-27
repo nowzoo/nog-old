@@ -10,6 +10,7 @@ module.exports = function(template_path, data, callback){
 
     switch(ext){
         case '.twig':
+            swig.setDefaults({ cache: false });
             swig.renderFile(template_path, data, function(err, result){
                 rendered = result;
                 callback(err, rendered);

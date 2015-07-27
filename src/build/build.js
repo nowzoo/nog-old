@@ -1,7 +1,11 @@
 'use strict';
+var _ = require('lodash');
+var fs = require('fs-extra');
+var path = require('path');
 var async = require('async');
 var moment = require('moment');
 var sprintf = require('sprintf-js').sprintf;
+var glob = require('glob');
 var colors = require('colors/safe');
 
 var log = require('../utils/log');
@@ -20,7 +24,8 @@ var require_pluggable = require('../pluggable/require_pluggable');
 var build = module.exports.build = function(is_build_public, published_only, input_directory, output_directory, callback){
 
     var start = moment();
-    var changed_uris = [];
+    var old_files = [];
+    var written_files = [];
     var build = {
         public: is_build_public,
         published_only: published_only,
@@ -79,25 +84,38 @@ var build = module.exports.build = function(is_build_public, published_only, inp
                 archives = archives_create(site, contents)
             },
 
-
-
-            //delete the existing files...
+            //get the old_file_list...
             function(callback){
-                remove_old_files(build, changed_uris, callback);
+                var p = path.join(output_directory, '**', '*.*');
+                glob(p, function (err, result) {
+                    old_files = result;
+                    callback(err);
+                });
             },
+
 
             //write the atomic contents...
             function(callback){
-                write_atomic(build, site, contents, changed_uris, callback);
+                write_atomic(build, site, contents, written_files, callback);
             },
             //write the archives...
             function(callback){
-                write_archives(build, site, archives, changed_uris, callback);
+                write_archives(build, site, archives, written_files, callback);
             },
 
             //copy _assets...
             function(callback){
-                copy_assets(build, site, changed_uris, callback);
+                copy_assets(build, site, written_files, callback);
+            },
+
+            function(callback){
+                var deleted = _.difference(old_files, written_files);
+                async.eachSeries(deleted, function(file, callback){
+                    fs.remove(file, callback);
+                }, function(){
+                    callback(null);
+                });
+
             }
         ],
         function (err) {
@@ -106,7 +124,7 @@ var build = module.exports.build = function(is_build_public, published_only, inp
             } else {
                 console.log(err);
             }
-            callback(err, changed_uris, build, site);
+            callback(err, written_files, build, site);
         }
     );
 };

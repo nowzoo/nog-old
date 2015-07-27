@@ -1,16 +1,17 @@
+
 <h5>Basics</h5>
 <ul class="nav nav-pills nav-stacked">
-    <li{% if post.uri === 'site-configuration' %} class="active"{% endif %}>
+    <li{% if post.id === 'site-configuration' %} class="active"{% endif %}>
         <a href="{{ site_root }}site-configuration/">Site Configuration</a>
     </li>
-    <li{% if post.uri === 'content' %} class="active"{% endif %}>
+    <li{% if post.id === 'content' %} class="active"{% endif %}>
         <a href="{{ site_root }}content/">Managing Content</a>
     </li>
-    <li{% if post.uri === 'templates' %} class="active"{% endif %}>
+    <li{% if post.id === 'templates' %} class="active"{% endif %}>
         <a href="{{ site_root }}templates/">Templates</a>
     </li>
 
-    <li{% if post.uri === 'asset-files' %} class="active"{% endif %}>
+    <li{% if post.id === 'asset-files' %} class="active"{% endif %}>
         <a href="{{ site_root }}asset-files/">Assets</a>
     </li>
 
@@ -19,16 +20,16 @@
 
 <h5>Commands</h5>
 <ul class="nav nav-pills nav-stacked">
-    <li{% if post.uri === 'nog-init' %} class="active"{% endif %}>
+    <li{% if post.id === 'nog-init' %} class="active"{% endif %}>
         <a href="{{ site_root }}nog-init/">nog init</a>
     </li>
-    <li{% if post.uri === 'nog-serve' %} class="active"{% endif %}>
+    <li{% if post.id === 'nog-serve' %} class="active"{% endif %}>
         <a href="{{ site_root }}nog-serve/">nog serve</a>
     </li>
-    <li{% if post.uri === 'nog-push' %} class="active"{% endif %}>
+    <li{% if post.id === 'nog-push' %} class="active"{% endif %}>
         <a href="{{ site_root }}nog-push/">nog push</a>
     </li>
-    <li{% if post.uri === 'nog-lint' %} class="active"{% endif %}>
+    <li{% if post.id === 'nog-lint' %} class="active"{% endif %}>
         <a href="{{ site_root }}nog-lint/">nog lint</a>
     </li>
 </ul>
@@ -36,10 +37,10 @@
 <h5>Advanced</h5>
 
 <ul class="nav nav-pills nav-stacked">
-    <li{% if post.uri === 'change-how-nog-renders-markdown' %} class="active"{% endif %}>
+    <li{% if post.id === 'change-how-nog-renders-markdown' %} class="active"{% endif %}>
         <a href="{{ site_root }}change-how-nog-renders-markdown/">Change How Nog Renders Markdown</a>
     </li>
-    <li{% if post.uri === 'enable-jade-templates' %} class="active"{% endif %}>
+    <li{% if post.id === 'enable-jade-templates' %} class="active"{% endif %}>
         <a href="{{ site_root }}enable-jade-templates/">Enable Jade Templates</a>
     </li>
 </ul>

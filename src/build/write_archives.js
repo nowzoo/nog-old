@@ -11,7 +11,7 @@ var sprintf = require('sprintf-js').sprintf;
 var write_archive_one = require('./write_archive_one');
 var log = require('../utils/log');
 
-module.exports = function(build, site, archives, changed_uris, callback){
+module.exports = function(build, site, archives, written_files, callback){
     var start = moment();
     var logs = [];
     var archives_to_build = [];
@@ -32,7 +32,7 @@ module.exports = function(build, site, archives, changed_uris, callback){
         logs.push('Post archives are disabled.');
     }
     async.eachSeries(archives_to_build, function(archive, callback){
-        write_archive_one(build, site, archive, changed_uris, callback);
+        write_archive_one(build, site, archive, written_files, callback);
     }, function(err){
         if (! err){
             _.each(logs, function(log){
