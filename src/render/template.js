@@ -6,7 +6,7 @@ module.exports = function(template_path, data, callback){
     var swig = require('swig');
 
     var rendered;
-    var ext = path.ext(template_path);
+    var ext = path.extname(template_path);
 
     switch(ext){
         case '.twig':

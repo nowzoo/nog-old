@@ -5,7 +5,7 @@ var sprintf = require('sprintf-js').sprintf;
 
 var get_content = require('./get_content');
 
-module.exports = function(site, content, html, callback){
+module.exports = function(build, site, content, html, callback){
     var err = null;
     var excerpt;
 
@@ -18,7 +18,7 @@ module.exports = function(site, content, html, callback){
             excerpt = S(html).stripTags().trim().substring(0, site.excerpt_length).s;
             callback(err, excerpt);
         } else {
-            get_content(site, content, function(ignore, html){
+            get_content(build, site, content, function(ignore, html){
                 var excerpt = S(html).stripTags().trim().substring(0, site.excerpt_length).s;
                 callback(err, excerpt);
             });

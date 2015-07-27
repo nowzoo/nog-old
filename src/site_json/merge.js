@@ -164,6 +164,12 @@ module.exports = function(defaults, user, lint){
         config.content_extensions = defaults.content_extensions;
     }
 
+    if (_.has(user, 'default_template_extension')){
+        config.default_template_extension = user.default_template_extension;
+    } else {
+        config.default_template_extension = defaults.default_template_extension;
+    }
+
     return config;
 
 };

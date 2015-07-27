@@ -8,8 +8,8 @@ var colors = require('colors/safe');
 
 var exec = require('child_process').exec;
 var temp = require('temp');
-var build = require('./build');
-var log = require('./log');
+var build = require('./build/build');
+var log = require('../utils/log');
 
 module.exports = function(){
 

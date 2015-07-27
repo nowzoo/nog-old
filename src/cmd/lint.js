@@ -6,10 +6,8 @@ var colors = require('colors/safe');
 var sprintf = require('sprintf-js').sprintf;
 var _ = require('lodash');
 
-var log = require('./log');
-var data = require('./data');
-var build = require('./build');
-var config = require('./config');
+var log = require('../utils/log');
+
 
 module.exports = function (what) {
     'use strict';

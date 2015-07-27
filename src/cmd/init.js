@@ -24,6 +24,7 @@ module.exports = function () {
                     dirs,
                     function(d, callback){
                         var p = path.join(process.cwd(), d);
+                        log.verbose(colors.gray(sprintf('Checking that we will not overwrite %s...\n', d)));
                         fs.exists(p, function(exists){
                             if (exists) extant.push(d);
                             callback(null);
@@ -45,8 +46,9 @@ module.exports = function () {
 
             function (callback) {
                 async.eachSeries(dirs, function(d, callback){
-                    var src = path.join(path.dirname(__dirname), d);
+                    var src = path.join(path.dirname(path.dirname(__dirname)), d);
                     var dst = path.join(process.cwd(), d);
+                    log.verbose(colors.gray(sprintf('Copying %s...\n', d)));
                     ncp(src, dst, callback);
                 }, callback);
             }

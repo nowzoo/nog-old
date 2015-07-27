@@ -36,6 +36,7 @@ module.exports = function(build, site, content, changed_uris, callback){
             function(callback){
                 var templates_path = path.join(build.input_directory, '_templates');
                 var abs = path.join(templates_path, content.template);
+                console.log(content.template);
                 log.verbose(colors.gray(sprintf('\t\tRendering file %s with template %s...\n', content.relative_path, content.template)));
                 build.render_template(abs, passed, function(err, result){
                     rendered = result || '';
@@ -46,7 +47,8 @@ module.exports = function(build, site, content, changed_uris, callback){
                 });
             },
             function(callback){
-                var output_path = get_output_path(site, build, content.uri);
+                var output_path = path.join(build.output_directory, get_output_path(site, build, content.uri));
+                console.log(output_path);
                 var relative_output_path = path.relative(build.output_directory, output_path);
                 log.verbose(colors.gray(sprintf('\t\tWriting file %s\n', relative_output_path)));
                 fs.outputFile(output_path, rendered, function(err){

@@ -5,7 +5,7 @@ var sprintf = require('sprintf-js').sprintf;
 var colors = require('colors/safe');
 
 var log = require('../utils/log');
-var ensure_output_directory_exists = require('./ensure_output_directory_exists')
+var ensure_output_directory_exists = require('./ensure_output_directory_exists');
 var site_json_read = require('../site_json/read');
 var remove_old_files = require('./remove_old_files');
 var atomic_read_all = require('../atomic/read_all');
@@ -14,6 +14,8 @@ var archives_create = require('../archives/create');
 var write_atomic = require('./write_atomic');
 var write_archives = require('./write_archives');
 var copy_assets = require('./copy_assets');
+var clear_require_cache = require('../pluggable/clear_require_cache');
+var require_pluggable = require('../pluggable/require_pluggable');
 
 var build = module.exports.build = function(is_build_public, published_only, input_directory, output_directory, callback){
 
@@ -25,6 +27,7 @@ var build = module.exports.build = function(is_build_public, published_only, inp
         input_directory: input_directory,
         output_directory: output_directory
     };
+
     var site;
     var contents;
     var archives;
@@ -38,10 +41,8 @@ var build = module.exports.build = function(is_build_public, published_only, inp
         [
             //make sure the directory exists and is a directory...
             function(callback){
-                ensure_output_directory_exists(build, callback)
+                ensure_output_directory_exists(build, callback);
             },
-
-
 
             //get the site ...
             function(callback){
@@ -51,9 +52,23 @@ var build = module.exports.build = function(is_build_public, published_only, inp
                 });
             },
 
+            //clear_require_cache ...
+            function(callback){
+                clear_require_cache(build, callback);
+            },
+            //require_pluggable ...
+            function(callback){
+
+                require_pluggable(build, function(err, pluggable){
+                    build.render_markdown = require('../render/markdown');
+                    build.render_template = require('../render/template');
+                    callback(err);
+                });
+            },
+
             //get the contents ...
             function(callback){
-                atomic_read_all(build, site, function(err, result){
+                atomic_read_all(build, function(err, result){
                     contents = result;
                     callback(err);
                 });
@@ -61,15 +76,10 @@ var build = module.exports.build = function(is_build_public, published_only, inp
             //populate the contents ...
             function(callback){
                 atomic_populate_all(build, site, contents, callback);
+                archives = archives_create(site, contents)
             },
 
-            //create the archives ...
-            function(callback){
-                archives_create(site, contents, function(err, result){
-                    archives = result;
-                    callback(err);
-                });
-            },
+
 
             //delete the existing files...
             function(callback){
@@ -93,8 +103,10 @@ var build = module.exports.build = function(is_build_public, published_only, inp
         function (err) {
             if (! err){
                 log.verbose(colors.gray.bold(sprintf('\nSite built in %ss.',(moment().valueOf() - start.valueOf())/1000)), '\n');
+            } else {
+                console.log(err);
             }
-            callback(err, changed_uris);
+            callback(err, changed_uris, build, site);
         }
     );
 };

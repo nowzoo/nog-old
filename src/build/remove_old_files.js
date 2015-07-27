@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 var path = require('path');
 var async = require('async');
 var moment = require('moment');

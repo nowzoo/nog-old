@@ -40,13 +40,13 @@ module.exports = function(build, site, content, contents, callback){
     async.series(
         [
             function(callback){
-                get_content(site, content, function(err, result){
+                get_content(build, site, content, function(err, result){
                     content.content = result;
                     callback(null);
                 });
             },
             function(callback){
-                get_excerpt(site, content, content.content, function(err, result){
+                get_excerpt(build, site, content, content.content, function(err, result){
                     content.excerpt = result;
                     callback(null);
                 });

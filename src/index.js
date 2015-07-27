@@ -4,8 +4,8 @@
 var program = require('commander');
 
 var serve = require('./cmd/serve');
-var lint = require('./cmd/lint');
-var push = require('./cmd/push');
+//var lint = require('./cmd/lint');
+//var push = require('./cmd/push');
 var init = require('./cmd/init');
 
 

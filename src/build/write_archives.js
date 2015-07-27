@@ -9,6 +9,8 @@ var sprintf = require('sprintf-js').sprintf;
 
 
 var write_archive_one = require('./write_archive_one');
+var log = require('../utils/log');
+
 module.exports = function(build, site, archives, changed_uris, callback){
     var start = moment();
     var logs = [];
@@ -16,12 +18,12 @@ module.exports = function(build, site, archives, changed_uris, callback){
     log.verbose(colors.gray.bold('\nWriting archives content... \n'));
     if ('' !== site.archives_directory){
         archives_to_build.push(archives.main);
-        if (! build_data.config.archives_generate_tags){
+        if (! site.archives_generate_tags){
             logs.push('Tag archives are disabled.')
         } else {
             archives_to_build = archives_to_build.concat(_.values(archives.tags));
         }
-        if (! build_data.config.archives_generate_dates){
+        if (! site.archives_generate_dates){
             logs.push('Date archives are disabled.')
         } else {
             archives_to_build = archives_to_build.concat(_.values(archives.dates));

@@ -96,6 +96,7 @@ describe('#site_json/read()', function(){
                 expect(err).to.be.an('error');
                 expect(result).to.be.an('object');
                 expect(result.title).to.equal('Foo');
+                expect(result.default_template_extension).to.equal('.twig');
                 expect(err.lint).to.include.keys('excerpt_length');
                 done();
             });

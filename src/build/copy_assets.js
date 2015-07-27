@@ -33,7 +33,7 @@ module.exports = function(build, site, changed_uris, callback){
                     files,
                     function(file, callback){
                         var uri = get_asset_uri(build, site, file);
-                        var src = path.join(src_assets_path, uri.split('/').join(path.sep));
+                        var src = file;
                         var dst = path.join(build.output_directory, uri.split('/').join(path.sep));
                         changed_uris.push(get_relative_url(uri));
                         log.verbose('\t\t', colors.gray(sprintf('Copying %s', uri)), '\n');
